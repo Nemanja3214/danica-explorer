@@ -4,7 +4,15 @@
     mc:Ignorable="d"
     x:Class="app.Views.MapComponent"
     xmlns="https://github.com/avaloniaui"
-    xmlns:avalonia="clr-namespace:Mapsui.UI.Avalonia;assembly=Mapsui.UI.Avalonia"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" />
+
+
+<!-- <Grid ColumnDefinitions="*" RowDefinitions="50,*"> -->
+<!--  <TextBlock  -->
+<!--  Grid.Row="0"  -->
+<!--  Margin="0,0,0,3"  -->
+<!--  Text="Name" />  -->
+<!--     <views:MapComponent Grid.Row="1" /> -->
+<!-- </Grid> -->

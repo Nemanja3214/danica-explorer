@@ -1,0 +1,29 @@
+<Window
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    d:Title="Trip details"
+    mc:Ignorable="d"
+    x:Class="app.Views.TripDetails"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:views="clr-namespace:app.Views"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Grid ColumnDefinitions="*" RowDefinitions="50,*, *, *, *, *">
+        <!-- <views:MapComponent Grid.Row="1" /> -->
+        <!--  <StackPanel  -->
+        <!--  Grid.Row="2"  -->
+        <!--  Margin="30"  -->
+        <!--  Orientation="Horizontal">  -->
+        <!--     <views:DayPlan /> -->
+        <!--     <views:DayPlan /> -->
+        <!-- </StackPanel> -->
+        <!-- <TextBlock Grid.Row="3" Text="Accomodations" /> -->
+        <views:Gallery Grid.Row="4" />
+        <!-- <TextBlock Grid.Row="5" Text="Restaurants" /> -->
+    </Grid>
+
+
+
+
+</Window>
