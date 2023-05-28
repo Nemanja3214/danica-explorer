@@ -1,5 +1,6 @@
 using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
 
 namespace app.Views;
@@ -18,4 +19,5 @@ public partial class MapComponent : UserControl
         mapControl.Map?.Layers.Add(Mapsui.Tiling.OpenStreetMap.CreateTileLayer());
         Content = mapControl;
     }
+    
 }
