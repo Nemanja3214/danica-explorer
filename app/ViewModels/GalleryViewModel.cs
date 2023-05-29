@@ -1,29 +1,24 @@
 using System;
+using System.Reactive;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
 using Avalonia.OpenGL;
+using ReactiveUI;
 
 namespace app.ViewModels;
 
 public class GalleryViewModel : ViewModelBase
 {
-    private readonly Command<string> _getNextCommand;
-    private readonly Command<string> _getPreviousCommand;
+    private readonly ReactiveCommand<Unit, Unit> _getNextCommand;
+    private readonly ReactiveCommand<Unit, Unit> _getPreviousCommand;
 
     public GalleryViewModel()
     {
-        _getNextCommand = new Command<string>(
-            (s) => { Console.WriteLine("Next pozvan");}, 
-            (s) => true 
-        );
-        
-        _getPreviousCommand = new Command<string>(
-            (s) => { Console.WriteLine("Previous pozvan");}, 
-            (s) => true 
-        );
+        _getNextCommand = ReactiveCommand.Create(() => { Console.WriteLine("Next pozvan");} );
+        _getPreviousCommand = ReactiveCommand.Create(() => { Console.WriteLine("Previous pozvan");} );
     }
 
-    public Command<string> GetNextCommand => _getNextCommand;
+    public ReactiveCommand<Unit, Unit> GetNextCommand => _getNextCommand;
 
-    public Command<string> GetPreviousCommand => _getPreviousCommand;
+    public ReactiveCommand<Unit, Unit> GetPreviousCommand => _getPreviousCommand;
 }

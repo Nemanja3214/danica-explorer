@@ -1,6 +1,10 @@
-﻿namespace app.ViewModels;
+﻿using System;
+using System.Reactive;
+using ReactiveUI;
+
+namespace app.ViewModels;
 
 public class MainWindowViewModel : ViewModelBase
 {
-    public string Greeting => "Welcome to Avalonia!";
+
 }
