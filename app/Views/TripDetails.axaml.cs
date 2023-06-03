@@ -4,14 +4,11 @@ using Avalonia.Markup.Xaml;
 
 namespace app.Views;
 
-public partial class TripDetails : Window
+public partial class TripDetails : UserControl
 {
     public TripDetails()
     {
         InitializeComponent();
-#if DEBUG
-        this.AttachDevTools();
-#endif
     }
 
     private void InitializeComponent()

@@ -16,13 +16,20 @@
         <!--  Name="picHolder"  -->
         <!--  Source="pics/1.jpg"  -->
         <!--  Stretch="Uniform" />  -->
+        <CheckBox
+            Content="Allowed Generic Greeting"
+            Grid.Row="0"
+            IsChecked="True"
+            Name="AllowedGreeting" />
         <Button
             Command="{Binding GetNextCommand}"
             Content="Next button"
             Height="60"
+            IsEnabled="True"
             Margin="331,0,126,10"
             VerticalAlignment="Bottom"
             Width="150" />
+        <!--  x:CompileBindings="False"  -->
         <!--  <Button  -->
         <!--  Command="{Binding GetPreviousCommand}"  -->
         <!--  Content="Back button"  -->
