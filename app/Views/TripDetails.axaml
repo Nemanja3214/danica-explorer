@@ -11,19 +11,43 @@
     xmlns:viewModels="clr-namespace:app.ViewModels"
     xmlns:views="clr-namespace:app.Views"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    <Grid ColumnDefinitions="*" RowDefinitions="50,*, *, *, *, *">
-        <!-- <views:MapComponent Grid.Row="1" /> -->
-        <!--  <StackPanel  -->
-        <!--  Grid.Row="2"  -->
-        <!--  Margin="30"  -->
-        <!--  Orientation="Horizontal">  -->
-        <!--     <views:DayPlan /> -->
-        <!--     <views:DayPlan /> -->
-        <!-- </StackPanel> -->
-        <!-- <TextBlock Grid.Row="3" Text="Accomodations" /> -->
-        <views:Gallery DataContext="{Binding Gvm}" Grid.Row="4" />
-        <!-- <TextBlock Grid.Row="5" Text="Restaurants" /> -->
-    </Grid>
+    <ScrollViewer
+        IsEnabled="{Binding MapNotHovered}"
+        VerticalScrollBarVisibility="Auto"
+        viewModels:ScrolledBehaviour.Command="{Binding ScrollCommand}">
+        <Grid ColumnDefinitions="*" RowDefinitions="400,*, *, *, *, *, *">
+
+            <!--  PointerEnter=""  -->
+            <views:MapComponent
+                Grid.Row="1"
+                Height="400"
+                ScrollViewer.VerticalScrollBarVisibility="Disabled" />
+            <StackPanel
+                Grid.Row="2"
+                Margin="30"
+                Orientation="Horizontal">
+                <views:DayPlan />
+                <views:DayPlan />
+            </StackPanel>
+            <TextBlock
+                Grid.Row="3"
+                Text="Accomodations"
+                TextAlignment="Center" />
+            <ListBox Grid.Row="4" IsHitTestVisible="False">
+                <ListBoxItem>ListBox Item #1</ListBoxItem>
+                <ListBoxItem>ListBox Item #2</ListBoxItem>
+            </ListBox>
+            <TextBlock
+                Grid.Row="5"
+                Text="Restaurants"
+                TextAlignment="Center" />
+            <ListBox Grid.Row="6" IsHitTestVisible="False">
+                <ListBoxItem>ListBox Item #1</ListBoxItem>
+                <ListBoxItem>ListBox Item #2</ListBoxItem>
+            </ListBox>
+
+        </Grid>
+    </ScrollViewer>
 
 
 
