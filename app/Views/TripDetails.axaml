@@ -11,17 +11,16 @@
     xmlns:viewModels="clr-namespace:app.ViewModels"
     xmlns:views="clr-namespace:app.Views"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    <ScrollViewer
-        IsEnabled="{Binding MapNotHovered}"
-        VerticalScrollBarVisibility="Auto"
-        viewModels:ScrolledBehaviour.Command="{Binding ScrollCommand}">
-        <Grid ColumnDefinitions="*" RowDefinitions="400,*, *, *, *, *, *">
+    <ScrollViewer IsEnabled="{Binding MapNotHovered, Mode=OneWay}">
+        <Grid
+            ColumnDefinitions="*"
+            Margin="30"
+            RowDefinitions="10,*, *, *, *, *, *">
 
-            <!--  PointerEnter=""  -->
             <views:MapComponent
                 Grid.Row="1"
                 Height="400"
-                ScrollViewer.VerticalScrollBarVisibility="Disabled" />
+                IsPointerOver="{Binding MapHovered, Mode=OneWayToSource}" />
             <StackPanel
                 Grid.Row="2"
                 Margin="30"
