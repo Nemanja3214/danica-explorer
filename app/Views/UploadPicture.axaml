@@ -9,13 +9,25 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:viewModels="clr-namespace:app.ViewModels"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    <Panel>
+    <StackPanel Margin="50" Orientation="Vertical">
         <Image
-            Height="200"
+            Height="400"
             HorizontalAlignment="Center"
             IsVisible="True"
-            Source="{Binding ImageToView, Mode=OneWay}"
+            Source="{Binding ImageToView, Mode=TwoWay}"
             VerticalAlignment="Center"
-            Width="200" />
-    </Panel>
+            Width="400" />
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Button
+                Command="{Binding Upload}"
+                Content="Upload"
+                DockPanel.Dock="Right"
+                Grid.Column="1" />
+        </Grid>
+
+    </StackPanel>
 </UserControl>

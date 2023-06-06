@@ -1,12 +1,22 @@
 using System;
+using System.Drawing;
 using System.IO;
+using System.Linq;
+using System.Reactive;
 using System.Reflection;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using Avalonia;
+using Avalonia.Controls;
 using Avalonia.Controls.Shapes;
+using Avalonia.Interactivity;
 using Avalonia.Media.Imaging;
 using Avalonia.Platform;
+using BruTile.Wms;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Microsoft.VisualBasic;
 using ReactiveUI;
+using Bitmap = Avalonia.Media.Imaging.Bitmap;
 using Path = System.IO.Path;
 using PixelFormat = System.Drawing.Imaging.PixelFormat;
 
@@ -14,41 +24,74 @@ namespace app.ViewModels;
 
 public class UploadViewModel: ViewModelBase
 {
-    private string currentPath= @"avares://App/Assets/slika.jpg";
+    private string currentPath = "";
+    private ReactiveCommand<Unit, Unit> upload;
 
-    public string CurrentPath
+    public ReactiveCommand<Unit, Unit> Upload
+    {
+        get => upload;
+        set => upload = value ?? throw new ArgumentNullException(nameof(value));
+    }
+
+    private readonly Window _parent;
+    private Bitmap _image;
+
+    public string? CurrentPath
     {
         get => currentPath;
         set => currentPath = value ?? throw new ArgumentNullException(nameof(value));
     }
-    public Bitmap ImageToView { get; set; }
+    public Bitmap ImageToView { get => _image;   private set => this.RaiseAndSetIfChanged(ref _image, value); }
 
-    public UploadViewModel()
+    public UploadViewModel(Window parent)
     {
-        // var assets = AvaloniaLocator.Current.GetService<IAssetLoader>();
-        // ImageToView = new Bitmap(assets.Open(new Uri(currentPath)));
-        ImageToView = GetImage(currentPath);
+        _parent = parent;
+        upload = ReactiveCommand.Create(() =>
+        {
+            GetPath();
+        });
+        int width = 400;
+        int length = 400;
+        byte[] array = new byte[width * length * 4];
+        for (int i = 0; i < array.Length; i++) {
+            array[i] = i % 3 == 0 && i % 4 != 0 ? (byte)255 : (byte)105;
+        }
+
+        _image = CreateBitmapFromPixelData(array, width, length);
     }
     
-    public Bitmap GetImage(string rawUri)
+    public static WriteableBitmap CreateBitmapFromPixelData(byte[] rgbPixelData, int width, int height)
     {
-        Uri uri;
-
-        // Allow for assembly overrides
-        if (rawUri.StartsWith("avares://"))
+        Vector dpi = new Vector(96, 96);
+        var bitmap = new WriteableBitmap(new PixelSize(width, height), dpi, Avalonia.Platform.PixelFormat.Rgba8888);
+        using (var frameBuffer = bitmap.Lock())
         {
-            uri = new Uri(rawUri);
+            Marshal.Copy(rgbPixelData, 0, frameBuffer.Address, rgbPixelData.Length);
         }
-        else
+            
+        
+        return bitmap;
+    }
+
+
+    public Bitmap GetImage(string absolutePath)
+    {
+        using var fileStream = File.OpenRead(absolutePath);
+        var bmp = new Bitmap(fileStream);
+        return bmp;
+    }
+    
+    public async Task GetPath()
+    {
+        // TODO add filters for files
+        var dialog = new OpenFileDialog();
+        var result = await dialog.ShowAsync(_parent);
+
+        if (result != null)
         {
-            string assemblyName = Assembly.GetEntryAssembly().GetName().Name;
-            uri = new Uri($"avares://{assemblyName}/{rawUri}");
+            currentPath = result[0];
+            ImageToView = GetImage(currentPath);
         }
-
-        var assets = AvaloniaLocator.Current.GetService<IAssetLoader>();
-        var asset = assets.Open(uri);
-
-        return new Bitmap(asset);
     }
 
 

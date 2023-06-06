@@ -18,10 +18,9 @@ public partial class App : Application
         base.OnFrameworkInitializationCompleted();  
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
         {
-            desktop.MainWindow = new MainWindow
-            {
-                DataContext = new MainWindowViewModel(),
-            };
+            desktop.MainWindow = new MainWindow();
+            MainWindowViewModel mwvm = new MainWindowViewModel(desktop.MainWindow);
+            desktop.MainWindow.DataContext = mwvm;
         }
 
     

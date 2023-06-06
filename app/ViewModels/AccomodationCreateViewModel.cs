@@ -1,12 +1,16 @@
 using app.Views;
+using Avalonia.Controls;
 
 namespace app.ViewModels;
 
 public class AccomodationCreateViewModel
 {
-    public AccomodationCreateViewModel()
+    private readonly Window _parent;
+
+    public AccomodationCreateViewModel(Window parent)
     {
-        Uvm = new UploadViewModel();
+        _parent = parent;
+        Uvm = new UploadViewModel(_parent);
     }
 
     public UploadViewModel Uvm { get; set; }
