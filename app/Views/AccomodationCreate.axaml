@@ -1,18 +1,14 @@
-<Window
-    Icon="/Assets/avalonia-logo.ico"
-    Title="app"
+<UserControl
     d:DesignHeight="450"
     d:DesignWidth="800"
     mc:Ignorable="d"
-    x:Class="app.Views.MainWindow"
-    x:DataType="vm:MainWindowViewModel"
+    x:Class="app.Views.AccomodationCreate"
+    x:DataType="viewModels:AccomodationCreateViewModel"
     xmlns="https://github.com/avaloniaui"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewModels="clr-namespace:app.ViewModels"
     xmlns:views="clr-namespace:app.Views"
-    xmlns:vm="using:app.ViewModels"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-
-    <!-- <views:TripDetails DataContext="{Binding Tdvm}" /> -->
-    <views:AccomodationCreate DataContext="{Binding Accvm}" />
-</Window>
+    <views:UploadPicture DataContext="{Binding Uvm}" />
+</UserControl>

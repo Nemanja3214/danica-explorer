@@ -27,4 +27,8 @@
         <PackageReference Include="Mapsui.Avalonia" Version="4.0.0-rc.1" />
         <PackageReference Include="XamlNameReferenceGenerator" Version="1.6.1" />
     </ItemGroup>
+    
+    <ItemGroup>
+    <EmbeddedResource Include="Assets/*" />
+  </ItemGroup>
 </Project>
