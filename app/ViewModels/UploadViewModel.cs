@@ -12,7 +12,6 @@ using Avalonia.Controls.Shapes;
 using Avalonia.Interactivity;
 using Avalonia.Media.Imaging;
 using Avalonia.Platform;
-using BruTile.Wms;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.VisualBasic;
 using ReactiveUI;

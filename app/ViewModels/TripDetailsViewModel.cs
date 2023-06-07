@@ -14,7 +14,6 @@ using Avalonia.Input.GestureRecognizers;
 using Avalonia.Interactivity;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using ReactiveUI;
-using Svg;
 
 namespace app.ViewModels;
 
