@@ -11,7 +11,10 @@ public class AccomodationCreateViewModel
     {
         _parent = parent;
         Uvm = new UploadViewModel(_parent);
+        Form = new AccomodationCreateFormViewModel();
     }
+
+    public AccomodationCreateFormViewModel Form { get; set; }
 
     public UploadViewModel Uvm { get; set; }
 }

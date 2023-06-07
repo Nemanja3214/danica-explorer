@@ -1,8 +1,11 @@
-<Application xmlns="https://github.com/avaloniaui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             x:Class="app.App">
+<Application
+    x:Class="app.App"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <Application.Styles>
-        <FluentTheme Mode="Light"/>
+        <FluentTheme Mode="Light" />
+        <StyleInclude Source="avares://app/Styles/RatingStyles.axaml" />
     </Application.Styles>
+
 </Application>
