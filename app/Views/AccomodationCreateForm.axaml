@@ -13,9 +13,9 @@
     <StackPanel Margin="10">
         <TextBox Margin="10" Text="Accomodationname" />
         <viewModels:RatingControl NumberOfStars="5" Value="{Binding RatingValue}" />
-        <!--  Items="{Binding GeneratedCompletes}"  -->
+
         <AutoCompleteBox
-            AsyncPopulator="{Binding Populator}"
+            Items="{Binding GeneratedCompletes}"
             Margin="10"
             Name="AutoComp"
             Text="{Binding Query}" />
