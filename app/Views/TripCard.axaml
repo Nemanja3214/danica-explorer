@@ -17,14 +17,9 @@
 			<RowDefinition Height="4*"></RowDefinition>
             <RowDefinition Height="5*"></RowDefinition>
 		</Grid.RowDefinitions>
-		<Grid.ColumnDefinitions>
-			<ColumnDefinition Width="3*"></ColumnDefinition>
-            <ColumnDefinition Width="2*"></ColumnDefinition>
-            <ColumnDefinition Width="3*"></ColumnDefinition>
-        </Grid.ColumnDefinitions>
 
-        <Image Grid.Column="1" MaxWidth="250" Source="{Binding ImageSource, Converter={StaticResource imageConverter}}" />
-        <Border Grid.Column="1" Grid.Row="1" BorderBrush="Black" BorderThickness="1 0 1 1">
+        <Image MaxWidth="250" Source="{Binding ImageSource, Converter={StaticResource imageConverter}}" />
+        <Border Grid.Row="1" BorderBrush="Black" BorderThickness="1 0 1 1">
             <Grid Background="PaleGoldenrod" MaxWidth="250">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="1.5*"></RowDefinition>
@@ -50,10 +45,10 @@
                     </Grid.ColumnDefinitions>
                     
                     <Viewbox Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center">
-                        <Button Margin="10 5 5 5">Rezerviši</Button>
+                        <Button Command="{Binding BookCommand}" Margin="10 5 5 5">Rezerviši</Button>
                     </Viewbox>
                     <Viewbox Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center">
-                        <Button Margin="5 5 10 5">Saznaj više</Button>
+                        <Button Command="{Binding LearnMoreCommand}" Margin="5 5 10 5">Saznaj više</Button>
                     </Viewbox>
                 </Grid>
             </Grid>
