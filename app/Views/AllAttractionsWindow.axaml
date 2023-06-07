@@ -4,11 +4,12 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              xmlns:vm="using:app.ViewModels"
-             x:DataType="vm:AllTripsViewModel"
-             x:Class="app.Views.AllTripsWindow">
-
+             x:DataType="vm:AllAttractionsViewModel"
+             x:Class="app.Views.AllAttractionsWindow">
+	
     <ScrollViewer VerticalScrollBarVisibility="Auto" MaxHeight="600">
         <UniformGrid Columns="3" HorizontalAlignment="Stretch" Name="Grid" ScrollViewer.VerticalScrollBarVisibility="Visible">
         </UniformGrid>
     </ScrollViewer>
+
 </UserControl>
