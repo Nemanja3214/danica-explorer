@@ -13,32 +13,16 @@
     <StackPanel Margin="10">
         <TextBox Margin="10" Text="Accomodationname" />
         <viewModels:RatingControl NumberOfStars="5" Value="{Binding RatingValue}" />
-        <TextBox Margin="10" Text="Location" />
+        <!--  Items="{Binding GeneratedCompletes}"  -->
+        <AutoCompleteBox
+            AsyncPopulator="{Binding Populator}"
+            Margin="10"
+            Name="AutoComp"
+            Text="{Binding Query}" />
         <Button
             Command="{Binding Command}"
             Content="Location"
-            Margin="10">
-            <!-- <Interaction.Behaviors> -->
-            <!--     <EventTriggerBehavior EventName="CellPointerPressed"> -->
-            <!--         <InvokeCommandAction Command="{Binding CellPointerPressedCommand}" PassEventArgsToCommand="True" /> -->
-            <!--     </EventTriggerBehavior> -->
-            <!--     <EventTriggerBehavior EventName="SelectionChanged"> -->
-            <!--         <InvokeCommandAction Command="{Binding SelectionChangedCommand}" PassEventArgsToCommand="True" /> -->
-            <!--     </EventTriggerBehavior> -->
-            <!--     <EventTriggerBehavior EventName="PointerPressed"> -->
-            <!--         <InvokeCommandAction Command="{Binding PointerPressedCommand}" PassEventArgsToCommand="True" /> -->
-            <!--     </EventTriggerBehavior> -->
-            <!--     <EventTriggerBehavior EventName="PointerReleased"> -->
-            <!--         <InvokeCommandAction Command="{Binding PointerReleasedCommand}" PassEventArgsToCommand="True" /> -->
-            <!--     </EventTriggerBehavior> -->
-            <!--     <EventTriggerBehavior EventName="PointerMoved"> -->
-            <!--         <InvokeCommandAction Command="{Binding PointerMovedCommand}" PassEventArgsToCommand="True" /> -->
-            <!--     </EventTriggerBehavior> -->
-            <!--     <EventTriggerBehavior EventName="PointerExited"> -->
-            <!--         <InvokeCommandAction Command="{Binding PointerExitedCommand}" PassEventArgsToCommand="True" /> -->
-            <!--     </EventTriggerBehavior> -->
-            <!-- </Interaction.Behaviors> -->
-        </Button>
+            Margin="10" />
         <TextBox
             AcceptsReturn="True"
             Height="100"
