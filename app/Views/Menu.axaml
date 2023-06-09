@@ -1,0 +1,53 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="app.Views.Menu">
+
+    <!-- <avaloniaControls:Menu HorizontalAlignment="Stretch"  -->
+    <!--                        VerticalAlignment="Top" -->
+    <!--                        Margin="15 15"> -->
+    <!--     <avaloniaControls:MenuItem Margin="0 0 50 0"> -->
+    <!--         <avaloniaControls:MenuItem.Header> -->
+    <!--             <StackPanel Orientation="Horizontal"> -->
+    <!--                 <Image Source="../../Assets/logo.png"/> -->
+    <!--             </StackPanel> -->
+    <!--         </avaloniaControls:MenuItem.Header> -->
+    <!--     </avaloniaControls:MenuItem> -->
+    <!--     <avaloniaControls:MenuItem HorizontalAlignment="Center" Margin="0 0 30 0" Header="PUTOVANJA" FontWeight="DemiBold" /> -->
+    <!--     <avaloniaControls:MenuItem HorizontalAlignment="Center" Margin="0 0 30 0" Header="ATRAKCIJE" FontWeight="DemiBold"/> -->
+    <!--     <avaloniaControls:MenuItem HorizontalAlignment="Center" Margin="0 0 30 0" Header="PRIJAVI SE" FontWeight="DemiBold"/> -->
+    <!-- </avaloniaControls:Menu> -->
+    
+    <Menu HorizontalAlignment="Stretch" 
+        VerticalAlignment="Top"
+        Margin="18 18">
+        <Menu.ItemsPanel>
+            <ItemsPanelTemplate>
+                <DockPanel HorizontalAlignment="Stretch"/>
+            </ItemsPanelTemplate>
+        </Menu.ItemsPanel>
+        <MenuItem Margin="0 0 50 0"> 
+            <MenuItem.Header>
+                    <Image Source="../../Assets/logo.png"/>
+            </MenuItem.Header>
+        </MenuItem>
+        <MenuItem Header="PUTOVANJA" 
+                  Margin="0 0 20 0" 
+                  FontWeight="DemiBold"
+                  FontSize="18"/>
+        <MenuItem Header="ATRAKCIJE" 
+                  Margin="0 0 20 0" 
+                  FontWeight="DemiBold"
+                  FontSize="18"/>
+        <MenuItem Header="PRIJAVI SE" 
+                  HorizontalAlignment="Right"
+                  Margin="0 0 30 0"
+                  FontWeight="DemiBold"
+                  FontSize="18"/>
+    </Menu>
+
+
+
+</UserControl>

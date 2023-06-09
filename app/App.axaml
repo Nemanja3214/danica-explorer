@@ -4,5 +4,9 @@
 
     <Application.Styles>
         <FluentTheme Mode="Light"/>
+        <Style Selector="TextBlock">
+            <Setter Property="FontFamily" Value="avares://app/Assets/Fonts/Poppins/#Poppins" />
+        </Style>
     </Application.Styles>
+    
 </Application>
