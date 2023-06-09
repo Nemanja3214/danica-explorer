@@ -32,9 +32,9 @@ public class AccomodationCreateFormViewModel :ViewModelBase, INotifyPropertyChan
         set { this.RaiseAndSetIfChanged(ref _RatingValue, value); }
     }
 
-    private ObservableCollection<string> _generatedCompletes;
+    private ObservableCollection<LocationDTO> _generatedCompletes;
     
-    public ObservableCollection<string>  GeneratedCompletes
+    public ObservableCollection<LocationDTO>  GeneratedCompletes
     {
         get => _generatedCompletes;
         // check again
@@ -73,10 +73,12 @@ public class AccomodationCreateFormViewModel :ViewModelBase, INotifyPropertyChan
         set => _queryChangedCommand = value ?? throw new ArgumentNullException(nameof(value));
     }
 
+    public LocationDTO SelectedLocation { get; set; }
+
 
     private async void UpdateSuggestions()
     {
-        List<string> locations = await NominatimUtil.GetLocations(_query);
+        List<LocationDTO> locations = await NominatimUtil.GetLocations(_query);
 
         await Dispatcher.UIThread.InvokeAsync(() =>
         {
@@ -91,7 +93,7 @@ public class AccomodationCreateFormViewModel :ViewModelBase, INotifyPropertyChan
 
     public AccomodationCreateFormViewModel()
     {
-        GeneratedCompletes = new ObservableCollection<string>();
+        GeneratedCompletes = new ObservableCollection<LocationDTO>();
     }
     
 }

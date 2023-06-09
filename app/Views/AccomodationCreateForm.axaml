@@ -8,6 +8,7 @@
     xmlns:controls="https://github.com/AvaloniaUI/Avalonia.Samples/tree/main/src/Avalonia.Samples/CustomControls/RatingControlSample/RatingControlSample.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:models="clr-namespace:app.Utils"
     xmlns:viewModels="clr-namespace:app.ViewModels"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <StackPanel Margin="10">
@@ -26,14 +27,20 @@
                 Margin="10"
                 Text="{Binding Query}"
                 x:Name="SearchBox" />
-            <!--  TextInput="{Binding QueryChangedCommand}"  -->
             <ListBox
                 Grid.Row="1"
                 Items="{Binding GeneratedCompletes}"
                 Margin="10"
-                x:Name="SuggestionsList" />
+                SelectedItem="{Binding SelectedLocation, Mode=OneWayToSource}"
+                SelectionMode="Single"
+                x:Name="SuggestionsList">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding display_name}" />
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
         </Grid>
-        <Button Content="Location" Margin="10" />
         <TextBox
             AcceptsReturn="True"
             Height="100"

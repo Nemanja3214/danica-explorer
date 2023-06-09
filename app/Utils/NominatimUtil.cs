@@ -13,7 +13,7 @@ namespace app.Utils;
 public static class NominatimUtil
 {
     private static bool queryActive = true;
-    public async static Task<List<string>> GetLocations(string query)
+    public async static Task<List<LocationDTO>> GetLocations(string query)
     {
         using (WebClient wc = new WebClient())
         {
@@ -25,11 +25,11 @@ public static class NominatimUtil
             try
             {
                 List<LocationDTO> locations = (List<LocationDTO>)rootObject;
-                return locations.Select(dto => dto.display_name).ToList();
+                return locations;
             }
             catch(InvalidCastException e)
             {
-                return new List<String>();
+                return new List<LocationDTO>();
             }
         }
     }
