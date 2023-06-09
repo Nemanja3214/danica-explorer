@@ -5,18 +5,36 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b73f94c2-25cf-4823-8e05-042f234e2a8a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Views/LandingPage.axaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Views/LandingPage.axaml.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Views/Menu.axaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Views/Menu.axaml.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Commands/Navigation/HomeCommand.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ViewModels/LandingViewModel.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ViewModels/MenuViewModel.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Views/Components/Menu.axaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.app/.idea/avalonia.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.app/.idea/avalonia.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.app/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.app/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/App.axaml" beforeDir="false" afterPath="$PROJECT_DIR$/App.axaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/App.axaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/App.axaml.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ViewModels/MainWindowViewModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ViewModels/MainWindowViewModel.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ViewModels/ViewModelBase.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Views/LandingPage.axaml" beforeDir="false" afterPath="$PROJECT_DIR$/Views/LandingPage.axaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Views/MainWindow.axaml" beforeDir="false" afterPath="$PROJECT_DIR$/Views/MainWindow.axaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Views/MainWindow.axaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Views/MainWindow.axaml.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Views/Menu.axaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Views/Menu.axaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Views/Components/Menu.axaml.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/app.csproj" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7544d03464df43f0b7430a762f67ee489eba00/6a/5f92c796/Action.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/2524e2725c12b23062ed9f148b9dffc3d719fee31f8ff9ab4e667c2f557f17a/Border.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/e4189e7887012ec43f6dc7f3ebd6563943c363f23283b1b2d01eebcefb62e7/MenuItem.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/f6ae74fafdb6857a99ccc756ccc5a7fe7656165317fa734333b7e9d6fe087f/X11PlatformThreading.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Views/AuthPage.axaml" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Views/AuthPage.axaml.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Views/LandingPage.axaml.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -31,6 +49,7 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/mica/Documents/ftn/predmeti/HCI/Projekat2/danica-explorer/app/app.sln&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
@@ -72,7 +91,12 @@
       <updated>1685142339298</updated>
       <workItem from="1685142341364" duration="680000" />
       <workItem from="1686065968319" duration="7058000" />
-      <workItem from="1686319126759" duration="6671000" />
+      <workItem from="1686319126759" duration="10069000" />
+      <workItem from="1686330803423" duration="82000" />
+      <workItem from="1686330898391" duration="144000" />
+      <workItem from="1686331053882" duration="3897000" />
+      <workItem from="1686339519535" duration="11071000" />
+      <workItem from="1686351155692" duration="3575000" />
     </task>
     <servers />
   </component>

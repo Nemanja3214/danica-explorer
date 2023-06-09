@@ -4,9 +4,9 @@ using Avalonia.Markup.Xaml;
 
 namespace app.Views;
 
-public partial class Menu : UserControl
+public partial class AuthPage : UserControl
 {
-    public Menu()
+    public AuthPage()
     {
         InitializeComponent();
     }

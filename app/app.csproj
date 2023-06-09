@@ -29,6 +29,14 @@
 
     <ItemGroup>
       <UpToDateCheckInput Remove="Assets\Static\ColorTheme.xaml" />
+      <UpToDateCheckInput Remove="ViewModels\Components\PasswordBox.axaml" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Update="Views\Components\Menu.axaml.cs">
+        <DependentUpon>Menu.axaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
     </ItemGroup>
 
 </Project>

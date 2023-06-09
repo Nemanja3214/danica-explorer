@@ -1,9 +1,15 @@
 <UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:app.ViewModels"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             xmlns:views="clr-namespace:app.Views"
+             mc:Ignorable="d"
              x:Class="app.Views.LandingPage">
+    
+    <UserControl.DataContext>
+        <vm:LandingViewModel/>
+    </UserControl.DataContext>
     
     <Grid>
         <Image Source="../../Assets/banner.png"
@@ -22,14 +28,14 @@
             </Grid.RowDefinitions>
             
             <TextBlock Text="Da li ste spremni da zakoračite u novu avanturu ?" 
-                       FontSize="30" 
+                       FontSize="32" 
                        FontWeight="Bold"
                        TextWrapping="Wrap"
                        Padding="40 0"
                        Grid.Column="1"/>
             
             <TextBlock Text="Istražite najbolja putovanja uz danica-explorer !" 
-                       FontSize="22"
+                       FontSize="24"
                        TextWrapping="Wrap"
                        Padding=" 40 5"
                        Grid.Column="1"

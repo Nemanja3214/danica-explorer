@@ -4,27 +4,30 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:views="clr-namespace:app.Views"
-        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        xmlns:components="clr-namespace:app.Views.Components"
+        mc:Ignorable="d" 
         x:Class="app.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
         Icon="/Assets/logo.png"
-        Title="app">
-
-    <Design.DataContext>
+        Title="danica-explorer">
+    
+    <Window.DataContext>
         <vm:MainWindowViewModel/>
-    </Design.DataContext>
+    </Window.DataContext>
 
     <Grid>
+
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/> 
             <RowDefinition Height="*"/>    
         </Grid.RowDefinitions>
-
-        <views:Menu
-            Grid.Row="0"
-            Background="#E1E4EA"/> 
-
-        <views:LandingPage 
-            Grid.Row="1"/> 
+        
+        <Border Grid.Row="0"
+                Background="#E1E4EA"
+                BoxShadow="0 4 10 0 LightGray">
+            <components:Menu/>
+        </Border>
+        
+        <ContentPresenter Grid.Row="1"  Content="{Binding CurrentViewModel}" />
     </Grid>
 </Window>

@@ -5,6 +5,9 @@
       <map>
         <entry key="App.axaml" value="app.csproj" />
         <entry key="Assets/Static/PrimaryColors.xaml" value="app.csproj" />
+        <entry key="ViewModels/Components/PasswordBox.axaml" value="app.csproj" />
+        <entry key="Views/AuthPage.axaml" value="app.csproj" />
+        <entry key="Views/Components/Menu.axaml" value="app.csproj" />
         <entry key="Views/LandingPage.axaml" value="app.csproj" />
         <entry key="Views/MainWindow.axaml" value="app.csproj" />
         <entry key="Views/Menu.axaml" value="app.csproj" />
