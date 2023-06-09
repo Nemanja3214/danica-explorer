@@ -14,15 +14,26 @@
         <TextBox Margin="10" Text="Accomodationname" />
         <viewModels:RatingControl NumberOfStars="5" Value="{Binding RatingValue}" />
 
-        <AutoCompleteBox
-            Items="{Binding GeneratedCompletes}"
-            Margin="10"
-            Name="AutoComp"
-            Text="{Binding Query}" />
-        <Button
-            Command="{Binding Command}"
-            Content="Location"
-            Margin="10" />
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+
+            <TextBox
+                Grid.Row="0"
+                Margin="10"
+                Text="{Binding Query}"
+                x:Name="SearchBox" />
+            <!--  TextInput="{Binding QueryChangedCommand}"  -->
+            <ListBox
+                Grid.Row="1"
+                Items="{Binding GeneratedCompletes}"
+                Margin="10"
+                x:Name="SuggestionsList" />
+        </Grid>
+        <Button Content="Location" Margin="10" />
         <TextBox
             AcceptsReturn="True"
             Height="100"
