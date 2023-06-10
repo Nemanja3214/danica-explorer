@@ -21,6 +21,9 @@
             DataContext="{Binding Form}"
             Grid.Column="1"
             Grid.Row="0" />
-        <views:MapComponent Grid.ColumnSpan="2" Grid.Row="1" />
+        <views:MapComponent
+            DataContext="{Binding MapVM}"
+            Grid.ColumnSpan="2"
+            Grid.Row="1" />
     </Grid>
 </UserControl>

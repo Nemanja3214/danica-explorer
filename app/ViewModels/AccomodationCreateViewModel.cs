@@ -12,7 +12,10 @@ public class AccomodationCreateViewModel
         _parent = parent;
         Uvm = new UploadViewModel(_parent);
         Form = new AccomodationCreateFormViewModel();
+        MapVM = new MapViewModel();
     }
+
+    public MapViewModel MapVM { get; set; }
 
     public AccomodationCreateFormViewModel Form { get; set; }
 
