@@ -9,12 +9,11 @@
       <change afterPath="$PROJECT_DIR$/ViewModels/LandingViewModel.cs" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/ViewModels/MenuViewModel.cs" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/Views/Components/Menu.axaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.app/.idea/avalonia.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.app/.idea/avalonia.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.app/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.app/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/App.axaml" beforeDir="false" afterPath="$PROJECT_DIR$/App.axaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/App.axaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/App.axaml.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ViewModels/MainWindowViewModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ViewModels/MainWindowViewModel.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ViewModels/ViewModelBase.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Views/AuthPage.axaml" beforeDir="false" afterPath="$PROJECT_DIR$/Views/AuthPage.axaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Views/LandingPage.axaml" beforeDir="false" afterPath="$PROJECT_DIR$/Views/LandingPage.axaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Views/MainWindow.axaml" beforeDir="false" afterPath="$PROJECT_DIR$/Views/MainWindow.axaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Views/MainWindow.axaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Views/MainWindow.axaml.cs" afterDir="false" />
