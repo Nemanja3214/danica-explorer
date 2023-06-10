@@ -1,6 +1,15 @@
+using System;
 using System.Collections.Generic;
+using System.Drawing.Imaging;
+using System.IO;
+using System.Linq;
+using System.Reflection;
+using System.Threading;
+using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
+using Avalonia.Media.Imaging;
+using Avalonia.Platform;
 using Mapsui;
 using Mapsui.Extensions;
 using Mapsui.Layers;
@@ -8,19 +17,8 @@ using Mapsui.Projections;
 using Mapsui.Providers;
 using Mapsui.Styles;
 using Mapsui.Tiling;
-using Mapsui.UI.Avalonia.Extensions;
-using Mapsui.Tiling.Layers;
-using Mapsui.UI.Forms;
-using Mapsui.Extensions;
-using Mapsui.Layers;
-using Mapsui.Styles;
-using Mapsui.Tiling;
 using Mapsui.Utilities;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using BruTile;
-using Position = Mapsui.UI.Forms.Position;
+
 
 namespace app.Views;
 
@@ -30,6 +28,8 @@ public partial class MapComponent : UserControl
     {
         InitializeComponent();
     }
+    private static MPoint serbiaCoords = new MPoint(21.005859, 44.016521);
+    private static MPoint serbiaSphericalMercatorCoordinate = SphericalMercator.FromLonLat(serbiaCoords.X, serbiaCoords.Y).ToMPoint();
 
     private void InitializeComponent()
     {
@@ -38,14 +38,13 @@ public partial class MapComponent : UserControl
         mapControl.Map.Layers.Add(OpenStreetMap.CreateTileLayer());
         mapControl.Map.Layers.Add(CreatePinLayer(mapControl.Map.Extent));
 
-        // var serbiaCoords = new MPoint(21.005859, 44.016521);
-        var serbiaCoords = new MPoint(0, 0);
+       
+        // var serbiaCoords = new MPoint(0, 0);
         // OSM uses spherical mercator coordinates. So transform the lon lat coordinates to spherical mercator
-        var sphericalMercatorCoordinate = SphericalMercator.FromLonLat(serbiaCoords.X, serbiaCoords.Y).ToMPoint();
+
         // Set the center of the viewport to the coordinate. The UI will refresh automatically
         // Additionally you might want to set the resolution, this could depend on your specific purpose
-        mapControl.Map.Home = n => n.CenterOnAndZoomTo(sphericalMercatorCoordinate, n.Resolutions[7]);
-        
+        mapControl.Map.Home = n => n.CenterOnAndZoomTo(serbiaSphericalMercatorCoordinate, n.Resolutions[7]);
         
         Content = mapControl;
     }
@@ -54,7 +53,7 @@ public partial class MapComponent : UserControl
     {
         return new MemoryLayer
         {
-            
+            Style = null,
             Name = "Points",
             IsMapInfoLayer=true,
             Features = GetListOfPoints(),
@@ -64,19 +63,25 @@ public partial class MapComponent : UserControl
     private static IEnumerable<IFeature> GetListOfPoints()
     {
         List<IFeature> list = new List<IFeature>();
-        var feature = new PointFeature(0, 0);
+        var feature = new PointFeature(serbiaSphericalMercatorCoordinate.X, serbiaSphericalMercatorCoordinate.Y);
         feature["name"] = "MyPoint";
-        feature.Extent(new Extent(10, 10, 60, 60));
-        feature.Styles.Add(SmalleDot());
+        feature.Styles.Add(Pin());
         list.Add(feature);
 
-        IEnumerable<IFeature> points = list as IEnumerable<IFeature>;
-        return points;
+        return list;
     }
-    
-    private static IStyle SmalleDot()
+
+    private static IStyle Pin()
     {
-        return new SymbolStyle { SymbolScale = 0.03, Fill = new Brush(new Color(40, 40, 40)) };
+        var assets = AvaloniaLocator.Current.GetService<IAssetLoader>();
+        var stream = assets.Open(new Uri($"avares://{Assembly.GetExecutingAssembly().GetName().Name}/Assets/pin.png"));
+        var ID = BitmapRegistry.Instance.Register(stream);
+        return new SymbolStyle
+        {
+            BitmapId = ID,
+            // SymbolOffset = new Offset { Y = 64 },
+            SymbolScale = 0.1
+        };
     }
 
 }
