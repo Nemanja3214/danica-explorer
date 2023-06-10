@@ -19,7 +19,7 @@
 		</Grid.RowDefinitions>
 
         <Image MaxWidth="250" Source="{Binding ImageSource, Converter={StaticResource imageConverter}}" />
-        <Border Grid.Row="1" BorderBrush="Black" BorderThickness="1 0 1 1">
+        <Border Grid.Row="1" BorderBrush="Black" BorderThickness="1 0 1 1" MaxWidth="250">
             <Grid Background="PaleGoldenrod" MaxWidth="250">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="1.5*"></RowDefinition>
