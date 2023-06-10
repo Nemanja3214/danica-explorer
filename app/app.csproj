@@ -9,7 +9,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <Folder Include="Models\" />
         <AvaloniaResource Include="Assets\**" />
     </ItemGroup>
 
@@ -25,7 +24,6 @@
         <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="0.10.21" />
         <PackageReference Include="Avalonia.ReactiveUI" Version="0.10.21" />
         <PackageReference Include="Avalonia.Xaml.Interactions" Version="0.10.19" />
-        <PackageReference Include="Avalonia.Xaml.Interactions.DragAndDrop" Version="0.10.3" />
         <PackageReference Include="Mapsui.Avalonia" Version="4.0.0-rc.1" />
         <PackageReference Include="Mapsui.Forms" Version="3.0.2" />
         <PackageReference Include="ProjNET" Version="2.0.0" />
@@ -35,4 +33,8 @@
     <ItemGroup>
     <EmbeddedResource Include="Assets/*" />
   </ItemGroup>
+    
+    <ItemGroup>
+      <Folder Include="Models\" />
+    </ItemGroup>
 </Project>

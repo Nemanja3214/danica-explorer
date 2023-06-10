@@ -13,11 +13,9 @@ public class MainWindowViewModel : ViewModelBase
     public MainWindowViewModel(Window parent)
     {
         _parent = parent;
-        Tdvm = new TripDetailsViewModel();
-        Accvm = new AccomodationCreateViewModel(_parent);
+        Tcvm = new TripCreateViewModel();
     }
 
-    public AccomodationCreateViewModel Accvm { get; set; }
+    public TripCreateViewModel Tcvm { get; set; }
 
-    public TripDetailsViewModel Tdvm { get; set; }
 }
