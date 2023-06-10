@@ -6,11 +6,6 @@ namespace app.ViewModels;
 
 public class AllAttractionsViewModel : ViewModelBase
 {
-    //public ViewModelBase AttractionCardViewModel { get; set; }
-    //private AttractionCard _card;
-
-    //public AttractionCard Card { get => _card; }
-
     public ObservableCollection<AttractionCard> AllAttractions { get; set; }
     public AllAttractionsViewModel()
     {

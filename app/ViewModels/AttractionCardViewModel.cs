@@ -13,12 +13,20 @@ public class AttractionCardViewModel : ViewModelBase
         get => _imageSource;
     }
 
+    private string _attractionName;
+    public string AttractionName
+    {
+        get => _attractionName;
+        set => _attractionName = value;
+    }
+
     public ICommand LearnMoreCommand { get; }
 
     public AttractionCardViewModel()
     {
         LearnMoreCommand = new AttractionDetailsCommand();
         _imageSource = "../Assets/tripimage.jpeg";
+        _attractionName = "Sagrada familija";
     }
 
     

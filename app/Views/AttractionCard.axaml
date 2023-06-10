@@ -27,7 +27,7 @@
                 </Grid.RowDefinitions>
 				<Viewbox Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Center">
 					<StackPanel Orientation="Vertical" MaxWidth="250">
-						<TextBlock Margin="5" Text="Sagrada familija" FontWeight="Bold" TextWrapping="Wrap"/>
+						<TextBlock Margin="5" Text="{Binding AttractionName}" FontWeight="Bold" TextWrapping="Wrap"/>
 					</StackPanel>
 				</Viewbox>
                 <Grid Grid.Row="1">

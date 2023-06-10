@@ -29,14 +29,14 @@
                 </Grid.RowDefinitions>
                 <Viewbox Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Center">
                     <StackPanel Orientation="Vertical" MaxWidth="250">
-                        <TextBlock Margin="5" Text="Barselona" FontWeight="Bold" TextWrapping="Wrap"/>
+                        <TextBlock Margin="5" Text="{Binding TripName}" FontWeight="Bold" TextWrapping="Wrap"/>
                     </StackPanel>
                 </Viewbox>
                 <Viewbox HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Center">
-                    <TextBlock Margin="5 10 10 10" Text="Datum: 01.01.2020."/>
+                    <TextBlock Margin="5 10 10 10" Text="{Binding TripDate}"/>
                 </Viewbox>
                 <Viewbox HorizontalAlignment="Left" Grid.Row="2" VerticalAlignment="Center">
-                    <TextBlock Margin="5 10 10 10" Text="Cena: 4500 din"/>
+                    <TextBlock Margin="5 10 10 10" Text="{Binding TripPrice}"/>
                 </Viewbox>
                 <Grid Grid.Row="3">
                     <Grid.ColumnDefinitions>
