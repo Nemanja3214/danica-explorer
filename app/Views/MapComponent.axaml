@@ -1,5 +1,6 @@
 <UserControl
     Content="{Binding MapControlUI}"
+    Margin="20"
     d:DesignHeight="450"
     d:DesignWidth="800"
     mc:Ignorable="d"

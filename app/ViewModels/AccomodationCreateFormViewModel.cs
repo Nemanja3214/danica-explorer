@@ -24,6 +24,7 @@ namespace app.ViewModels;
 public class AccomodationCreateFormViewModel :ViewModelBase, INotifyPropertyChanged
 {
     private int _RatingValue = 2;
+    public event EventHandler LocationChanged;
 
     [Range(0, 5)]
     public int RatingValue
@@ -73,7 +74,17 @@ public class AccomodationCreateFormViewModel :ViewModelBase, INotifyPropertyChan
         set => _queryChangedCommand = value ?? throw new ArgumentNullException(nameof(value));
     }
 
-    public LocationDTO SelectedLocation { get; set; }
+    private LocationDTO _selectedLocation;
+
+    public LocationDTO SelectedLocation
+    {
+        get => _selectedLocation;
+        set
+        {
+            _selectedLocation = value;
+            LocationChanged?.Invoke(this, EventArgs.Empty); 
+        }
+    }
 
 
     private async void UpdateSuggestions()
@@ -89,6 +100,8 @@ public class AccomodationCreateFormViewModel :ViewModelBase, INotifyPropertyChan
             }
         });
     }
+    
+    
 
 
     public AccomodationCreateFormViewModel()
