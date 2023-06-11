@@ -14,8 +14,18 @@
     <Window.DataContext>
         <vm:MainWindowViewModel/>
     </Window.DataContext>
+    
+    
 
     <Grid>
+        <Grid.DataTemplates>
+            <DataTemplate DataType="{x:Type vm:LandingViewModel}">
+                <views:LandingPage/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vm:AuthViewModel}">
+                <views:AuthPage/>
+            </DataTemplate>
+        </Grid.DataTemplates>
 
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/> 
@@ -28,6 +38,6 @@
             <components:Menu/>
         </Border>
         
-        <ContentPresenter Grid.Row="1"  Content="{Binding CurrentViewModel}" />
+        <ContentControl Grid.Row="1"  Content="{Binding CurrentViewModel}" />
     </Grid>
 </Window>

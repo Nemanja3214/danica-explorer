@@ -5,21 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b73f94c2-25cf-4823-8e05-042f234e2a8a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Commands/Navigation/HomeCommand.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ViewModels/LandingViewModel.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ViewModels/MenuViewModel.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Views/Components/Menu.axaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.app/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.app/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/App.axaml" beforeDir="false" afterPath="$PROJECT_DIR$/App.axaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/App.axaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/App.axaml.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ViewModels/ViewModelBase.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Views/AuthPage.axaml" beforeDir="false" afterPath="$PROJECT_DIR$/Views/AuthPage.axaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Views/LandingPage.axaml" beforeDir="false" afterPath="$PROJECT_DIR$/Views/LandingPage.axaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Views/MainWindow.axaml" beforeDir="false" afterPath="$PROJECT_DIR$/Views/MainWindow.axaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Views/MainWindow.axaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Views/MainWindow.axaml.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Views/Menu.axaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Views/Menu.axaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Views/Components/Menu.axaml.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/app.csproj" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,7 +17,11 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7544d03464df43f0b7430a762f67ee489eba00/6a/5f92c796/Action.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/17e74ab61fe0ba52377e6be4626e748b457547f6bc2e4353acda3221accd0/Subject.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/2524e2725c12b23062ed9f148b9dffc3d719fee31f8ff9ab4e667c2f557f17a/Border.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/a45696f9a5ff6cb1a62df8ddc1cced1fa76fd45c83396560d628148eb19862/RoutedEvent.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/b2c66afceabede0107eef1a7e53aaa548bdf28d878c14952ca578c37f823f/AnonymousObserver.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/e15b7d564ccc9c5bad5fff5763f6da0a5b1e2fdedf57f2958b195afcd284c/ObserverBase.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/e4189e7887012ec43f6dc7f3ebd6563943c363f23283b1b2d01eebcefb62e7/MenuItem.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/f6ae74fafdb6857a99ccc756ccc5a7fe7656165317fa734333b7e9d6fe087f/X11PlatformThreading.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Views/AuthPage.axaml" root0="FORCE_HIGHLIGHTING" />
@@ -37,6 +30,9 @@
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectId" id="2QLoh0hINmdRQwB1jP2W80dXKMR" />
   <component name="ProjectViewState">
@@ -96,6 +92,7 @@
       <workItem from="1686331053882" duration="3897000" />
       <workItem from="1686339519535" duration="11071000" />
       <workItem from="1686351155692" duration="3575000" />
+      <workItem from="1686522911887" duration="1255000" />
     </task>
     <servers />
   </component>
@@ -116,5 +113,24 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Commands/Navigation/AuthCommand.cs</url>
+          <line>18</line>
+          <properties documentPath="$PROJECT_DIR$/Commands/Navigation/AuthCommand.cs" initialLine="18" containingFunctionPresentation="method 'Execute'">
+            <startOffsets>
+              <option value="407" />
+            </startOffsets>
+            <endOffsets>
+              <option value="458" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
