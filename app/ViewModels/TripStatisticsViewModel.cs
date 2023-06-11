@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace app.ViewModels;
 
-public class TripStatisticsViewModel : ViewModelBase
+public class TripStatisticsViewModel : BaseViewModel
 {
     private ObservableCollection<TripStatisticsItemViewModel> _reservations;
 

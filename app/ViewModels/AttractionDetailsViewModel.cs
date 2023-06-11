@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace app.ViewModels
 {
-    public class AttractionDetailsViewModel : ViewModelBase
+    public class AttractionDetailsViewModel : BaseViewModel
     {
         public ObservableCollection<TripCard> AllTrips;
 

@@ -4,7 +4,7 @@ using Avalonia;
 
 namespace app.ViewModels;
 
-public class AllAttractionsViewModel : ViewModelBase
+public class AllAttractionsViewModel : BaseViewModel
 {
     public ObservableCollection<AttractionCard> AllAttractions { get; set; }
     public AllAttractionsViewModel()

@@ -1,6 +1,6 @@
 ﻿namespace app.ViewModels;
 
-public class TripStatisticsItemViewModel : ViewModelBase
+public class TripStatisticsItemViewModel : BaseViewModel
 {
     private string _firstName;
     public string FirstName { get => _firstName; set => _firstName = value; }

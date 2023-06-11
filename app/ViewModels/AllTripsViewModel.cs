@@ -4,7 +4,7 @@ using Avalonia;
 
 namespace app.ViewModels;
 
-public class AllTripsViewModel : ViewModelBase
+public class AllTripsViewModel : BaseViewModel
 {
     //public ViewModelBase TripCardViewModel { get; set; }
     //private TripCard _card;

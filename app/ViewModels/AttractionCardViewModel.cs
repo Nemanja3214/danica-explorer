@@ -3,7 +3,7 @@ using app.Commands;
 
 namespace app.ViewModels;
 
-public class AttractionCardViewModel : ViewModelBase
+public class AttractionCardViewModel : BaseViewModel
 {
 
     private string _imageSource;

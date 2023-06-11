@@ -3,7 +3,7 @@ using System.Collections.ObjectModel;
 
 namespace app.ViewModels;
 
-public class MonthStatisticsViewModel : ViewModelBase
+public class MonthStatisticsViewModel : BaseViewModel
 {
     private ObservableCollection<MonthStatisticsItemViewModel> _trips;
 
