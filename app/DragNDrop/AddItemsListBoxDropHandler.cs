@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using app.DragNDrop;
 using app.Models;
@@ -23,6 +24,20 @@ public class AddItemsListBoxDropHandler : DropHandlerBase
         }
 
         var targetItems = listBox.Items as ObservableCollection<DragItem>;
+
+        if (vm.AddedItems.Contains(targetItem) && vm.AddedItems.Contains(sourceItem))
+            return handleShuffle(vm, sourceItem, targetItem, e, bExecute);
+        else if (vm.AddedItems.Contains(targetItem) && vm.OptionItems.Contains(sourceItem))
+            return handleAdding(vm, sourceItem, targetItem, targetItems, e, bExecute);
+        else
+            return false;
+
+    }
+
+    private bool handleAdding(DragNDropViewModel vm, DragItem sourceItem, DragItem targetItem,
+        IList<DragItem> targetItems, DragEventArgs e, bool bExecute)
+    {
+        
         if ((targetItems.Contains(targetItem) && targetItems.Contains(sourceItem)) || targetItems.Equals(vm.OptionItems))
             return false;
         
@@ -60,9 +75,40 @@ public class AddItemsListBoxDropHandler : DropHandlerBase
             default:
                 return false;
         }
-        return false;
     }
-        
+
+    private bool handleShuffle(DragNDropViewModel vm, DragItem sourceItem, DragItem targetItem, DragEventArgs e,
+        bool bExecute)
+    {
+        var items = vm.AddedItems;
+
+        var sourceIndex = -1;
+        var targetIndex = -1;
+        sourceIndex = items.IndexOf(targetItem);
+        targetIndex = items.IndexOf(sourceItem);
+
+
+        if (sourceIndex < 0 || targetIndex < 0)
+        {
+            return false;
+        }
+
+        switch (e.DragEffects)
+        {
+            case DragDropEffects.Move:
+            {
+                if (bExecute)
+                {
+                    MoveItem(items, sourceIndex, targetIndex);
+                }
+
+                return true;
+            }
+            default:
+                return false;
+        }
+    }
+
     public override bool Validate(object? sender, DragEventArgs e, object? sourceContext, object? targetContext, object? state)
     {
         if (e.Source is Control && sender is ListBox listBox)
