@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Reactive;
 using System.Windows.Input;
 using Avalonia.Controls;
@@ -25,5 +26,21 @@ public class DragItem
         set => _time = value;
     }
 
+    protected bool Equals(DragItem other)
+    {
+        return _name == other._name && _time.Equals(other._time);
+    }
 
+    public override bool Equals(object? obj)
+    {
+        if (ReferenceEquals(null, obj)) return false;
+        if (ReferenceEquals(this, obj)) return true;
+        if (obj.GetType() != this.GetType()) return false;
+        return Equals((DragItem)obj);
+    }
+
+    public override int GetHashCode()
+    {
+        return HashCode.Combine(_name, _time.ToString());
+    }
 }

@@ -14,7 +14,7 @@ public class TripCreateViewModel
 
     public TripCreateViewModel()
     {
-        this._dragVm = new DragNDropViewModel();
+        this._dragVm = new DragNDropViewModel("Hotels");
 
     }
 

@@ -29,21 +29,6 @@
         </Style>
 
         <!--  ITEMS  -->
-        <!--  drag to remove  -->
-        <!-- <Style Selector="ListBox.RemoveItemsDragAndDrop ListBoxItem"> -->
-        <!--     <Style.Resources> -->
-        <!--         <dragNDrop:RemoveItemsListBoxDropHandler x:Key="RemoveItemsListBoxDropHandler" /> -->
-        <!--     </Style.Resources> -->
-        <!--     <Setter Property="HorizontalContentAlignment" Value="Stretch" /> -->
-        <!--     <Setter Property="(Interaction.Behaviors)"> -->
-        <!--         <BehaviorCollectionTemplate> -->
-        <!--             <BehaviorCollection> -->
-        <!--                 <ContextDragBehavior HorizontalDragThreshold="3" VerticalDragThreshold="3" /> -->
-        <!--             </BehaviorCollection> -->
-        <!--         </BehaviorCollectionTemplate> -->
-        <!--     </Setter> -->
-        <!-- </Style> -->
-        <!--  drop to add  -->
         <Style Selector="ListBoxItem">
             <Setter Property="HorizontalContentAlignment" Value="Stretch" />
             <Setter Property="(Interaction.Behaviors)">
@@ -57,12 +42,15 @@
     </UserControl.Styles>
 
     <StackPanel>
-        <TextBlock Text="Hotels" TextAlignment="Center" />
-        <StackPanel Orientation="Horizontal">
+        <TextBlock Text="{Binding Title}" TextAlignment="Center" />
+        <Grid ColumnDefinitions="*, *" RowDefinitions="*">
             <ListBox
                 Classes="LeftListBox"
                 DragDrop.AllowDrop="True"
+                Grid.Column="0"
+                Grid.Row="0"
                 Items="{Binding AddedItems}"
+                Margin="30"
                 Name="lv"
                 Width="400">
                 <ListBox.ItemTemplate>
@@ -72,25 +60,34 @@
                             <Button
                                 Command="{Binding DataContext.RemoveCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ListBox}}}"
                                 CommandParameter="{Binding RelativeSource={RelativeSource Self}}"
-                                Grid.Column="1">
+                                Grid.Column="1"
+                                HorizontalAlignment="Right">
                                 X
                             </Button>
                         </Grid>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
-            <ListBox
-                Classes="Drag"
-                Items="{Binding OptionItems}"
-                Width="400">
-                <ListBox.ItemTemplate>
-                    <DataTemplate DataType="models:DragItem">
-                        <Grid ColumnDefinitions="*" RowDefinitions="*">
-                            <TextBlock Grid.Column="0" Text="{Binding Name}" />
-                        </Grid>
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
-        </StackPanel>
+
+            <StackPanel
+                Grid.Column="1"
+                Grid.Row="0"
+                HorizontalAlignment="Center"
+                Margin="30">
+                <TextBox Text="{Binding Query}" />
+                <ListBox
+                    Classes="Drag"
+                    Items="{Binding OptionItems}"
+                    Width="400">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate DataType="models:DragItem">
+                            <Grid ColumnDefinitions="*" RowDefinitions="*">
+                                <TextBlock Grid.Column="0" Text="{Binding Name}" />
+                            </Grid>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </StackPanel>
+        </Grid>
     </StackPanel>
 </UserControl>
