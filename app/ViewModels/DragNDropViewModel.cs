@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
+using System.Reactive;
 using System.Windows.Input;
 using app.DragNDrop;
 using app.Models;
@@ -19,6 +20,11 @@ public class DragNDropViewModel
     public DragNDropViewModel()
     {
 
+        _removeCommand = ReactiveCommand.Create<Button>((e) =>
+        {
+            DragItem dataObject = e.DataContext as DragItem;
+            AddedItems.Remove(dataObject);
+        });
         _optionItems = new ObservableCollection<DragItem>
         {
             new DragItem()
@@ -43,6 +49,10 @@ public class DragNDropViewModel
         };
 
     }
+
+    public ReactiveCommand<Button, Unit> RemoveCommand => _removeCommand;
+    private readonly ReactiveCommand<Button, Unit> _removeCommand;
+
     private ObservableCollection<DragItem> _optionItems;
 
     public ObservableCollection<DragItem> OptionItems
@@ -174,8 +184,10 @@ public class DragNDropViewModel
     // {
     //     public static readonly string YourCustomFormat = "serializable";
     // }
+    
     private DragItem _draggedItem;
     private bool _isDragging;
+
 
     public void SourceListBox_PreviewMouseMove(object sender, PointerEventArgs e)
         {

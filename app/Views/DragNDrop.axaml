@@ -11,11 +11,12 @@
     xmlns:models="clr-namespace:app.Models;assembly=app"
     xmlns:viewModels="clr-namespace:app.ViewModels;assembly=app"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-
+    <Design.DataContext>
+        <viewModels:DragNDropViewModel />
+    </Design.DataContext>
     <UserControl.Styles>
         <Style Selector="ListBox.LeftListBox">
             <Style.Resources>
-                <dragNDrop:RemoveItemsListBoxDropHandler x:Key="RemoveItemsListBoxDropHandler" />
                 <dragNDrop:AddItemsListBoxDropHandler x:Key="AddItemsListBoxDropHandler" />
             </Style.Resources>
             <Setter Property="(Interaction.Behaviors)">
@@ -62,11 +63,18 @@
                 Classes="LeftListBox"
                 DragDrop.AllowDrop="True"
                 Items="{Binding AddedItems}"
+                Name="lv"
                 Width="400">
                 <ListBox.ItemTemplate>
                     <DataTemplate DataType="models:DragItem">
-                        <Grid ColumnDefinitions="*" RowDefinitions="*">
+                        <Grid ColumnDefinitions="*, *" RowDefinitions="*">
                             <TextBlock Grid.Column="0" Text="{Binding Name}" />
+                            <Button
+                                Command="{Binding DataContext.RemoveCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ListBox}}}"
+                                CommandParameter="{Binding RelativeSource={RelativeSource Self}}"
+                                Grid.Column="1">
+                                X
+                            </Button>
                         </Grid>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
