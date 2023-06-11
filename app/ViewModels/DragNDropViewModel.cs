@@ -34,10 +34,6 @@ public class DragNDropViewModel
         });
         _optionItems = new ObservableCollection<Sightseeing>();
         _addedItems = new ObservableCollection<Sightseeing>();
-        _addedItems.Add(new Attraction()
-        {
-            Name = "asdqw"
-        });
     }
 
     public ReactiveCommand<Button, Unit> RemoveCommand => _removeCommand;
