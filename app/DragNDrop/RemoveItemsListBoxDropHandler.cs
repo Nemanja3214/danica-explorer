@@ -21,8 +21,8 @@ public class RemoveItemsListBoxDropHandler : DropHandlerBase
         }
 
         var targetItems = listBox.Items as ObservableCollection<DragItem>;
-        // if (!targetItems.Equals(vm.AddedItems) || !targetItems.Contains(sourceItem))
-        //     return false;
+        if (!targetItems.Equals(vm.AddedItems) || !targetItems.Contains(sourceItem))
+            return false;
         
         var targetIndex = targetItems.IndexOf(targetItem);
 
@@ -33,15 +33,6 @@ public class RemoveItemsListBoxDropHandler : DropHandlerBase
 
         switch (e.DragEffects)
         {
-            // case DragDropEffects.Copy:
-            // {
-            //     if (bExecute)
-            //     {
-            //         var clone = new DragItem() { Name = sourceItem.Name + "_copy" };
-            //         InsertItem(sourceItems, clone, targetIndex + 1);
-            //     }
-            //     return true;
-            // }
             case DragDropEffects.Move:
             {
                 if (bExecute)
@@ -50,14 +41,6 @@ public class RemoveItemsListBoxDropHandler : DropHandlerBase
                 }
                 return true;
             }
-            // case DragDropEffects.Link:
-            // {
-            //     if (bExecute)
-            //     {
-            //         SwapItem(sourceItems, targetItems, sourceIndex, targetIndex);
-            //     }
-            //     return true;
-            // }
             default:
                 return false;
         }

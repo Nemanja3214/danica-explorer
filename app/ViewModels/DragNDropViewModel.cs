@@ -19,12 +19,45 @@ public class DragNDropViewModel
     public DragNDropViewModel()
     {
 
-        _addContext = new AddContext();
-        _removeContext = new RemoveContext();
+        _optionItems = new ObservableCollection<DragItem>
+        {
+            new DragItem()
+            {
+                Name = "uyiu",
+            },
+            new DragItem()
+            {
+                Name = "xzccxz",
+            }
+        };
+        _addedItems = new ObservableCollection<DragItem>
+        {
+            new DragItem()
+            {
+                Name = "asd",
+            },
+            new DragItem()
+            {
+                Name = "azxcaw",
+            }
+        };
 
     }
+    private ObservableCollection<DragItem> _optionItems;
+
+    public ObservableCollection<DragItem> OptionItems
+    {
+        get => _optionItems;
+        set => _optionItems = value ?? throw new ArgumentNullException(nameof(value));
+    }
+    private ObservableCollection<DragItem> _addedItems;
 
 
+    public ObservableCollection<DragItem> AddedItems
+    {
+        get => _addedItems;
+        set => _addedItems = value ?? throw new ArgumentNullException(nameof(value));
+    }
     
     
     // private async void DoDrag(object sender, Avalonia.Input.PointerPressedEventArgs e)
@@ -143,12 +176,6 @@ public class DragNDropViewModel
     // }
     private DragItem _draggedItem;
     private bool _isDragging;
-    private readonly AddContext _addContext;
-    private readonly RemoveContext _removeContext;
-
-    public AddContext AddContext => _addContext;
-
-    public RemoveContext RemoveContext => _removeContext;
 
     public void SourceListBox_PreviewMouseMove(object sender, PointerEventArgs e)
         {

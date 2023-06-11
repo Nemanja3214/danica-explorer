@@ -1,8 +1,9 @@
 using System.Collections.ObjectModel;
 using app.DragNDrop;
 using app.Models;
+using app.ViewModels;
 
-namespace app.ViewModels;
+namespace app.DragNDrop;
 
 using Avalonia.Controls;
 using Avalonia.Input;
@@ -14,52 +15,51 @@ public class AddItemsListBoxDropHandler : DropHandlerBase
     private bool Validate<T>(ListBox listBox, DragEventArgs e, object? sourceContext, object? targetContext, bool bExecute) where T : DragItem
     {
         if (sourceContext is not T sourceItem
-            || targetContext is not RemoveContext vm
+            || targetContext is not DragNDropViewModel vm
             || listBox.GetVisualAt(e.GetPosition(listBox)) is not Control targetControl
             || targetControl.DataContext is not T targetItem)
         {
             return false;
         }
-        DragDrop.DoDragDrop()
 
         var targetItems = listBox.Items as ObservableCollection<DragItem>;
-        // if ((targetItems.Contains(targetItem) && targetItems.Contains(sourceItem)) || targetItems.Equals(vm.OptionItems))
-        //     return false;
-        //
-        // var sourceItems = vm.OptionItems;
+        if ((targetItems.Contains(targetItem) && targetItems.Contains(sourceItem)) || targetItems.Equals(vm.OptionItems))
+            return false;
+        
+        var sourceItems = vm.OptionItems;
 
-        // var sourceIndex = -1;
-        // var targetIndex = -1;
-        // if (sourceItems.Contains(sourceItem))
-        // {
-        //     sourceIndex = sourceItems.IndexOf(sourceItem);
-        //     targetIndex = targetItems.IndexOf(targetItem);
-        // }
-        // else
-        // {
-        //     sourceIndex = sourceItems.IndexOf(targetItem);
-        //     targetIndex = targetItems.IndexOf(sourceItem);
-        // }
-        //
-        //
-        // if (sourceIndex < 0)
-        // {
-        //     return false;
-        // }
-        //
-        // switch (e.DragEffects)
-        // {
-        //     case DragDropEffects.Move:
-        //     {
-        //         if (bExecute)
-        //         {
-        //             MoveItem(sourceItems, targetItems, sourceIndex, targetIndex);
-        //         }
-        //         return true;
-        //     }
-        //     default:
-        //         return false;
-        // }
+        var sourceIndex = -1;
+        var targetIndex = -1;
+        if (sourceItems.Contains(sourceItem))
+        {
+            sourceIndex = sourceItems.IndexOf(sourceItem);
+            targetIndex = targetItems.IndexOf(targetItem);
+        }
+        else
+        {
+            sourceIndex = sourceItems.IndexOf(targetItem);
+            targetIndex = targetItems.IndexOf(sourceItem);
+        }
+        
+        
+        if (sourceIndex < 0)
+        {
+            return false;
+        }
+        
+        switch (e.DragEffects)
+        {
+            case DragDropEffects.Move:
+            {
+                if (bExecute)
+                {
+                    MoveItem(sourceItems, targetItems, sourceIndex, targetIndex);
+                }
+                return true;
+            }
+            default:
+                return false;
+        }
         return false;
     }
         
