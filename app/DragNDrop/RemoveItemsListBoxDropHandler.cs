@@ -1,15 +1,16 @@
+using System.Collections.ObjectModel;
 using app.Models;
-
-namespace app.ViewModels;
-
+using app.ViewModels;
 using Avalonia.Controls;
 using Avalonia.Input;
 using Avalonia.VisualTree;
 using Avalonia.Xaml.Interactions.DragAndDrop;
 
-public class ItemsListBoxDropHandler : DropHandlerBase
-{
-    private bool Validate<T>(ListBox listBox, DragEventArgs e, object? sourceContext, object? targetContext, bool bExecute) where T : DragItem
+namespace app.DragNDrop;
+
+public class RemoveItemsListBoxDropHandler : DropHandlerBase
+{ 
+        private bool Validate<T>(ListBox listBox, DragEventArgs e, object? sourceContext, object? targetContext, bool bExecute) where T : DragItem
     {
         if (sourceContext is not T sourceItem
             || targetContext is not DragNDropViewModel vm
@@ -19,39 +20,24 @@ public class ItemsListBoxDropHandler : DropHandlerBase
             return false;
         }
 
-        var items = vm.OptionItems;
-        var sourceIndex = items.IndexOf(sourceItem);
-        var targetIndex = items.IndexOf(targetItem);
+        var targetItems = listBox.Items as ObservableCollection<DragItem>;
+        if (!targetItems.Equals(vm.AddedItems) || !targetItems.Contains(sourceItem))
+            return false;
+        
+        var targetIndex = targetItems.IndexOf(targetItem);
 
-        if (sourceIndex < 0 || targetIndex < 0)
+        if (targetIndex < 0)
         {
             return false;
         }
 
         switch (e.DragEffects)
         {
-            case DragDropEffects.Copy:
-            {
-                if (bExecute)
-                {
-                    var clone = new DragItem() { Name = sourceItem.Name + "_copy" };
-                    InsertItem(items, clone, targetIndex + 1);
-                }
-                return true;
-            }
             case DragDropEffects.Move:
             {
                 if (bExecute)
                 {
-                    MoveItem(items, sourceIndex, targetIndex);
-                }
-                return true;
-            }
-            case DragDropEffects.Link:
-            {
-                if (bExecute)
-                {
-                    SwapItem(items, sourceIndex, targetIndex);
+                    targetItems.RemoveAt(targetIndex);
                 }
                 return true;
             }

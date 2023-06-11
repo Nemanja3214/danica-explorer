@@ -6,26 +6,45 @@
     x:DataType="viewModels:DragNDropViewModel"
     xmlns="https://github.com/avaloniaui"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:dragNDrop="clr-namespace:app.DragNDrop;assembly=app"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:models="clr-namespace:app.Models;assembly=app"
     xmlns:viewModels="clr-namespace:app.ViewModels;assembly=app"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <UserControl.Styles>
-
-        <Style Selector="ListBox.ItemsDragAndDrop">
+        <Style Selector="ListBox.RemoveItemsDragAndDrop">
             <Style.Resources>
-                <viewModels:ItemsListBoxDropHandler x:Key="ItemsListBoxDropHandler" />
+                <!-- <dragNDrop:RemoveItemsListBoxDropHandler x:Key="RemoveItemsListBoxDropHandler" /> -->
+                <dragNDrop:AddItemsListBoxDropHandler x:Key="AddItemsListBoxDropHandler" />
             </Style.Resources>
             <Setter Property="(Interaction.Behaviors)">
                 <BehaviorCollectionTemplate>
                     <BehaviorCollection>
-                        <ContextDropBehavior Handler="{StaticResource ItemsListBoxDropHandler}" />
+                        <!-- <ContextDragBehavior Handler="{StaticResource RemoveItemsListBoxDropHandler}" /> -->
+                        <ContextDropBehavior Handler="{StaticResource AddItemsListBoxDropHandler}" />
                     </BehaviorCollection>
                 </BehaviorCollectionTemplate>
             </Setter>
         </Style>
-        <Style Selector="ListBox.ItemsDragAndDrop ListBoxItem">
+
+        <!--  ITEMS  -->
+        <!--  drag to remove  -->
+        <Style Selector="ListBox.RemoveItemsDragAndDrop ListBoxItem">
+            <Style.Resources>
+                <dragNDrop:RemoveItemsListBoxDropHandler x:Key="RemoveItemsListBoxDropHandler" />
+            </Style.Resources>
+            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+            <Setter Property="(Interaction.Behaviors)">
+                <BehaviorCollectionTemplate>
+                    <BehaviorCollection>
+                        <ContextDragBehavior HorizontalDragThreshold="3" VerticalDragThreshold="3" />
+                    </BehaviorCollection>
+                </BehaviorCollectionTemplate>
+            </Setter>
+        </Style>
+        <!--  drop to add  -->
+        <Style Selector="ListBox.AddItemsDragAndDrop ListBoxItem">
             <Setter Property="HorizontalContentAlignment" Value="Stretch" />
             <Setter Property="(Interaction.Behaviors)">
                 <BehaviorCollectionTemplate>
@@ -40,25 +59,26 @@
     <StackPanel>
         <TextBlock Text="Hotels" TextAlignment="Center" />
         <StackPanel Orientation="Horizontal">
-            <ListBox Classes="ItemsDragAndDrop" Items="{Binding AddedItems}">
+            <ListBox
+                Classes="RemoveItemsDragAndDrop"
+                DragDrop.AllowDrop="True"
+                Items="{Binding AddedItems}"
+                Width="400">
                 <ListBox.ItemTemplate>
                     <DataTemplate DataType="models:DragItem">
-                        <Grid
-                            ColumnDefinitions="*"
-                            DragDrop.AllowDrop="True"
-                            RowDefinitions="*">
+                        <Grid ColumnDefinitions="*" RowDefinitions="*">
                             <TextBlock Grid.Column="0" Text="{Binding Name}" />
                         </Grid>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
-            <ListBox Classes="ItemsDragAndDrop" Items="{Binding OptionItems}">
+            <ListBox
+                Classes="AddItemsDragAndDrop"
+                Items="{Binding OptionItems}"
+                Width="400">
                 <ListBox.ItemTemplate>
                     <DataTemplate DataType="models:DragItem">
-                        <Grid
-                            ColumnDefinitions="*"
-                            DragDrop.AllowDrop="True"
-                            RowDefinitions="*">
+                        <Grid ColumnDefinitions="*" RowDefinitions="*">
                             <TextBlock Grid.Column="0" Text="{Binding Name}" />
                         </Grid>
                     </DataTemplate>
