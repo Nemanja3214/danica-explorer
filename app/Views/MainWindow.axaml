@@ -3,18 +3,41 @@
         xmlns:vm="using:app.ViewModels"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        xmlns:views="clr-namespace:app.Views"
+        xmlns:components="clr-namespace:app.Views.Components"
+        mc:Ignorable="d" 
         x:Class="app.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
-        Icon="/Assets/avalonia-logo.ico"
-        Title="app">
-
-    <Design.DataContext>
-        <!-- This only sets the DataContext for the previewer in an IDE,
-             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+        Icon="/Assets/logo.png"
+        Title="danica-explorer">
+    
+    <Window.DataContext>
         <vm:MainWindowViewModel/>
-    </Design.DataContext>
+    </Window.DataContext>
+    
+    
 
-    <TextBlock Text="{Binding Greeting}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+    <Grid>
+        <Grid.DataTemplates>
+            <DataTemplate DataType="{x:Type vm:LandingViewModel}">
+                <views:LandingPage/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vm:AuthViewModel}">
+                <views:AuthPage/>
+            </DataTemplate>
+        </Grid.DataTemplates>
 
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/> 
+            <RowDefinition Height="*"/>    
+        </Grid.RowDefinitions>
+        
+        <Border Grid.Row="0"
+                Background="#E1E4EA"
+                BoxShadow="0 4 10 0 LightGray">
+            <components:Menu/>
+        </Border>
+        
+        <ContentControl Grid.Row="1"  Content="{Binding CurrentViewModel}" />
+    </Grid>
 </Window>

@@ -1,6 +1,21 @@
-﻿namespace app.ViewModels;
+﻿using System;
+using app.Stores;
 
-public class MainWindowViewModel : ViewModelBase
+namespace app.ViewModels;
+
+public class MainWindowViewModel : BaseViewModel
 {
-    public string Greeting => "Welcome to Avalonia!";
+    private readonly NavigationStore _navigationStore;
+    public BaseViewModel CurrentViewModel => _navigationStore.CurrentViewModel ;
+
+    public MainWindowViewModel()
+    {
+        _navigationStore = NavigationStore.Instance();
+        _navigationStore.CurrentViewModelChanged += OnCurrentViewModelChanged;
+    }
+    
+    private void OnCurrentViewModelChanged()
+    {
+        OnPropertyChanged(nameof(CurrentViewModel));
+    }
 }
