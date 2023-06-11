@@ -13,29 +13,28 @@ using Avalonia.Xaml.Interactions.DragAndDrop;
 
 public class AddItemsListBoxDropHandler : DropHandlerBase
 {
-    private bool Validate<T>(ListBox listBox, DragEventArgs e, object? sourceContext, object? targetContext, bool bExecute) where T : DragItem
-    {
+    private bool Validate<T>(ListBox listBox, DragEventArgs e, object? sourceContext, object? targetContext, bool bExecute) where T : Sightseeing    {
         if (sourceContext is not T sourceItem
             || targetContext is not DragNDropViewModel vm
             || listBox.GetVisualAt(e.GetPosition(listBox)) is not Control targetControl
-            || targetControl.DataContext is not T targetItem)
+             )
         {
             return false;
         }
 
-        var targetItems = listBox.Items as ObservableCollection<DragItem>;
-
+        var targetItems = listBox.Items as ObservableCollection<Sightseeing>;
+        var targetItem = targetControl.DataContext as T ;
         if (vm.AddedItems.Contains(targetItem) && vm.AddedItems.Contains(sourceItem))
             return handleShuffle(vm, sourceItem, targetItem, e, bExecute);
-        else if (vm.AddedItems.Contains(targetItem) && vm.OptionItems.Contains(sourceItem))
+        else if ((vm.AddedItems.Contains(targetItem) && vm.OptionItems.Contains(sourceItem)) || (targetItem == null && vm.OptionItems.Contains(sourceItem)) )
             return handleAdding(vm, sourceItem, targetItem, targetItems, e, bExecute);
         else
             return false;
 
     }
 
-    private bool handleAdding(DragNDropViewModel vm, DragItem sourceItem, DragItem targetItem,
-        IList<DragItem> targetItems, DragEventArgs e, bool bExecute)
+    private bool handleAdding(DragNDropViewModel vm, Sightseeing sourceItem, Sightseeing targetItem,
+        IList<Sightseeing> targetItems, DragEventArgs e, bool bExecute)
     {
         
         if ((targetItems.Contains(targetItem) && targetItems.Contains(sourceItem)) || targetItems.Equals(vm.OptionItems))
@@ -61,6 +60,9 @@ public class AddItemsListBoxDropHandler : DropHandlerBase
         {
             return false;
         }
+
+        if (targetItem == null)
+            targetIndex = 0;
         
         switch (e.DragEffects)
         {
@@ -77,7 +79,7 @@ public class AddItemsListBoxDropHandler : DropHandlerBase
         }
     }
 
-    private bool handleShuffle(DragNDropViewModel vm, DragItem sourceItem, DragItem targetItem, DragEventArgs e,
+    private bool handleShuffle(DragNDropViewModel vm, Sightseeing sourceItem, Sightseeing targetItem, DragEventArgs e,
         bool bExecute)
     {
         var items = vm.AddedItems;
@@ -113,7 +115,7 @@ public class AddItemsListBoxDropHandler : DropHandlerBase
     {
         if (e.Source is Control && sender is ListBox listBox)
         {
-            return Validate<DragItem>(listBox, e, sourceContext, targetContext, true);
+            return Validate<Sightseeing>(listBox, e, sourceContext, targetContext, true);
         }
         return false;
     }
@@ -122,7 +124,7 @@ public class AddItemsListBoxDropHandler : DropHandlerBase
     {
         if (e.Source is Control && sender is ListBox listBox)
         {
-            return Validate<DragItem>(listBox, e, sourceContext, targetContext, true);
+            return Validate<Sightseeing>(listBox, e, sourceContext, targetContext, true);
         }
         return false;
     }

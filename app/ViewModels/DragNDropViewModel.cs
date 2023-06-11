@@ -22,47 +22,43 @@ namespace app.ViewModels;
 
 public class DragNDropViewModel
 {
-    public DragNDropViewModel(string title)
+    private Func<string, Task<List<Sightseeing>>> _getSuggestionsFunc;
+    public DragNDropViewModel(string title, Func<string, Task<List<Sightseeing>>> updateFunc)
     {
+        _getSuggestionsFunc = updateFunc;
         Title = title;
         _removeCommand = ReactiveCommand.Create<Button>((e) =>
         {
-            DragItem dataObject = e.DataContext as DragItem;
+            Sightseeing dataObject = e.DataContext as Sightseeing;
             AddedItems.Remove(dataObject);
         });
-        _optionItems = new ObservableCollection<DragItem>();
-        _addedItems = new ObservableCollection<DragItem>
+        _optionItems = new ObservableCollection<Sightseeing>();
+        _addedItems = new ObservableCollection<Sightseeing>();
+        _addedItems.Add(new Attraction()
         {
-            new DragItem()
-            {
-                Name = "asd",
-            },
-            new DragItem()
-            {
-                Name = "azxcaw",
-            }
-        };
+            Name = "asdqw"
+        });
     }
 
     public ReactiveCommand<Button, Unit> RemoveCommand => _removeCommand;
     private readonly ReactiveCommand<Button, Unit> _removeCommand;
 
-    private ObservableCollection<DragItem> _optionItems;
+    private ObservableCollection<Sightseeing> _optionItems;
 
-    public ObservableCollection<DragItem> OptionItems
+    public ObservableCollection<Sightseeing> OptionItems
     {
         get => _optionItems;
         set => _optionItems = value ?? throw new ArgumentNullException(nameof(value));
     }
-    private ObservableCollection<DragItem> _addedItems;
+    private ObservableCollection<Sightseeing> _addedItems;
 
 
-    public ObservableCollection<DragItem> AddedItems
+    public ObservableCollection<Sightseeing> AddedItems
     {
         get => _addedItems;
         set => _addedItems = value ?? throw new ArgumentNullException(nameof(value));
     }
-    private DragItem _draggedItem;
+    private Sightseeing _draggedItem;
     private bool _isDragging;
     public string _query;
 
@@ -79,7 +75,7 @@ public class DragNDropViewModel
 
     private async void UpdateSuggestions()
     {
-        List<DragItem> locations = await GetItems(_query);
+        List<Sightseeing> locations = await _getSuggestionsFunc(_query);
         locations = locations.Except(AddedItems).ToList();
 
         await Dispatcher.UIThread.InvokeAsync(() =>
@@ -94,22 +90,6 @@ public class DragNDropViewModel
                 i++;
             }
         });
-    }
-
-    // TODO simulation function delete
-    private async static Task<List<DragItem>> GetItems(string query)
-    {
-        return new List<DragItem>()
-        {
-            new DragItem()
-            {
-            Name = "dqwd",
-            },
-            new DragItem()
-            {
-                Name = "azxcaw",
-            }
-        };
     }
 }
 

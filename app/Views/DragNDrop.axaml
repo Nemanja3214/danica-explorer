@@ -54,7 +54,7 @@
                 Name="lv"
                 Width="400">
                 <ListBox.ItemTemplate>
-                    <DataTemplate DataType="models:DragItem">
+                    <DataTemplate DataType="models:Sightseeing">
                         <Grid ColumnDefinitions="*, *" RowDefinitions="*">
                             <TextBlock Grid.Column="0" Text="{Binding Name}" />
                             <Button
@@ -80,7 +80,7 @@
                     Items="{Binding OptionItems}"
                     Width="400">
                     <ListBox.ItemTemplate>
-                        <DataTemplate DataType="models:DragItem">
+                        <DataTemplate DataType="models:Sightseeing">
                             <Grid ColumnDefinitions="*" RowDefinitions="*">
                                 <TextBlock Grid.Column="0" Text="{Binding Name}" />
                             </Grid>
