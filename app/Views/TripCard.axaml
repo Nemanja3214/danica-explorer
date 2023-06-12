@@ -12,19 +12,24 @@
         <converter:BitmapValueConverter x:Key="imageConverter"/>
     </UserControl.Resources>
 
-	<Grid MaxHeight="400">
+    <Border Background="#E0E4EB"
+            CornerRadius="10"
+            Padding="10 20"
+            Margin="30 10"
+            BoxShadow="0 4 10 0 Gray">
+
+	<Grid MaxHeight="500">
 		<Grid.RowDefinitions>
 			<RowDefinition Height="4*"></RowDefinition>
             <RowDefinition Height="5*"></RowDefinition>
 		</Grid.RowDefinitions>
 
-        <Image MaxWidth="250" Source="{Binding ImageSource, Converter={StaticResource imageConverter}}" />
-        <Border Grid.Row="1" BorderBrush="Black" BorderThickness="1 0 1 1" MaxWidth="250">
-            <Grid Background="PaleGoldenrod" MaxWidth="250">
+        <Image Opacity="0.9" MaxWidth="250" Source="{Binding ImageSource, Converter={StaticResource imageConverter}}" />
+        <Grid Grid.Row="1" MaxWidth="250">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="1.5*"></RowDefinition>
-                    <RowDefinition Height="1*"></RowDefinition>
-                    <RowDefinition Height="1*"></RowDefinition>
+                    <RowDefinition Height="0.5*"></RowDefinition>
+                    <RowDefinition Height="0.5*"></RowDefinition>
                     <RowDefinition Height="1*"></RowDefinition>
                 </Grid.RowDefinitions>
                 <Viewbox Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Center">
@@ -45,14 +50,13 @@
                     </Grid.ColumnDefinitions>
                     
                     <Viewbox Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center">
-                        <Button Command="{Binding BookCommand}" Margin="10 5 5 5">Rezerviši</Button>
+                        <Button Background="#15B7B9" Foreground="White" FontWeight="Bold" Command="{Binding BookCommand}" Margin="10 5 5 5">Rezervacija</Button>
                     </Viewbox>
                     <Viewbox Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center">
-                        <Button Command="{Binding LearnMoreCommand}" Margin="5 5 10 5">Saznaj više</Button>
+                        <Button Background="Transparent" Foreground="Black" FontWeight="Bold" Command="{Binding LearnMoreCommand}" Margin="5 5 10 5">Saznaj više</Button>
                     </Viewbox>
                 </Grid>
             </Grid>
-        </Border>
-    </Grid>
-	
+        </Grid>
+    </Border>
 </UserControl>

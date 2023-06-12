@@ -8,7 +8,7 @@
              x:Class="app.Views.AllTripsWindow">
 
     <ScrollViewer VerticalScrollBarVisibility="Auto" MaxHeight="600">
-        <UniformGrid Columns="3" HorizontalAlignment="Stretch" Name="Grid" ScrollViewer.VerticalScrollBarVisibility="Visible">
+        <UniformGrid Columns="4" HorizontalAlignment="Stretch" Name="Grid" ScrollViewer.VerticalScrollBarVisibility="Visible">
         </UniformGrid>
     </ScrollViewer>
 </UserControl>

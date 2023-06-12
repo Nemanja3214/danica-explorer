@@ -11,7 +11,7 @@
     <UserControl.Resources>
         <converters:BitmapValueConverter x:Key="imageConverter"/>
     </UserControl.Resources>
-    <ScrollViewer VerticalScrollBarVisibility="Auto" MaxHeight="700" MaxWidth="1500">
+    <ScrollViewer VerticalScrollBarVisibility="Auto" MaxHeight="800" MaxWidth="1500">
         <Grid>
           <Grid.RowDefinitions>
               <RowDefinition Height="1*"></RowDefinition>
@@ -22,23 +22,23 @@
             </Grid.ColumnDefinitions>
           <Grid>
               <Grid.ColumnDefinitions>
-                  <ColumnDefinition Width="1*"></ColumnDefinition>
+                  <ColumnDefinition Width="0.4*"></ColumnDefinition>
                   <ColumnDefinition Width="1*"></ColumnDefinition>
               </Grid.ColumnDefinitions>
 
-              <Image Margin="10" HorizontalAlignment="Left" Source="{Binding ImageSource, Converter={StaticResource imageConverter}}" />
+              <Image Stretch="UniformToFill" Margin="25" HorizontalAlignment="Left" Source="{Binding ImageSource, Converter={StaticResource imageConverter}}" />
               <Grid Grid.Column="1" HorizontalAlignment="Left" Margin="30 10 10 10">
                   <Grid.RowDefinitions>
-                      <RowDefinition Height="1*"></RowDefinition>
+                      <RowDefinition Height="2*"></RowDefinition>
                       <RowDefinition Height="1*"></RowDefinition>
                       <RowDefinition Height="4*"></RowDefinition>
                   </Grid.RowDefinitions>
-                  <TextBlock Text="{Binding AttractionName}" FontWeight="Bold" Margin="0 10"></TextBlock>
-                  <TextBlock Grid.Row="1" Text="{Binding AttractionLocation}" Margin="0 10"></TextBlock>
+                  <TextBlock FontSize="35" Text="{Binding AttractionName}" FontWeight="Bold" Margin="0 10"></TextBlock>
+                  <TextBlock Grid.Row="1" FontSize="20" Text="{Binding AttractionLocation}" Margin="0 10"></TextBlock>
                   <TextBlock Grid.Row="2" Text="{Binding AttractionDescription}" TextWrapping="Wrap" HorizontalAlignment="Stretch" Margin="0 10"></TextBlock>
               </Grid>
           </Grid>
-            <UniformGrid Grid.Row="1" Columns="5" HorizontalAlignment="Stretch" Name="Grid" ScrollViewer.VerticalScrollBarVisibility="Visible">
+            <UniformGrid Grid.Row="1" Columns="4" HorizontalAlignment="Stretch" Name="Grid" ScrollViewer.VerticalScrollBarVisibility="Visible">
             </UniformGrid>
         </Grid>
     </ScrollViewer>

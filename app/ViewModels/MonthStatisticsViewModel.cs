@@ -19,11 +19,8 @@ public class MonthStatisticsViewModel : BaseViewModel
         get => _selectedDate;
         set
         {
-            if (_selectedDate != value)
-            {
-                _selectedDate = value;
-                OnPropertyChanged(nameof(SelectedDate));
-            }
+            _selectedDate = value;
+            OnPropertyChanged(nameof(SelectedDate));
         }
     }
 

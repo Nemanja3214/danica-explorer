@@ -42,7 +42,7 @@
 					    </Grid.ColumnDefinitions>
 
                         <Viewbox Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center">
-						    <Button Background="#15B7B9" Foreground="White" FontWeight="Bold" Command="{Binding LearnMoreCommand}" Margin="5 5 10 5">Saznaj više</Button>
+						    <Button Background="Transparent" Foreground="Black" FontWeight="Bold" Command="{Binding LearnMoreCommand}" Margin="5 5 10 5">Saznaj više</Button>
 					    </Viewbox>
 				    </Grid>
                 </Grid>

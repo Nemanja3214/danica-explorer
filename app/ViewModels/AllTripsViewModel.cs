@@ -20,7 +20,6 @@ public class AllTripsViewModel : BaseViewModel
             TripCardViewModel viewModel = new TripCardViewModel();
             TripCard card = new TripCard();
             card.DataContext = viewModel;
-            card.Margin = Thickness.Parse("10");
             AllTrips.Add(card);
         }
     }
