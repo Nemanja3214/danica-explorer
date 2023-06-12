@@ -18,37 +18,13 @@ namespace app.ViewModels;
 
 public class TripCreateViewModel
 {
-    private DragNDropViewModel _hotelVm;
-    private DragNDropViewModel _restaurantVm;
-    private DragNDropViewModel _attractionVm;
-    private readonly MapViewModel _mapVm;
-
-    public DragNDropViewModel AttractionVm
-    {
-        get => _attractionVm;
-        set => _attractionVm = value ?? throw new ArgumentNullException(nameof(value));
-    }
-
-    public DragNDropViewModel HotelVm
-    {
-        get => _hotelVm;
-        set => _hotelVm = value ?? throw new ArgumentNullException(nameof(value));
-    }
-
-    public DragNDropViewModel RestaurantVm
-    {
-        get => _restaurantVm;
-        set => _restaurantVm = value ?? throw new ArgumentNullException(nameof(value));
-    }
-
-    public MapViewModel MapVm => _mapVm;
 
     public TripCreateViewModel()
     {
-        _hotelVm = new DragNDropViewModel("Hotels", GetHotelItems);
-        _restaurantVm = new DragNDropViewModel("Restaurants", GetRestaurantItems);
-        _attractionVm = new DragNDropViewModel("Attractions", GetAttractionItems);
-        _mapVm = new MapViewModel();
+        HotelVm = new DragNDropViewModel("Hotels", GetHotelItems);
+        RestaurantVm = new DragNDropViewModel("Restaurants", GetRestaurantItems);
+        AttractionVm = new DragNDropViewModel("Attractions", GetAttractionItems);
+        MapVm = new MapViewModel();
 
         AttractionVm.AddedItems.CollectionChanged += CollectionChangedMethod;
         AttractionVm.SelectionChanged += SelectionChangedMethod;
@@ -60,7 +36,15 @@ public class TripCreateViewModel
         HotelVm.SelectionChanged += SelectionChangedMethod;
 
     }
-    
+
+    public MapViewModel MapVm { get; set; }
+
+    public DragNDropViewModel AttractionVm { get; set; }
+
+    public DragNDropViewModel RestaurantVm { get; set; }
+
+    public DragNDropViewModel HotelVm { get; set; }
+
     private void CollectionChangedMethod(object sender, NotifyCollectionChangedEventArgs e)
     {
         MapVm.Points.Clear();
