@@ -2,6 +2,7 @@
 <Application
     x:Class="app.App"
     xmlns="https://github.com/avaloniaui"
+    xmlns:trip="clr-namespace:app.Views.Trip;assembly=app"
     xmlns:views="clr-namespace:app.Views"
     xmlns:vm="using:app.ViewModels"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
@@ -28,16 +29,37 @@
             <views:AuthPage />
         </DataTemplate>
         <DataTemplate DataType="{x:Type vm:AllTripsViewModel}">
-            <views:AllTripsWindow/>
+            <views:AllTripsWindow />
         </DataTemplate>
         <DataTemplate DataType="{x:Type vm:TripDetailsViewModel}">
-            <views:TripDetails/>
+            <views:TripDetails />
         </DataTemplate>
         <DataTemplate DataType="{x:Type vm:AllAttractionsViewModel}">
-            <views:AllAttractionsWindow/>
+            <views:AllAttractionsWindow />
         </DataTemplate>
         <DataTemplate DataType="{x:Type vm:AttractionDetailsViewModel}">
-            <views:AttractionDetails/>
+            <views:AttractionDetails />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:TripCreateViewModel}">
+            <views:TripCreate />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:TripCreateFormViewModel}">
+            <trip:TripCreateForm />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:UploadViewModel}">
+            <views:UploadPicture />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:AccomodationCreateViewModel}">
+            <views:AccomodationCreate />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:AccomodationCreateFormViewModel}">
+            <views:AccomodationCreateForm />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:MapViewModel}">
+            <views:MapComponent />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:DragNDropViewModel}">
+            <views:DragNDrop />
         </DataTemplate>
     </Application.DataTemplates>
 

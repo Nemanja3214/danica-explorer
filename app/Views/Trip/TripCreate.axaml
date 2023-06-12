@@ -7,20 +7,29 @@
     xmlns="https://github.com/avaloniaui"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:trip="clr-namespace:app.Views.Trip;assembly=app"
     xmlns:viewModels="clr-namespace:app.ViewModels;assembly=app"
     xmlns:views="clr-namespace:app.Views;assembly=app"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <UserControl.DataContext>
+        <viewModels:TripCreateViewModel />
+    </UserControl.DataContext>
     <ScrollViewer>
-        <Grid ColumnDefinitions="*" RowDefinitions="*, *, *, *, *">
+        <Grid ColumnDefinitions="*" RowDefinitions="*, *, *, *, *, *">
+            <Grid ColumnDefinitions="*, *" Grid.Row="0">
+                <views:UploadPicture Grid.Column="0" />
+                <trip:TripCreateForm Grid.Column="1" />
+            </Grid>
+
             <views:MapComponent
                 DataContext="{Binding MapVm}"
-                Grid.Row="0"
+                Grid.Row="1"
                 Height="400" />
-            <views:DragNDrop DataContext="{Binding AttractionVm}" Grid.Row="1" />
-            <views:DragNDrop DataContext="{Binding HotelVm}" Grid.Row="2" />
-            <views:DragNDrop DataContext="{Binding RestaurantVm}" Grid.Row="3" />
+            <views:DragNDrop DataContext="{Binding AttractionVm}" Grid.Row="2" />
+            <views:DragNDrop DataContext="{Binding HotelVm}" Grid.Row="3" />
+            <views:DragNDrop DataContext="{Binding RestaurantVm}" Grid.Row="4" />
             <Button
-                Grid.Row="4"
+                Grid.Row="5"
                 HorizontalAlignment="Right"
                 Margin="30">
                 <Border Padding="10">

@@ -34,7 +34,6 @@ public class UploadViewModel: BaseViewModel
         set => upload = value ?? throw new ArgumentNullException(nameof(value));
     }
 
-    private readonly Window _parent;
     private Bitmap _image;
 
     public string? CurrentPath
@@ -52,9 +51,8 @@ public class UploadViewModel: BaseViewModel
         }
     }
 
-    public UploadViewModel(Window parent)
+    public UploadViewModel()
     {
-        _parent = parent;
         upload = ReactiveCommand.Create(() =>
         {
             GetPath();
@@ -94,7 +92,7 @@ public class UploadViewModel: BaseViewModel
     {
         // TODO add filters for files
         var dialog = new OpenFileDialog();
-        var result = await dialog.ShowAsync(_parent);
+        var result = await dialog.ShowAsync(MainWindowViewModel.GetMainWindow());
 
         if (result != null)
         {

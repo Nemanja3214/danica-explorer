@@ -30,6 +30,7 @@ public class TripCreateViewModel
         HotelVm = new DragNDropViewModel("Hotels", GetHotelItems);
         RestaurantVm = new DragNDropViewModel("Restaurants", GetRestaurantItems);
         AttractionVm = new DragNDropViewModel("Attractions", GetAttractionItems);
+        Tvm = new TripCreateFormViewModel();
         MapVm = new MapViewModel();
 
         AttractionVm.AddedItems.CollectionChanged += CollectionChangedMethod;
@@ -64,9 +65,13 @@ public class TripCreateViewModel
 
     }
 
+    public TripCreateFormViewModel Tvm { get; set; }
+
     private Trip FormTrip()
     {
         Trip t = new Trip();
+        t.Title = Tvm.Title;
+        t.Description = Tvm.Description;
 
 
         return t;

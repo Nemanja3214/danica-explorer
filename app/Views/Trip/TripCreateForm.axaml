@@ -1,0 +1,30 @@
+<UserControl
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d"
+    x:Class="app.Views.Trip.TripCreateForm"
+    x:DataType="viewModels:TripCreateFormViewModel"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewModels="clr-namespace:app.ViewModels;assembly=app"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <UserControl.DataContext>
+        <viewModels:TripCreateFormViewModel />
+    </UserControl.DataContext>
+    <Border Padding="10">
+        <StackPanel>
+            <TextBox Margin="10" Text="{Binding Title}" />
+            <TextBox
+                AcceptsReturn="True"
+                Height="100"
+                Margin="10"
+                Name="tbMultiLine"
+                Text="{Binding Description}"
+                TextWrapping="Wrap" />
+            <DatePicker Margin="10" />
+            <TextBox Margin="10" />
+        </StackPanel>
+    </Border>
+
+</UserControl>
