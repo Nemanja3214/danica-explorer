@@ -26,4 +26,9 @@ public partial class Trip
     public virtual ICollection<TripAttraction> TripAttractions { get; set; } = new List<TripAttraction>();
 
     public virtual ICollection<TripService> TripServices { get; set; } = new List<TripService>();
+
+    public override string ToString()
+    {
+        return Title;
+    }
 }

@@ -1,4 +1,6 @@
-﻿namespace app.ViewModels;
+﻿using app.Model;
+
+namespace app.ViewModels;
 
 public class TripStatisticsItemViewModel : BaseViewModel
 {
@@ -20,5 +22,13 @@ public class TripStatisticsItemViewModel : BaseViewModel
         _lastName = "Markovic";
         _phoneNumber = "06254112542";
         _dateOfBooking = "01.01.2020.";
+    }
+
+    public TripStatisticsItemViewModel(Reservation reservation)
+    {
+        _firstName = reservation.User.Name.Split(" ")[0];
+        _lastName = reservation.User.Name.Split(" ")[1];
+        _phoneNumber = reservation.User.Phone;
+        _dateOfBooking = reservation.Date.Value.ToString("dd.MM.yyyy.");
     }
 }

@@ -32,6 +32,28 @@ public class ReservationRepository : IReservationRepository
             .ToListAsync();
     }
 
+    public async Task<IEnumerable<Reservation>> GetAllForUser(User u)
+    {
+        return await _context.Reservations
+            .Include(x => x.Trip)
+            .Include(x => x.User)
+            .Include(x => x.Trip.TripServices)
+            .Include(x => x.Trip.TripAttractions)
+            .Where(x => x.UserId == u.Id)
+            .ToListAsync();
+    }
+
+    public async Task<IEnumerable<Reservation>> GetAllForTrip(Trip t)
+    {
+        return await _context.Reservations
+            .Include(x => x.Trip)
+            .Include(x => x.User)
+            .Include(x => x.Trip.TripServices)
+            .Include(x => x.Trip.TripAttractions)
+            .Where(x => x.TripId == t.Id)
+            .ToListAsync();
+    }
+
     public Reservation Create(Reservation reservation)
     {
         EntityEntry<Reservation> res = _context.Reservations.Add(reservation);

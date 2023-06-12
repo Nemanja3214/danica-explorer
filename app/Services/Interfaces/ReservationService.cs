@@ -25,6 +25,16 @@ public class ReservationService : IReservationService
         return await _repository.GetAll();
     }
 
+    public async Task<IEnumerable<Reservation>> GetAllForUser(User u)
+    {
+        return await _repository.GetAllForUser(u);
+    }
+
+    public async Task<IEnumerable<Reservation>> GetAllForTrip(Trip t)
+    {
+        return await _repository.GetAllForTrip(t);
+    }
+
     public Reservation Create(Reservation reservation)
     {
         return _repository.Create(reservation);
