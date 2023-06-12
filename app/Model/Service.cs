@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace app.Model;
 
-public partial class Service
+public partial class Service : ISigthSeeing
 {
     public int Id { get; set; }
 
@@ -22,4 +22,8 @@ public partial class Service
     public virtual Location? Location { get; set; }
 
     public virtual ICollection<TripService> TripServices { get; set; } = new List<TripService>();
+    
+    public string SightName { get => Title; set => Title=value; }
+    public Location SightLocation { get => Location; set => Location=value; }
+
 }
