@@ -22,7 +22,23 @@ namespace app.ViewModels;
 
 public class DragNDropViewModel
 {
+    public event EventHandler SelectionChanged;
+    
     private Func<string, Task<List<Sightseeing>>> _getSuggestionsFunc;
+    private Sightseeing _selected;
+
+    public Sightseeing Selected
+    {
+        get => _selected;
+        set
+        {
+            if (_selected == value)
+                return;
+            _selected= value;
+            SelectionChanged.Invoke(_selected, new EventArgs());
+        }
+    }
+
     public DragNDropViewModel(string title, Func<string, Task<List<Sightseeing>>> updateFunc)
     {
         _getSuggestionsFunc = updateFunc;

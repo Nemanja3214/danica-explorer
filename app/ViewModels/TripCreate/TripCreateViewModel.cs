@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
+using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -50,6 +51,13 @@ public class TripCreateViewModel
         _mapVm = new MapViewModel();
 
         AttractionVm.AddedItems.CollectionChanged += CollectionChangedMethod;
+        AttractionVm.SelectionChanged += SelectionChangedMethod;
+        
+        RestaurantVm.AddedItems.CollectionChanged += CollectionChangedMethod;
+        RestaurantVm.SelectionChanged += SelectionChangedMethod;
+        
+        HotelVm.AddedItems.CollectionChanged += CollectionChangedMethod;
+        HotelVm.SelectionChanged += SelectionChangedMethod;
 
     }
     
@@ -60,6 +68,22 @@ public class TripCreateViewModel
         {
             MapVm.Points.Add(SphericalMercator.FromLonLat(item.Location.X, item.Location.Y).ToMPoint());
         }
+        foreach (var item in RestaurantVm.AddedItems)
+        {
+            MapVm.Points.Add(SphericalMercator.FromLonLat(item.Location.X, item.Location.Y).ToMPoint());
+        }
+        foreach (var item in HotelVm.AddedItems)
+        {
+            MapVm.Points.Add(SphericalMercator.FromLonLat(item.Location.X, item.Location.Y).ToMPoint());
+        }
+    }
+    
+    private void SelectionChangedMethod(object sender, EventArgs e)
+    {
+        Sightseeing item = (Sightseeing)sender;
+        MapVm.SelectedSphericalMercatorCoordinate =
+            SphericalMercator.FromLonLat(item.Location.X, item.Location.Y).ToMPoint();
+        MapVm.RefreshPins();
     }
     
     // TODO simulation function delete
@@ -70,10 +94,14 @@ public class TripCreateViewModel
             new Hotel()
             {
                 Name = "dqwd",
+                Date = DateTime.Now,
+                Location = new Point(21.005859, 44.016521)
             },
             new Hotel()
             {
                 Name = "azxcaw",
+                Date = DateTime.Now,
+                Location = new Point(22.005859, 44.016521)
             }
         };
     }
@@ -87,10 +115,14 @@ public class TripCreateViewModel
             new Restaurant()
             {
                 Name = "yutyu",
+                Date = DateTime.Now,
+                Location = new Point(23.005859, 44.016521)
             },
             new Restaurant()
             {
                 Name = "werw",
+                Date = DateTime.Now,
+                Location = new Point(24.005859, 44.016521)
             }
         };
     }
@@ -104,13 +136,13 @@ public class TripCreateViewModel
             {
                 Name = "yutyu",
                 Date = DateTime.Now,
-                Location = new Point(22.005859, 44.016521)
+                Location = new Point(25.005859, 44.016521)
             },
             new Attraction()
             {
                 Name = "werw",
                 Date = DateTime.Now,
-                Location = new Point(21.005859, 44.016521)
+                Location = new Point(26.005859, 44.016521)
             }
         };
     }

@@ -21,6 +21,7 @@ namespace app.ViewModels;
 public class MapViewModel : ViewModelBase
 {
     public MPoint CurrentSphericalMercatorCoordinate { get; set; } = SphericalMercator.FromLonLat(21.005859, 44.016521).ToMPoint();
+    public MPoint SelectedSphericalMercatorCoordinate { get; set; }
 
     private ObservableCollection<MPoint> _points;
 
@@ -128,7 +129,12 @@ public class MapViewModel : ViewModelBase
         {
             var feature = new PointFeature(point);
             feature["name"] = "MyPoint";
-            feature.Styles.Add(Pin());
+            
+            if(point.Equals(SelectedSphericalMercatorCoordinate))
+                feature.Styles.Add(SelectedPin());
+            else
+                feature.Styles.Add(Pin());
+            
             list.Add(feature);
         }
 
@@ -143,7 +149,21 @@ public class MapViewModel : ViewModelBase
         return new SymbolStyle
         {
             BitmapId = ID,
-            SymbolScale = 0.1
+            SymbolScale = 0.1,
+            
+        };
+    }
+    
+    private static IStyle SelectedPin()
+    {
+        var assets = AvaloniaLocator.Current.GetService<IAssetLoader>();
+        var stream = assets.Open(new Uri($"avares://{Assembly.GetExecutingAssembly().GetName().Name}/Assets/selectedPin.png"));
+        var ID = BitmapRegistry.Instance.Register(stream);
+        return new SymbolStyle
+        {
+            BitmapId = ID,
+            SymbolScale = 0.1,
+            
         };
     }
 }
