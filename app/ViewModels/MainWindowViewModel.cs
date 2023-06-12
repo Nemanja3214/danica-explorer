@@ -4,12 +4,13 @@ using app.Stores;
 using app.ViewModels;
 using app.Views;
 using Avalonia.Controls;
+using Avalonia.Markup.Parsers.Nodes;
 using ReactiveUI;
 
 
 public class MainWindowViewModel : BaseViewModel
 {
-    private readonly Window _parent;
+    private static Window _parent;
 
     public RestaurantCreateViewModel AcmVm { get; set; }
     private readonly NavigationStore _navigationStore;
@@ -21,7 +22,12 @@ public class MainWindowViewModel : BaseViewModel
         _navigationStore = NavigationStore.Instance();
         _navigationStore.CurrentViewModelChanged += OnCurrentViewModelChanged;
     }
-    
+
+    public static Window GetMainWindow()
+    {
+        return _parent;
+    }
+
     private void OnCurrentViewModelChanged()
     {
         OnPropertyChanged(nameof(CurrentViewModel));

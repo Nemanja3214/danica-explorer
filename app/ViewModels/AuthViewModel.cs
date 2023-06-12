@@ -79,7 +79,7 @@ public class AuthViewModel : BaseViewModel
 
     public AuthViewModel()
     {
-        LoginCommand = new LoginCommand();
-        RegisterCommand = new RegisterCommand();
+        LoginCommand = new LoginCommand(this);
+        RegisterCommand = new RegisterCommand(this);
     }
 }
