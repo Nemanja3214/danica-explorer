@@ -1,6 +1,6 @@
 <Styles
     xmlns="https://github.com/avaloniaui"
-    xmlns:viewModels="clr-namespace:app.ViewModels"
+    xmlns:viewModels="clr-namespace:app.ViewModels;assembly=app"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <Design.PreviewWith>
         <StackPanel Spacing="10">
@@ -37,6 +37,7 @@
 
                         <!--  Items is an array if integer. Let's add a Path as the DataTemplate  -->
                         <ItemsControl.ItemTemplate>
+                            <!--  x:DataType additionaly added!!!!!!!!!!  -->
                             <DataTemplate x:DataType="viewModels:RatingControl">
                                 <Path Classes="star">
                                     <!--  We enable or disable classes through a boolean value. We use our IsSmallerOrEqualConverter to do so.  -->

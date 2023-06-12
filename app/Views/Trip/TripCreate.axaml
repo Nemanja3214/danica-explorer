@@ -31,4 +31,8 @@
             </Button>
         </Grid>
     </ScrollViewer>
+    <UserControl.KeyBindings>
+        <KeyBinding Command="{Binding SaveCommand}" Gesture="{Binding SaveGesture}" />
+        <KeyBinding Command="{Binding UndoCommand}" Gesture="{Binding UndoGesture}" />
+    </UserControl.KeyBindings>
 </UserControl>

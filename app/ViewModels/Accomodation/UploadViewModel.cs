@@ -1,5 +1,6 @@
 using System;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Reactive;
@@ -16,6 +17,7 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.VisualBasic;
 using ReactiveUI;
 using Bitmap = Avalonia.Media.Imaging.Bitmap;
+using Image = System.Drawing.Image;
 using Path = System.IO.Path;
 using PixelFormat = System.Drawing.Imaging.PixelFormat;
 
@@ -91,6 +93,20 @@ public class UploadViewModel: BaseViewModel
             currentPath = result[0];
             ImageToView = GetImage(currentPath);
         }
+    }
+    
+    public static byte[] ImageToByte(Bitmap img)
+    {
+        Byte[] data;
+
+        using (var memoryStream = new MemoryStream())
+        {
+            img.Save(memoryStream);
+
+            data = memoryStream.ToArray();
+        }
+
+        return data;
     }
 
 

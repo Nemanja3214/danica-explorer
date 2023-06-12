@@ -9,6 +9,8 @@ public partial class TripCreate : UserControl
     public TripCreate()
     {
         InitializeComponent();
+        Focusable = true;
+        AttachedToVisualTree += (s, e) => Focus();
     }
 
     private void InitializeComponent()

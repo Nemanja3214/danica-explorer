@@ -86,6 +86,9 @@ public class AttractionCreateFormViewModel :BaseViewModel, INotifyPropertyChange
         }
     }
 
+    public string Description { get; set; }
+    public string AttractionName { get; set; }
+
 
     private async void UpdateSuggestions()
     {

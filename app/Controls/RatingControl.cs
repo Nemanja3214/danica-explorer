@@ -6,6 +6,7 @@ using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Primitives;
 using Avalonia.Controls.Shapes;
 using Avalonia.Data;
+using Avalonia.Input;
 
 namespace app.ViewModels;
 
@@ -22,6 +23,7 @@ namespace app.ViewModels;
      
         public RatingControl() 
         { 
+            KeyboardNavigation.TabNavigationProperty.OverrideMetadata(typeof(RatingControl), new StyledPropertyMetadata<KeyboardNavigationMode>(KeyboardNavigationMode.Local));
             // When a new instance of the control is created, we need to update the rating stars visible
             UpdateStars();
         }
@@ -116,7 +118,7 @@ namespace app.ViewModels;
         public IEnumerable<int> Stars
         {
             get { return _stars; }
-            private set { SetAndRaise(StarsProperty, ref _stars, value); } // make sure the setter is private
+            set { SetAndRaise(StarsProperty, ref _stars, value); } // make sure the setter is private
         }
 
         // called when the number of stars changed

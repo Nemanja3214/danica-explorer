@@ -12,8 +12,7 @@
     xmlns:viewModels="clr-namespace:app.ViewModels"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <StackPanel Margin="10">
-        <TextBox Margin="10" Text="Attraction name" />
-        <viewModels:RatingControl NumberOfStars="5" Value="{Binding RatingValue}" />
+        <TextBox Margin="10" Text="{Binding AttractionName}" />
 
         <Grid>
             <Grid.RowDefinitions>
@@ -46,7 +45,7 @@
             Height="100"
             Margin="10"
             Name="tbMultiLine"
-            Text="Description"
+            Text="{Binding Description}"
             TextWrapping="Wrap" />
     </StackPanel>
 </UserControl>

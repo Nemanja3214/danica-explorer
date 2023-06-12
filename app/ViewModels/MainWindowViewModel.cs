@@ -12,7 +12,7 @@ public class MainWindowViewModel : BaseViewModel
 {
     private static Window _parent;
 
-    public RestaurantCreateViewModel AcmVm { get; set; }
+    public TripCreateViewModel AcVm { get; set; }
     private readonly NavigationStore _navigationStore;
     public BaseViewModel CurrentViewModel => _navigationStore.CurrentViewModel ;
 

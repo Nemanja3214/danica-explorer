@@ -35,4 +35,11 @@ public class RestaurantCreateViewModel
     public RestaurantCreateFormViewModel Form { get; set; }
 
     public UploadViewModel Uvm { get; set; }
+    
+    // TODO see what is model for this
+    // private  _previousAccomodation;
+    // private Service _currentAccomodation;
+    //
+    // private ReactiveCommand<Unit, Unit> _undoCommand;
+    // private ReactiveCommand<Unit, Unit> _saveCommand;
 }

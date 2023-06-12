@@ -12,8 +12,21 @@
     xmlns:viewModels="clr-namespace:app.ViewModels"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <StackPanel Margin="10">
-        <TextBox Margin="10" Text="Accomodation name" />
-        <viewModels:RatingControl NumberOfStars="5" Value="{Binding RatingValue}" />
+        <TextBox
+            KeyboardNavigation.TabNavigation="Contained"
+            Margin="10"
+            Text="{Binding Title}" />
+        <viewModels:RatingControl
+            Focusable="True"
+            IsTabStop="True"
+            KeyboardNavigation.TabNavigation="Contained"
+            NumberOfStars="5"
+            Value="{Binding RatingValue, Mode=TwoWay}">
+            <viewModels:RatingControl.KeyBindings>
+                <KeyBinding Command="{Binding LowerRating}" Gesture="Left" />
+                <KeyBinding Command="{Binding RaiseRating}" Gesture="Right" />
+            </viewModels:RatingControl.KeyBindings>
+        </viewModels:RatingControl>
 
         <Grid>
             <Grid.RowDefinitions>
@@ -46,7 +59,7 @@
             Height="100"
             Margin="10"
             Name="tbMultiLine"
-            Text="Description"
+            Text="{Binding Description}"
             TextWrapping="Wrap" />
     </StackPanel>
 </UserControl>

@@ -62,7 +62,7 @@
                 SelectedItem="{Binding Selected}">
                 <ListBox.ItemTemplate>
                     <DataTemplate DataType="models:Sightseeing">
-                        <Grid ColumnDefinitions="Auto, Auto, Auto, *" RowDefinitions="*">
+                        <Grid ColumnDefinitions="*, *" RowDefinitions="*">
                             <TextBlock
                                 Grid.Column="0"
                                 HorizontalAlignment="Center"
@@ -70,22 +70,10 @@
                                 Text="{Binding Name}"
                                 TextAlignment="Center"
                                 VerticalAlignment="Center" />
-                            <TimePicker
-                                Grid.Column="1"
-                                Margin="5"
-                                SelectedTime="{Binding Time}" />
-                            <DatePicker
-                                DayVisible="False"
-                                Focusable="True"
-                                Grid.Column="2"
-                                Margin="5"
-                                SelectedDate="{Binding DateOffset}"
-                                YearVisible="True"
-                                ZIndex="100" />
                             <Button
                                 Command="{Binding DataContext.RemoveCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ListBox}}}"
                                 CommandParameter="{Binding RelativeSource={RelativeSource Self}}"
-                                Grid.Column="3"
+                                Grid.Column="1"
                                 HorizontalAlignment="Right"
                                 Margin="5">
                                 X
@@ -100,8 +88,24 @@
                 Grid.Row="0"
                 HorizontalAlignment="Stretch"
                 Margin="30">
-                <TextBox Text="{Binding Query}" />
-                <ListBox Classes="Drag" Items="{Binding OptionItems}">
+                <TextBox Text="{Binding Query}">
+                    <TextBox.KeyBindings>
+                        <KeyBinding
+                            Command="{Binding DataContext.SelectListBoxCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type StackPanel}}}"
+                            CommandParameter="{Binding #SuggestionListBox}"
+                            Gesture="Down" />
+                    </TextBox.KeyBindings>
+                </TextBox>
+                <ListBox
+                    Classes="Drag"
+                    Items="{Binding OptionItems}"
+                    Name="SuggestionListBox">
+                    <ListBox.KeyBindings>
+                        <KeyBinding
+                            Command="{Binding DataContext.MoveCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type StackPanel}}}"
+                            CommandParameter="{Binding #SuggestionListBox}"
+                            Gesture="Enter" />
+                    </ListBox.KeyBindings>
                     <ListBox.ItemTemplate>
                         <DataTemplate DataType="models:Sightseeing">
                             <Grid ColumnDefinitions="*" RowDefinitions="*">
