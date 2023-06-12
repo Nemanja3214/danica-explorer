@@ -21,7 +21,7 @@ using ReactiveUI;
 
 namespace app.ViewModels;
 
-public class AttractionCreateFormViewModel :ViewModelBase, INotifyPropertyChanged
+public class AttractionCreateFormViewModel :BaseViewModel, INotifyPropertyChanged
 {
     private int _RatingValue = 2;
     public event EventHandler LocationChanged;

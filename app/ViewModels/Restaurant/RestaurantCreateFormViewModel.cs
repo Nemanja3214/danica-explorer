@@ -21,7 +21,7 @@ using ReactiveUI;
 
 namespace app.ViewModels;
 
-public class RestaurantCreateFormViewModel :ViewModelBase, INotifyPropertyChanged
+public class RestaurantCreateFormViewModel :BaseViewModel, INotifyPropertyChanged
 {
     private int _RatingValue = 2;
     public event EventHandler LocationChanged;

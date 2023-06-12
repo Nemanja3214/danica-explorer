@@ -18,7 +18,7 @@ namespace app.ViewModels;
 
 
 // MAPSUI USES SPHERICAL COORDINATES PAY ATTENTION
-public class MapViewModel : ViewModelBase
+public class MapViewModel : BaseViewModel
 {
     public MPoint CurrentSphericalMercatorCoordinate { get; set; } = SphericalMercator.FromLonLat(21.005859, 44.016521).ToMPoint();
     public MPoint SelectedSphericalMercatorCoordinate { get; set; }

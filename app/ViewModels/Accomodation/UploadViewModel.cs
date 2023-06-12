@@ -21,7 +21,7 @@ using PixelFormat = System.Drawing.Imaging.PixelFormat;
 
 namespace app.ViewModels;
 
-public class UploadViewModel: ViewModelBase
+public class UploadViewModel: BaseViewModel
 {
     private string currentPath = "";
     private ReactiveCommand<Unit, Unit> upload;

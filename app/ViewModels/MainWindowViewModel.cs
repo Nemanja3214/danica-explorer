@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Reactive;
+using app.Stores;
+using app.ViewModels;
 using app.Views;
 using Avalonia.Controls;
 using ReactiveUI;
 
-namespace app.ViewModels;
-using app.Stores;
-
-namespace app.ViewModels;
 
 public class MainWindowViewModel : BaseViewModel
 {
