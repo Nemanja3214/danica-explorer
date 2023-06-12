@@ -25,12 +25,12 @@ public class TripServiceService : ITripServiceService
     public async Task<IEnumerable<Service>> GetServicesForTrip(Trip trip)
     {
         IEnumerable<TripService> data = await _repository.GetAllForTrip(trip);
-        List<Service> trips = new List<Service>();
+        List<Service> services = new List<Service>();
         foreach (TripService ts in data)
         {
-            if (ts.Service != null) trips.Add(ts.Service);
+            if (ts.Service != null) services.Add(ts.Service);
         }
-        return trips;
+        return services;
     }
 
     public async Task<IEnumerable<Trip>> GetTripsForService(Service service)
