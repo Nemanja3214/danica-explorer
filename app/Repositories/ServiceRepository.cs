@@ -27,6 +27,20 @@ public class ServiceRepository : IServiceRepository
         return await _context.Services.ToListAsync();
     }
 
+    public async Task<IEnumerable<Service>> GetAllHotels()
+    {
+        return await _context.Services
+            .Where(x => x.Ishotel == true)
+            .ToListAsync();
+    }
+
+    public async Task<IEnumerable<Service>> GetAllRestaurants()
+    {
+        return await _context.Services
+            .Where(x => x.Ishotel == false)
+            .ToListAsync();
+    }
+
     public Service Create(Service service)
     {
         EntityEntry<Service> res = _context.Services.Add(service);

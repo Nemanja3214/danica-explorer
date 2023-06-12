@@ -26,6 +26,16 @@ public class ServiceService : IServiceService
         return await _repository.GetAll();
     }
 
+    public async Task<IEnumerable<Service>> GetAllHotels()
+    {
+        return await _repository.GetAllHotels();
+    }
+
+    public async Task<IEnumerable<Service>> GetAllRestaurants()
+    {
+        return await _repository.GetAllRestaurants();
+    }
+
     public Service Create(Service service)
     {
         return _repository.Create(service);

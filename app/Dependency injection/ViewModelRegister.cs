@@ -23,6 +23,8 @@ public static class ViewModelRegister
         services.Register(() => new TripDetailsViewModel());
         
         services.Register(() => new MyReservationsViewModel());
+        services.Register(() => new AllRestaurantsViewModel());
+        services.Register(() => new AllHotelsViewModel());
 
         services.Register(() => new AllAttractionsViewModel());
         services.Register(() => new AllTripsViewModel());
