@@ -1,4 +1,5 @@
 using System.Windows.Input;
+using app.Commands;
 using app.Commands.Navigation;
 using app.ViewModels;
 
@@ -6,10 +7,10 @@ namespace app.ViewModels;
 
 public class MenuViewModel : BaseViewModel
 {
-    public ICommand HomeCommand { get; }
-    public ICommand TripsCommand { get; }
-    public ICommand AttractionsCommand { get; }
-    public ICommand AuthCommand { get; }
+    public BaseCommand HomeCommand { get; }
+    public BaseCommand TripsCommand { get; }
+    public BaseCommand AttractionsCommand { get; }
+    public BaseCommand AuthCommand { get; }
 
     public MenuViewModel()
     {
