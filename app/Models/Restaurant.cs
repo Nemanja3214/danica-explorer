@@ -1,6 +1,6 @@
 namespace app.Models;
 
-public class Restaurant : Sightseeing
+public class Restaurant : IsSightseeing
 {
     public override string GetName()
     {

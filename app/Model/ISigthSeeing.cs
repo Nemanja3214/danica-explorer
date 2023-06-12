@@ -1,7 +1,7 @@
 namespace app.Model;
 
-public interface ISigthSeeing
+public abstract class ISigthSeeing
 {
-    public string SightName { get; set; }
-    public Location SightLocation { get; set; }
+    public abstract string GetName();
+    public abstract Location GetLocation();
 }

@@ -4,7 +4,7 @@ using Point = NetTopologySuite.Geometries.Point;
 
 namespace app.Models;
 
-public class Sightseeing
+public class IsSightseeing
 {
     protected string name;
     protected Point location;
@@ -22,7 +22,7 @@ public class Sightseeing
     }
 
 
-    protected bool Equals(Sightseeing other)
+    protected bool Equals(IsSightseeing other)
     {
         return name == other.name && location.Equals(other.location);
     }
@@ -32,7 +32,7 @@ public class Sightseeing
         if (ReferenceEquals(null, obj)) return false;
         if (ReferenceEquals(this, obj)) return true;
         if (obj.GetType() != this.GetType()) return false;
-        return Equals((Sightseeing)obj);
+        return Equals((IsSightseeing)obj);
     }
 
     public override int GetHashCode()

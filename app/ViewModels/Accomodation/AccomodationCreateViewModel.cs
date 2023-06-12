@@ -2,6 +2,8 @@ using System;
 using System.ComponentModel;
 using System.Reactive;
 using app.Model;
+using app.Services;
+using app.Services.Interfaces;
 using app.Utils;
 using app.Views;
 using Avalonia.Controls;
@@ -24,6 +26,7 @@ public class AccomodationCreateViewModel
         _parent = MainWindowViewModel.GetMainWindow();
         Form = Locator.Current.GetService<AccomodationCreateFormViewModel>();
         MapVM = Locator.Current.GetService<MapViewModel>();
+        Uvm = new UploadViewModel();
         Form.LocationChanged += LocationChanged;
 
         _undoCommand = ReactiveCommand.Create<Unit>(e =>
@@ -35,7 +38,7 @@ public class AccomodationCreateViewModel
                 messageBoxStandardWindow.Show();
                 return;
             }
-            // TODO delete current
+            Locator.Current.GetService<IServiceService>().Delete(CurrentAccomodation);
             CurrentAccomodation = PreviousAccomodation;
             PreviousAccomodation = null;
         });
@@ -43,8 +46,9 @@ public class AccomodationCreateViewModel
         _saveCommand = ReactiveCommand.Create<Unit>(e =>
         {
            Service s = FormAccomodation();
-            
-           // TODO persist
+           s = Locator.Current.GetService<IServiceService>().Create(s);
+           PreviousAccomodation = CurrentAccomodation;
+           CurrentAccomodation = s;
         });
     }
 
@@ -54,11 +58,9 @@ public class AccomodationCreateViewModel
         s.Ishotel = true;
         s.Description = Form.Description;
         
-        Location location = new Location();
         if (Form.SelectedLocation == null)
             return null;
-        location.Latitude = Double.Parse(Form.SelectedLocation.lat);
-        location.Longitude= Double.Parse(Form.SelectedLocation.lon);
+        Location location = new Location(Double.Parse(Form.SelectedLocation.lat), Double.Parse(Form.SelectedLocation.lon));
         s.Location = location;
 
         s.Image = UploadViewModel.ImageToByte(Uvm.ImageToView);

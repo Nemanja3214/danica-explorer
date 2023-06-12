@@ -8,7 +8,7 @@ using System.Reactive;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using app.Model;
-using app.Models;
+using app.Services.Interfaces;
 using Avalonia.Input;
 using ExCSS;
 using Mapsui;
@@ -16,9 +16,8 @@ using Mapsui.Extensions;
 using Mapsui.Projections;
 using NetTopologySuite.Geometries;
 using ReactiveUI;
-using Attraction = app.Models.Attraction;
 using Splat;
-using Point = NetTopologySuite.Geometries.Point;
+using Location = app.Model.Location;
 
 namespace app.ViewModels;
 
@@ -31,6 +30,7 @@ public class TripCreateViewModel
         RestaurantVm = new DragNDropViewModel("Restaurants", GetRestaurantItems);
         AttractionVm = new DragNDropViewModel("Attractions", GetAttractionItems);
         Tvm = new TripCreateFormViewModel();
+        Uvm = new UploadViewModel();
         MapVm = new MapViewModel();
 
         AttractionVm.AddedItems.CollectionChanged += CollectionChangedMethod;
@@ -51,7 +51,7 @@ public class TripCreateViewModel
                 messageBoxStandardWindow.Show();
                 return;
             }
-            // TODO delete current
+            Locator.Current.GetService<ITripService>().Delete(CurrentTrip);
             CurrentTrip = PreviousTrip;
             PreviousTrip = null;
         });
@@ -59,11 +59,14 @@ public class TripCreateViewModel
         _saveCommand = ReactiveCommand.Create<Unit>(e =>
         {
             Trip t = FormTrip();
-            
-            // TODO persist
+            t = Locator.Current.GetService<ITripService>().Create(t);
+            PreviousTrip = CurrentTrip;
+            CurrentTrip = t;
         });
 
     }
+
+    public UploadViewModel Uvm { get; set; }
 
     public TripCreateFormViewModel Tvm { get; set; }
 
@@ -72,7 +75,11 @@ public class TripCreateViewModel
         Trip t = new Trip();
         t.Title = Tvm.Title;
         t.Description = Tvm.Description;
-
+        // t.Durationindays
+        // t.Price
+        t.Image = UploadViewModel.ImageToByte(Uvm.ImageToView);
+        // t.TripAttractions = AttractionVm.AddedItems;
+        // t.TripServices = RestaurantVm.AddedItems.Concat(HotelVm.AddedItems);
 
         return t;
     }
@@ -90,15 +97,15 @@ public class TripCreateViewModel
         MapVm.Points.Clear();
         foreach (var item in AttractionVm.AddedItems)
         {
-            MapVm.Points.Add(SphericalMercator.FromLonLat(item.Location.X, item.Location.Y).ToMPoint());
+            MapVm.Points.Add(SphericalMercator.FromLonLat(item.GetLocation().Longitude, item.GetLocation().Latitude).ToMPoint());
         }
         foreach (var item in RestaurantVm.AddedItems)
         {
-            MapVm.Points.Add(SphericalMercator.FromLonLat(item.Location.X, item.Location.Y).ToMPoint());
+            MapVm.Points.Add(SphericalMercator.FromLonLat(item.GetLocation().Longitude, item.GetLocation().Latitude).ToMPoint());
         }
         foreach (var item in HotelVm.AddedItems)
         {
-            MapVm.Points.Add(SphericalMercator.FromLonLat(item.Location.X, item.Location.Y).ToMPoint());
+            MapVm.Points.Add(SphericalMercator.FromLonLat(item.GetLocation().Longitude, item.GetLocation().Latitude).ToMPoint());
         }
     }
     
@@ -106,9 +113,9 @@ public class TripCreateViewModel
     {
         if(sender == null)
             return;
-        Sightseeing item = (Sightseeing)sender;
+        ISigthSeeing item = (ISigthSeeing)sender;
         MapVm.SelectedSphericalMercatorCoordinate =
-            SphericalMercator.FromLonLat(item.Location.X, item.Location.Y).ToMPoint();
+            SphericalMercator.FromLonLat(item.GetLocation().Longitude, item.GetLocation().Latitude).ToMPoint();
         MapVm.RefreshPins();
     }
     
@@ -146,56 +153,56 @@ public class TripCreateViewModel
     }
 
     // TODO simulation function delete
-    public async static Task<List<Sightseeing>> GetHotelItems(string query)
+    public async static Task<List<ISigthSeeing>> GetHotelItems(string query)
     {
-        return new List<Sightseeing>()
+        return new List<ISigthSeeing>()
         {
-            new Hotel()
+            new Service()
             {
-                Name = "dqwd",
-                Location = new Point(21.005859, 44.016521)
+                Title = "dqwd",
+                Location = new Location(21.005859, 44.016521)
             },
-            new Hotel()
+            new Service()
             {
-                Name = "azxcaw",
-                Location = new Point(22.005859, 44.016521)
+                Title = "azxcaw",
+                Location = new Location(22.005859, 44.016521)
             }
         };
     }
     
        
     // TODO simulation function delete
-    public async static Task<List<Sightseeing>> GetRestaurantItems(string query)
+    public async static Task<List<ISigthSeeing>> GetRestaurantItems(string query)
     {
-        return new List<Sightseeing>()
+        return new List<ISigthSeeing>()
         {
-            new Restaurant()
+            new Service()
             {
-                Name = "yutyu",
-                Location = new Point(23.005859, 44.016521)
+                Title = "yutyu",
+                Location = new Location(23.005859, 44.016521)
             },
-            new Restaurant()
+            new Service()
             {
-                Name = "werw",
-                Location = new Point(24.005859, 44.016521)
+                Title = "werw",
+                Location = new Location(24.005859, 44.016521)
             }
         };
     }
     
     // TODO simulation function delete
-    public async static Task<List<Sightseeing>> GetAttractionItems(string query)
+    public async static Task<List<ISigthSeeing>> GetAttractionItems(string query)
     {
-        return new List<Sightseeing>()
+        return new List<ISigthSeeing>()
         {
             new Attraction()
             {
-                Name = "yutyu",
-                Location = new Point(25.005859, 44.016521)
+                Title = "yutyu",
+                Location = new Location(25.005859, 44.016521)
             },
             new Attraction()
             {
-                Name = "werw",
-                Location = new Point(26.005859, 44.016521)
+                Title = "werw",
+                Location = new Location(26.005859, 44.016521)
             }
         };
     }

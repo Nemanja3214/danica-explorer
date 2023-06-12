@@ -2,7 +2,7 @@ using System;
 
 namespace app.Models;
 
-public class Hotel : Sightseeing
+public class Hotel : IsSightseeing
 {
     public override string GetName()
     {

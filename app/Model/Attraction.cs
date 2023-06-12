@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace app.Model;
 
-public partial class Attraction
+public partial class Attraction : ISigthSeeing
 {
     public int Id { get; set; }
 
@@ -21,4 +21,13 @@ public partial class Attraction
 
     public virtual ICollection<TripAttraction> TripAttractions { get; set; } = new List<TripAttraction>();
 
+    public override string GetName()
+    {
+        return Title;
+    }
+
+    public override Location GetLocation()
+    {
+        return Location;
+    }
 }
