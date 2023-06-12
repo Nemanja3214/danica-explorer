@@ -1,15 +1,16 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using app.Model;
+using app.Repositories.Interfaces;
 using app.Services.Interfaces;
 
 namespace app.Services;
 
 public class TripService : ITripService
 {
-    private readonly ITripService _tripRepository;
+    private readonly ITripRepository _tripRepository;
 
-    public TripService(ITripService tripRepository)
+    public TripService(ITripRepository tripRepository)
     {
         _tripRepository = tripRepository;
     }
