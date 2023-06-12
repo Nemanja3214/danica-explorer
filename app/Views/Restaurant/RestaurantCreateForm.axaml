@@ -2,8 +2,8 @@
     d:DesignHeight="450"
     d:DesignWidth="800"
     mc:Ignorable="d"
-    x:Class="app.Views.AccomodationCreateForm"
-    x:DataType="viewModels:AccomodationCreateFormViewModel"
+    x:Class="app.Views.RestaurantCreateForm"
+    x:DataType="viewModels:RestaurantCreateFormViewModel"
     xmlns="https://github.com/avaloniaui"
     xmlns:controls="https://github.com/AvaloniaUI/Avalonia.Samples/tree/main/src/Avalonia.Samples/CustomControls/RatingControlSample/RatingControlSample.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -12,7 +12,7 @@
     xmlns:viewModels="clr-namespace:app.ViewModels"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <StackPanel Margin="10">
-        <TextBox Margin="10" Text="Accomodation name" />
+        <TextBox Margin="10" Text="Restaurant name" />
         <viewModels:RatingControl NumberOfStars="5" Value="{Binding RatingValue}" />
 
         <Grid>

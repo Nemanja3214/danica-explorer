@@ -14,5 +14,5 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <!-- <views:TripDetails DataContext="{Binding Tdvm}" /> -->
-    <views:TripCreate DataContext="{Binding Tcvm}" />
+    <views:RestaurantCreate DataContext="{Binding AcmVm}" />
 </Window>

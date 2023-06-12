@@ -63,5 +63,21 @@
         <DependentUpon>TripDetails.axaml</DependentUpon>
         <SubType>Code</SubType>
       </Compile>
+      <Compile Update="Views\Attraction\AttractionCreate.axaml.cs">
+        <DependentUpon>AccomodationCreate.axaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="Views\Attraction\AttractionCreateForm.axaml.cs">
+        <DependentUpon>AccomodationCreateForm.axaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="Views\Restaurant\RestaurantCreate.axaml.cs">
+        <DependentUpon>AccomodationCreate.axaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="Views\Restaurant\RestaurantCreateForm.axaml.cs">
+        <DependentUpon>AccomodationCreateForm.axaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
     </ItemGroup>
 </Project>
