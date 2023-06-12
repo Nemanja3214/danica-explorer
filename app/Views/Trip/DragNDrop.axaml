@@ -112,6 +112,12 @@
                     Classes="Drag"
                     Items="{Binding OptionItems}"
                     Name="SuggestionListBox">
+                    <ListBox.KeyBindings>
+                        <KeyBinding
+                            Command="{Binding DataContext.MoveCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type StackPanel}}}"
+                            CommandParameter="{Binding #SuggestionListBox}"
+                            Gesture="Enter" />
+                    </ListBox.KeyBindings>
                     <ListBox.ItemTemplate>
                         <DataTemplate DataType="models:Sightseeing">
                             <Grid ColumnDefinitions="*" RowDefinitions="*">

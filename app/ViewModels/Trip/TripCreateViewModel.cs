@@ -64,6 +64,8 @@ public class TripCreateViewModel
     
     private void SelectionChangedMethod(object sender, EventArgs e)
     {
+        if(sender == null)
+            return;
         Sightseeing item = (Sightseeing)sender;
         MapVm.SelectedSphericalMercatorCoordinate =
             SphericalMercator.FromLonLat(item.Location.X, item.Location.Y).ToMPoint();

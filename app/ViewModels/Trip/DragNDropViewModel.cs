@@ -62,9 +62,18 @@ public class DragNDropViewModel
                 e.Selection = selection;
             }
         });
+        
+        _moveCommand = ReactiveCommand.Create<ListBox>((e) =>
+        {
+            Sightseeing selected = e.SelectedItem as Sightseeing;
+            AddedItems.Add(selected);
+            OptionItems.Remove(selected);
+        });
         _optionItems = new ObservableCollection<Sightseeing>();
         _addedItems = new ObservableCollection<Sightseeing>();
     }
+
+    public ReactiveCommand<ListBox, Unit> MoveCommand => _moveCommand;
 
     public ReactiveCommand<Button, Unit> RemoveCommand => _removeCommand;
     private readonly ReactiveCommand<Button, Unit> _removeCommand;
@@ -90,6 +99,8 @@ public class DragNDropViewModel
     private Sightseeing _draggedItem;
     private bool _isDragging;
     public string _query;
+    private readonly ReactiveCommand<ListBox, Unit> _dragNdropCommand;
+    private readonly ReactiveCommand<ListBox, Unit> _moveCommand;
 
     public string Query
     {
