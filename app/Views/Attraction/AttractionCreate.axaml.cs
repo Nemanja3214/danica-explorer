@@ -9,6 +9,8 @@ public partial class AttractionCreate : UserControl
     public AttractionCreate()
     {
         InitializeComponent();
+        Focusable = true;
+        AttachedToVisualTree += (s, e) => Focus();
     }
 
     private void InitializeComponent()

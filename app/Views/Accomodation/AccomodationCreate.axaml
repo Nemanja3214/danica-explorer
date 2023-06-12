@@ -26,4 +26,8 @@
             Grid.ColumnSpan="2"
             Grid.Row="1" />
     </Grid>
+    <UserControl.KeyBindings>
+        <KeyBinding Command="{Binding SaveCommand}" Gesture="{Binding SaveGesture}" />
+        <KeyBinding Command="{Binding UndoCommand}" Gesture="{Binding UndoGesture}" />
+    </UserControl.KeyBindings>
 </UserControl>

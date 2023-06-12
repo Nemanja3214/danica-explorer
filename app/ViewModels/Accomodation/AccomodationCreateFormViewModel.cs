@@ -11,6 +11,7 @@ using System.Reactive;
 using System.Runtime.Serialization.Json;
 using System.Threading;
 using System.Threading.Tasks;
+using app.Model;
 using app.Utils;
 using Avalonia;
 using Avalonia.Controls;
@@ -120,4 +121,7 @@ public class AccomodationCreateFormViewModel :BaseViewModel, INotifyPropertyChan
     public ReactiveCommand<EventArgs, Unit> RaiseRating => _raiseRating;
 
     public ReactiveCommand<EventArgs, Unit> LowerRating => _lowerRating;
+    public string Description { get; set; }
+    public string Title { get; set; }
+    
 }

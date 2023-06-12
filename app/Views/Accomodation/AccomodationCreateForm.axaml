@@ -15,7 +15,7 @@
         <TextBox
             KeyboardNavigation.TabNavigation="Contained"
             Margin="10"
-            Text="Accomodation name" />
+            Text="{Binding Title}" />
         <viewModels:RatingControl
             Focusable="True"
             IsTabStop="True"
@@ -59,7 +59,7 @@
             Height="100"
             Margin="10"
             Name="tbMultiLine"
-            Text="Description"
+            Text="{Binding Description}"
             TextWrapping="Wrap" />
     </StackPanel>
 </UserControl>
