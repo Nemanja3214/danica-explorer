@@ -19,12 +19,36 @@ public class TripServiceRepository : ITripServiceRepository
 
     public async Task<TripService?> GetById(int id)
     {
-        return await _context.TripServices.Where(x => x.Id == id).FirstOrDefaultAsync();
+        return await _context.TripServices.Where(x => x.Id == id)
+            .Include(x => x.Trip)
+            .Include(x => x.Service)
+            .FirstOrDefaultAsync();
+    }
+
+    public async Task<IEnumerable<TripService>> GetAllForTrip(Trip trip)
+    {
+        return await _context.TripServices
+            .Include(x => x.Trip)
+            .Include(x => x.Service)
+            .Where(x => x.TripId == trip.Id)
+            .ToListAsync();
+    }
+
+    public async Task<IEnumerable<TripService>> GetAllForService(Service service)
+    {
+        return await _context.TripServices
+            .Include(x => x.Trip)
+            .Include(x => x.Service)
+            .Where(x => x.ServiceId == service.Id)
+            .ToListAsync();
     }
 
     public async Task<IEnumerable<TripService>> GetAll()
     {
-        return await _context.TripServices.ToListAsync();
+        return await _context.TripServices
+            .Include(x => x.Trip)
+            .Include(x => x.Service)
+            .ToListAsync();
     }
 
     public TripService Create(TripService tripService)

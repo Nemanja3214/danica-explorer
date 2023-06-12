@@ -3,6 +3,7 @@ using app.Services.Interfaces;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using app.Model;
+using NetTopologySuite.Triangulate.Tri;
 
 namespace app.Services;
 
@@ -19,6 +20,28 @@ public class TripAttractionService : ITripAttractionService
     {
         return await _repository.GetById(id);
 
+    }
+
+    public async Task<IEnumerable<Attraction>> GetAttractionsForTrip(Trip trip)
+    {
+        IEnumerable<TripAttraction> data = await _repository.GetAllForTrip(trip);
+        List<Attraction> attractions = new List<Attraction>();
+        foreach (TripAttraction ta in data)
+        {
+            if (ta.Attraction != null) attractions.Add(ta.Attraction);
+        }
+        return attractions;
+    }
+
+    public async Task<IEnumerable<Trip>> GetTripsForAttraction(Attraction attraction)
+    {
+        IEnumerable<TripAttraction> data = await _repository.GetAllForAttractions(attraction);
+        List<Trip> trips = new List<Trip>();
+        foreach (TripAttraction ta in data)
+        {
+            if (ta.Trip != null) trips.Add(ta.Trip);
+        }
+        return trips;
     }
 
     public async Task<IEnumerable<TripAttraction>> GetAll()

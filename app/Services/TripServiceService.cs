@@ -3,6 +3,7 @@ using app.Repositories.Interfaces;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using app.Services.Interfaces;
+using app.Models;
 
 namespace app.Services;
 
@@ -19,6 +20,28 @@ public class TripServiceService : ITripServiceService
     {
         return await _repository.GetById(id);
 
+    }
+
+    public async Task<IEnumerable<Service>> GetServicesForTrip(Trip trip)
+    {
+        IEnumerable<TripService> data = await _repository.GetAllForTrip(trip);
+        List<Service> trips = new List<Service>();
+        foreach (TripService ts in data)
+        {
+            if (ts.Service != null) trips.Add(ts.Service);
+        }
+        return trips;
+    }
+
+    public async Task<IEnumerable<Trip>> GetTripsForService(Service service)
+    {
+        IEnumerable<TripService> data = await _repository.GetAllForService(service);
+        List<Trip> trips = new List<Trip>();
+        foreach (TripService ts in data)
+        {
+            if (ts.Trip != null) trips.Add(ts.Trip);
+        }
+        return trips;
     }
 
     public async Task<IEnumerable<TripService>> GetAll()
