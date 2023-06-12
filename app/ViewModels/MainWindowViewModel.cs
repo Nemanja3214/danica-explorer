@@ -12,7 +12,6 @@ public class MainWindowViewModel : BaseViewModel
 {
     private static Window _parent;
 
-    public TripCreateViewModel AcVm { get; set; }
     private readonly NavigationStore _navigationStore;
     public BaseViewModel CurrentViewModel => _navigationStore.CurrentViewModel ;
 
@@ -21,6 +20,7 @@ public class MainWindowViewModel : BaseViewModel
          _parent = parent;
         _navigationStore = NavigationStore.Instance();
         _navigationStore.CurrentViewModelChanged += OnCurrentViewModelChanged;
+
     }
 
     public static Window GetMainWindow()

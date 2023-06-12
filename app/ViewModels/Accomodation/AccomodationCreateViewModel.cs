@@ -19,10 +19,9 @@ public class AccomodationCreateViewModel
 {
     private readonly Window _parent;
 
-    public AccomodationCreateViewModel(Window parent)
+    public AccomodationCreateViewModel()
     {
-        _parent = parent;
-        Uvm = new UploadViewModel(_parent);
+        _parent = MainWindowViewModel.GetMainWindow();
         Form = Locator.Current.GetService<AccomodationCreateFormViewModel>();
         MapVM = Locator.Current.GetService<MapViewModel>();
         Form.LocationChanged += LocationChanged;

@@ -23,7 +23,6 @@ public class AttractionCreateViewModel
     public AttractionCreateViewModel(Window parent)
     {
         _parent = parent;
-        Uvm = new UploadViewModel(_parent);
         Form = Locator.Current.GetService<AttractionCreateFormViewModel>();
         MapVM = Locator.Current.GetService<MapViewModel>();
         Form.LocationChanged += LocationChanged;

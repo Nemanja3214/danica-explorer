@@ -1,113 +1,130 @@
-<UserControl xmlns="https://github.com/avaloniaui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:vm="using:app.ViewModels"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="app.Views.AuthPage">
+<UserControl
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d"
+    x:Class="app.Views.AuthPage"
+    x:DataType="viewModels:AuthViewModel"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewModels="clr-namespace:app.ViewModels;assembly=app"
+    xmlns:vm="using:app.ViewModels"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <UserControl.DataContext>
-        <vm:AuthViewModel/>
+        <vm:AuthViewModel />
     </UserControl.DataContext>
 
     <Grid>
-        <Image Source="../../Assets/banner.png"
-               Stretch="UniformToFill"
-               Opacity="0.5" />
-            <Border HorizontalAlignment="Center"
-                    VerticalAlignment="Center"
-                    Height="550"
-                    Background="#E0E4EB"
-                    CornerRadius="10"
-                    Padding="40 10 40 50"
-                    BoxShadow="0 4 10 0 Gray">
-                <TabControl>
-            <TabItem Header="PRIJAVA"
-                     Margin="40 30 0 30">
+        <Image
+            Opacity="0.5"
+            Source="../../Assets/banner.png"
+            Stretch="UniformToFill" />
+        <Border
+            Background="#E0E4EB"
+            BoxShadow="0 4 10 0 Gray"
+            CornerRadius="10"
+            Height="550"
+            HorizontalAlignment="Center"
+            Padding="40,10,40,50"
+            VerticalAlignment="Center">
+            <TabControl>
+                <TabItem Header="PRIJAVA" Margin="40,30,0,30">
                     <StackPanel VerticalAlignment="Center">
-                        <TextBlock Text="Već imaš nalog ?"
-                                   FontSize="20" 
-                                   FontWeight="SemiLight" 
-                                   HorizontalAlignment="Center"/>
-                        <TextBlock Text="Prijavi se !"
-                                   FontSize="20" 
-                                   FontWeight="Bold" 
-                                   HorizontalAlignment="Center"/>
+                        <TextBlock
+                            FontSize="20"
+                            FontWeight="SemiLight"
+                            HorizontalAlignment="Center"
+                            Text="Već imaš nalog ?" />
+                        <TextBlock
+                            FontSize="20"
+                            FontWeight="Bold"
+                            HorizontalAlignment="Center"
+                            Text="Prijavi se !" />
 
-                        <TextBox x:Name="EmailTextBox" 
-                                 FontSize="18" 
-                                 Width="400" 
-                                 Margin="0 40 0 10" 
-                                 Watermark="Email"
-                                 Text="{Binding Email, Mode=TwoWay}"/>
-                        <TextBox x:Name="PasswordBox" 
-                                 FontSize="18" 
-                                 Width="400" 
-                                 Margin="0 0 0 40" 
-                                 Watermark="Šifra"  
-                                 PasswordChar="●"
-                                 Text="{Binding Password, Mode=TwoWay}"/>
+                        <TextBox
+                            FontSize="18"
+                            Margin="0,40,0,10"
+                            Text="{Binding Email, Mode=TwoWay}"
+                            Watermark="Email"
+                            Width="400"
+                            x:Name="EmailTextBox" />
+                        <TextBox
+                            FontSize="18"
+                            Margin="0,0,0,40"
+                            PasswordChar="●"
+                            Text="{Binding Password, Mode=TwoWay}"
+                            Watermark="Šifra"
+                            Width="400"
+                            x:Name="PasswordBox" />
 
-                        <Button Content="PRIJAVA" 
-                                FontSize="18" 
-                                Width="170" 
-                                Background="#15B7B9"
-                                Foreground="White"
-                                HorizontalAlignment="Center" 
-                                HorizontalContentAlignment="Center"
-                                Command="{Binding LoginCommand}"/>
+                        <Button
+                            Background="#15B7B9"
+                            Command="{Binding LoginCommand}"
+                            Content="PRIJAVA"
+                            FontSize="18"
+                            Foreground="White"
+                            HorizontalAlignment="Center"
+                            HorizontalContentAlignment="Center"
+                            Width="170" />
                     </StackPanel>
-            </TabItem>
+                </TabItem>
 
-            <TabItem Header="REGISTRACIJA"
-                     Margin="40 30 0 30">
-                <StackPanel VerticalAlignment="Center">
-                        <TextBlock Text="Nemaš nalog ?"
-                                   FontSize="20" 
-                                   FontWeight="SemiLight" 
-                                   HorizontalAlignment="Center"/>
-                        <TextBlock Text="Registruj se !"
-                                   FontSize="20" 
-                                   FontWeight="Bold" 
-                                   HorizontalAlignment="Center"/>
+                <TabItem Header="REGISTRACIJA" Margin="40,30,0,30">
+                    <StackPanel VerticalAlignment="Center">
+                        <TextBlock
+                            FontSize="20"
+                            FontWeight="SemiLight"
+                            HorizontalAlignment="Center"
+                            Text="Nemaš nalog ?" />
+                        <TextBlock
+                            FontSize="20"
+                            FontWeight="Bold"
+                            HorizontalAlignment="Center"
+                            Text="Registruj se !" />
 
-                        <TextBox x:Name="NameTextBox" 
-                                 FontSize="18" 
-                                 Width="400" 
-                                 Margin="0 40 0 10" 
-                                 Watermark="Ime i prezime"
-                                 Text="{Binding Name, Mode=TwoWay}"/>
-                        <TextBox x:Name="PhoneTextBox" 
-                                 FontSize="18" 
-                                 Width="400" 
-                                 Margin="0 0 0 10" 
-                                 Watermark="Broj telefona"
-                                 Text="{Binding Phone, Mode=TwoWay}"/>
-                        <TextBox x:Name="RegEmailTextBox" 
-                                 FontSize="18" 
-                                 Width="400" 
-                                 Margin="0 0 0 10" 
-                                 Watermark="Email"
-                                 Text="{Binding RegEmail, Mode=TwoWay}"/>
-                        <TextBox x:Name="RegPasswordBox" 
-                                 FontSize="18" 
-                                 Width="400" 
-                                 Margin="0 0 0 40" 
-                                 Watermark="Šifra"  
-                                 PasswordChar="●"
-                                 Text="{Binding RegPassword, Mode=TwoWay}"/>
+                        <TextBox
+                            FontSize="18"
+                            Margin="0,40,0,10"
+                            Text="{Binding Name, Mode=TwoWay}"
+                            Watermark="Ime i prezime"
+                            Width="400"
+                            x:Name="NameTextBox" />
+                        <TextBox
+                            FontSize="18"
+                            Margin="0,0,0,10"
+                            Text="{Binding Phone, Mode=TwoWay}"
+                            Watermark="Broj telefona"
+                            Width="400"
+                            x:Name="PhoneTextBox" />
+                        <TextBox
+                            FontSize="18"
+                            Margin="0,0,0,10"
+                            Text="{Binding RegEmail, Mode=TwoWay}"
+                            Watermark="Email"
+                            Width="400"
+                            x:Name="RegEmailTextBox" />
+                        <TextBox
+                            FontSize="18"
+                            Margin="0,0,0,40"
+                            PasswordChar="●"
+                            Text="{Binding RegPassword, Mode=TwoWay}"
+                            Watermark="Šifra"
+                            Width="400"
+                            x:Name="RegPasswordBox" />
 
-                        <Button Content="REGISTRACIJA" 
-                                FontSize="18" 
-                                Width="170" 
-                                Background="#15B7B9"
-                                Foreground="White"
-                                HorizontalAlignment="Center" 
-                                HorizontalContentAlignment="Center"
-                                Command="{Binding RegisterCommand}"/>
+                        <Button
+                            Background="#15B7B9"
+                            Command="{Binding RegisterCommand}"
+                            Content="REGISTRACIJA"
+                            FontSize="18"
+                            Foreground="White"
+                            HorizontalAlignment="Center"
+                            HorizontalContentAlignment="Center"
+                            Width="170" />
                     </StackPanel>
-            </TabItem>
-        </TabControl>
+                </TabItem>
+            </TabControl>
         </Border>
     </Grid>
 </UserControl>

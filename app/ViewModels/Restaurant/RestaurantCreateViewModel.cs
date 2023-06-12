@@ -17,7 +17,6 @@ public class RestaurantCreateViewModel
     public RestaurantCreateViewModel(Window parent)
     {
         _parent = parent;
-        Uvm = new UploadViewModel(_parent);
         Form = Locator.Current.GetService<RestaurantCreateFormViewModel>();
         MapVM = Locator.Current.GetService<MapViewModel>();
         Form.LocationChanged += LocationChanged;
