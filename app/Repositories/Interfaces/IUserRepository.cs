@@ -13,4 +13,6 @@ public interface IUserRepository
     public Task<User> GetByEmail(string email);
 
     public User Create(User user);
+
+    public Task<IEnumerable<Reservation>> GetAllReservations(User user);
 }
