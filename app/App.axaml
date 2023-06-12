@@ -1,12 +1,14 @@
 
-<Application xmlns="https://github.com/avaloniaui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:views="clr-namespace:app.Views"
-             xmlns:vm="using:app.ViewModels"
-             x:Class="app.App">
+<Application
+    x:Class="app.App"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:views="clr-namespace:app.Views"
+    xmlns:vm="using:app.ViewModels"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <Application.Styles>
-        <FluentTheme Mode="Light"/>
+        <StyleInclude Source="avares://app/Styles/RatingStyles.axaml" />
+        <FluentTheme Mode="Light" />
         <Style Selector="TextBlock">
             <Setter Property="FontFamily" Value="avares://app/Assets/Fonts/Poppins/#Poppins" />
         </Style>
@@ -17,14 +19,14 @@
             <Setter Property="FontFamily" Value="avares://app/Assets/Fonts/Poppins/#Poppins" />
         </Style>
     </Application.Styles>
-    
+
     <Application.DataTemplates>
         <DataTemplate DataType="{x:Type vm:LandingViewModel}">
-            <views:LandingPage/>
+            <views:LandingPage />
         </DataTemplate>
         <DataTemplate DataType="{x:Type vm:AuthViewModel}">
-            <views:AuthPage/>
+            <views:AuthPage />
         </DataTemplate>
     </Application.DataTemplates>
-    
+
 </Application>

@@ -23,14 +23,14 @@ namespace app.ViewModels;
 
 public class AccomodationCreateFormViewModel :BaseViewModel, INotifyPropertyChanged, IReactiveObject
 {
-    private int _RatingValue = 2;
+    private int _ratingValue = 3;
     public event EventHandler LocationChanged;
 
     [Range(0, 5)]
     public int RatingValue
     {
-        get { return _RatingValue; }
-        set { this.RaiseAndSetIfChanged(ref _RatingValue, value); }
+        get => _ratingValue;
+        set => this.RaiseAndSetIfChanged(ref _ratingValue, value);
     }
 
     private ObservableCollection<LocationDTO> _generatedCompletes;
@@ -75,6 +75,8 @@ public class AccomodationCreateFormViewModel :BaseViewModel, INotifyPropertyChan
     }
 
     private LocationDTO _selectedLocation;
+    private readonly ReactiveCommand<EventArgs, Unit> _raiseRating;
+    private readonly ReactiveCommand<EventArgs, Unit> _lowerRating;
 
     public LocationDTO SelectedLocation
     {
@@ -100,13 +102,22 @@ public class AccomodationCreateFormViewModel :BaseViewModel, INotifyPropertyChan
             }
         });
     }
-    
-    
-
 
     public AccomodationCreateFormViewModel()
     {
         GeneratedCompletes = new ObservableCollection<LocationDTO>();
+        _raiseRating = ReactiveCommand.Create<EventArgs>((e) =>
+        {
+            RatingValue++;
+        });
+        
+        _lowerRating = ReactiveCommand.Create<EventArgs>((e) =>
+        {
+            RatingValue--;
+        });
     }
-    
+
+    public ReactiveCommand<EventArgs, Unit> RaiseRating => _raiseRating;
+
+    public ReactiveCommand<EventArgs, Unit> LowerRating => _lowerRating;
 }
