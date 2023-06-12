@@ -38,4 +38,16 @@ public class UserRepository : IUserRepository
         _context.SaveChanges();
         return newUser;
     }
+
+    public async Task<IEnumerable<Reservation>> GetAllReservations(User user)
+    {
+        await _context.Entry(user)
+            .Collection(u => u.Reservations)
+            .Query()
+            .Include(r => r.Trip)
+            .LoadAsync();
+
+        return user.Reservations;
+    }
+
 }
