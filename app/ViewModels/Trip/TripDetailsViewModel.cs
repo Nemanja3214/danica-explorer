@@ -17,7 +17,7 @@ using ReactiveUI;
 
 namespace app.ViewModels;
 
-public class TripDetailsViewModel
+public class TripDetailsViewModel : BaseViewModel
 {
     private bool _mapHovered = false;
 

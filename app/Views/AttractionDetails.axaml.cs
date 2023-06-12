@@ -16,9 +16,11 @@ namespace app.Views
         {
             UniformGrid grid = this.FindControl<UniformGrid>("Grid");
             AttractionDetailsViewModel context = (AttractionDetailsViewModel)DataContext;
-            foreach (TripCard trip in context.AllTrips)
-            {
-                grid.Children.Add(trip);
+            if (context != null) {
+                foreach (TripCard trip in context.AllTrips)
+                {
+                    grid.Children.Add(trip);
+                }
             }
         }
     }

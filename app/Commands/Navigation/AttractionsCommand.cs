@@ -15,6 +15,6 @@ public class AttractionsCommand : BaseCommand
     }
     public override void Execute(object parameter)
     {
-        _navigation.CurrentViewModel = new AuthViewModel();
+        _navigation.CurrentViewModel = new AllAttractionsViewModel();
     }
 }
