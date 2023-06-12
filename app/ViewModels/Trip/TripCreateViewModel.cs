@@ -4,14 +4,19 @@ using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Linq;
+using System.Reactive;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using app.Model;
 using app.Models;
+using Avalonia.Input;
 using ExCSS;
 using Mapsui;
 using Mapsui.Extensions;
 using Mapsui.Projections;
 using NetTopologySuite.Geometries;
+using ReactiveUI;
+using Attraction = app.Models.Attraction;
 using Point = NetTopologySuite.Geometries.Point;
 
 namespace app.ViewModels;
@@ -34,7 +39,36 @@ public class TripCreateViewModel
         
         HotelVm.AddedItems.CollectionChanged += CollectionChangedMethod;
         HotelVm.SelectionChanged += SelectionChangedMethod;
+        
+        _undoCommand = ReactiveCommand.Create<Unit>(e =>
+        {
+            if (PreviousTrip == null)
+            {
+                var messageBoxStandardWindow = MessageBox.Avalonia.MessageBoxManager
+                    .GetMessageBoxStandardWindow("Povratak prethodne verzije", "Niste sačuvali putovanje kako biste mogli da ga vratite");
+                messageBoxStandardWindow.Show();
+                return;
+            }
+            // TODO delete current
+            CurrentTrip = PreviousTrip;
+            PreviousTrip = null;
+        });
+        
+        _saveCommand = ReactiveCommand.Create<Unit>(e =>
+        {
+            Trip t = FormTrip();
+            
+            // TODO persist
+        });
 
+    }
+
+    private Trip FormTrip()
+    {
+        Trip t = new Trip();
+
+
+        return t;
     }
 
     public MapViewModel MapVm { get; set; }
@@ -72,6 +106,39 @@ public class TripCreateViewModel
         MapVm.RefreshPins();
     }
     
+    private Trip _previousTrip;
+    private Trip _currentTrip;
+
+    private ReactiveCommand<Unit, Unit> _undoCommand;
+    private ReactiveCommand<Unit, Unit> _saveCommand;
+    
+    public KeyGesture SaveGesture { get; } = new KeyGesture(Key.S, KeyModifiers.Control);
+    public KeyGesture UndoGesture { get; } = new KeyGesture(Key.Z, KeyModifiers.Control);
+
+    public Trip PreviousTrip
+    {
+        get => _previousTrip;
+        set => _previousTrip = value ?? throw new ArgumentNullException(nameof(value));
+    }
+
+    public Trip CurrentTrip
+    {
+        get => _currentTrip;
+        set => _currentTrip = value ?? throw new ArgumentNullException(nameof(value));
+    }
+
+    public ReactiveCommand<Unit, Unit> UndoCommand
+    {
+        get => _undoCommand;
+        set => _undoCommand = value ?? throw new ArgumentNullException(nameof(value));
+    }
+
+    public ReactiveCommand<Unit, Unit> SaveCommand
+    {
+        get => _saveCommand;
+        set => _saveCommand = value ?? throw new ArgumentNullException(nameof(value));
+    }
+
     // TODO simulation function delete
     public async static Task<List<Sightseeing>> GetHotelItems(string query)
     {
@@ -80,13 +147,11 @@ public class TripCreateViewModel
             new Hotel()
             {
                 Name = "dqwd",
-                Date = DateTime.Now,
                 Location = new Point(21.005859, 44.016521)
             },
             new Hotel()
             {
                 Name = "azxcaw",
-                Date = DateTime.Now,
                 Location = new Point(22.005859, 44.016521)
             }
         };
@@ -101,13 +166,11 @@ public class TripCreateViewModel
             new Restaurant()
             {
                 Name = "yutyu",
-                Date = DateTime.Now,
                 Location = new Point(23.005859, 44.016521)
             },
             new Restaurant()
             {
                 Name = "werw",
-                Date = DateTime.Now,
                 Location = new Point(24.005859, 44.016521)
             }
         };
@@ -121,13 +184,11 @@ public class TripCreateViewModel
             new Attraction()
             {
                 Name = "yutyu",
-                Date = DateTime.Now,
                 Location = new Point(25.005859, 44.016521)
             },
             new Attraction()
             {
                 Name = "werw",
-                Date = DateTime.Now,
                 Location = new Point(26.005859, 44.016521)
             }
         };
