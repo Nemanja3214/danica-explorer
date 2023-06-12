@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using Splat;
 
 namespace app.ViewModels;
 
@@ -30,7 +31,7 @@ public class MonthStatisticsViewModel : BaseViewModel
         _trips = new ObservableCollection<MonthStatisticsItemViewModel>();
         for (int i = 0; i < 20; i++)
         {
-            _trips.Add(new MonthStatisticsItemViewModel());
+            _trips.Add(Locator.Current.GetService<MonthStatisticsItemViewModel>());
         }
     }
 }

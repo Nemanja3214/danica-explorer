@@ -1,6 +1,7 @@
 using System;
 using app.Stores;
 using app.ViewModels;
+using Splat;
 
 namespace app.Commands.Navigation;
 
@@ -16,6 +17,6 @@ public class AuthCommand : BaseCommand
     }
     public override void Execute(object parameter)
     {
-        _navigation.CurrentViewModel = new AuthViewModel();
+        _navigation.CurrentViewModel = Locator.Current.GetService<AuthViewModel>();
     }
 }

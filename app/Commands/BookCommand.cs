@@ -1,6 +1,7 @@
 ﻿using System;
 using app.Stores;
 using app.ViewModels;
+using Splat;
 
 namespace app.Commands;
 
@@ -16,6 +17,6 @@ public class BookCommand : BaseCommand
     }
     public override void Execute(object parameter)
     {
-        _navigation.CurrentViewModel = new LandingViewModel();
+        _navigation.CurrentViewModel = Locator.Current.GetService<LandingViewModel>();
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using app.Views;
 using Avalonia;
+using Splat;
 
 namespace app.ViewModels;
 
@@ -13,7 +14,7 @@ public class AllAttractionsViewModel : BaseViewModel
 
         for (int i = 0; i < 20; i++)
         {
-            AttractionCardViewModel attractionCardViewModel = new AttractionCardViewModel();
+            AttractionCardViewModel attractionCardViewModel = Locator.Current.GetService<AttractionCardViewModel>();
             AttractionCard card = new AttractionCard();
             card.DataContext = attractionCardViewModel;
             AllAttractions.Add(card);
