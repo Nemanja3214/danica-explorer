@@ -9,6 +9,13 @@ public class TripCreateViewModel
 {
     private DragNDropViewModel _hotelVm;
     private DragNDropViewModel _restaurantVm;
+    private DragNDropViewModel _attractionVm;
+
+    public DragNDropViewModel AttractionVm
+    {
+        get => _attractionVm;
+        set => _attractionVm = value ?? throw new ArgumentNullException(nameof(value));
+    }
 
     public DragNDropViewModel HotelVm
     {
@@ -26,6 +33,7 @@ public class TripCreateViewModel
     {
         _hotelVm = new DragNDropViewModel("Hotels", GetHotelItems);
         _restaurantVm = new DragNDropViewModel("Restaurants", GetRestaurantItems);
+        _attractionVm = new DragNDropViewModel("Attractions", GetAttractionItems);
 
     }
     
@@ -56,6 +64,22 @@ public class TripCreateViewModel
                 Name = "yutyu",
             },
             new Restaurant()
+            {
+                Name = "werw",
+            }
+        };
+    }
+    
+    // TODO simulation function delete
+    public async static Task<List<Sightseeing>> GetAttractionItems(string query)
+    {
+        return new List<Sightseeing>()
+        {
+            new Attraction()
+            {
+                Name = "yutyu",
+            },
+            new Attraction()
             {
                 Name = "werw",
             }

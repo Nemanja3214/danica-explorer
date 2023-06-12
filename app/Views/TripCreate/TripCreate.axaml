@@ -11,6 +11,7 @@
     xmlns:views="clr-namespace:app.Views;assembly=app"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <StackPanel>
+        <views:DragNDrop DataContext="{Binding AttractionVm}" />
         <views:DragNDrop DataContext="{Binding HotelVm}" />
         <views:DragNDrop DataContext="{Binding RestaurantVm}" />
     </StackPanel>

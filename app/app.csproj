@@ -33,4 +33,27 @@
     <ItemGroup>
     <EmbeddedResource Include="Assets/*" />
   </ItemGroup>
+    
+    <ItemGroup>
+      <Compile Update="Views\AccomodationCreate\AccomodationCreate.axaml.cs">
+        <DependentUpon>AccomodationCreate.axaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="Views\AccomodationCreate\AccomodationCreateForm.axaml.cs">
+        <DependentUpon>AccomodationCreateForm.axaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="Views\TripCreate\DragNDrop.axaml.cs">
+        <DependentUpon>DragNDrop.axaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="Views\TripCreate\TripCreate.axaml.cs">
+        <DependentUpon>TripCreate.axaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="Views\AccomodationCreate\UploadPicture.axaml.cs">
+        <DependentUpon>UploadPicture.axaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+    </ItemGroup>
 </Project>
