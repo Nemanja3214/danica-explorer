@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.Linq;
 using System.Reflection;
 using Avalonia;
@@ -20,6 +22,14 @@ public class MapViewModel : ViewModelBase
 {
     public MPoint CurrentSphericalMercatorCoordinate { get; set; } = SphericalMercator.FromLonLat(21.005859, 44.016521).ToMPoint();
 
+    private ObservableCollection<MPoint> _points;
+
+    public ObservableCollection<MPoint> Points
+    {
+        get => _points;
+        set => _points = value ?? throw new ArgumentNullException(nameof(value));
+    }
+
     private bool _init = true;
 
     private MapControl _mapControlUI;
@@ -32,9 +42,13 @@ public class MapViewModel : ViewModelBase
 
     public MapViewModel()
     {
+        Points = new ObservableCollection<MPoint>();
+        Points.CollectionChanged += CollectionChangedMethod;
+        
         MapControlUI = new MapControl();
         MapControlUI.Map.Layers.Add(OpenStreetMap.CreateTileLayer());
         MapControlUI.Map.Layers.Add(CreatePinLayer());
+        MapControlUI.Map.Layers.Add(CreatePinsLayer());
 
         MapControlUI.Map.Home = n => n.CenterOnAndZoomTo(CurrentSphericalMercatorCoordinate, n.Resolutions[7]);
     }
@@ -44,6 +58,18 @@ public class MapViewModel : ViewModelBase
         MapControlUI.Map.Layers.Remove(MapControlUI.Map.Layers.FindLayer("Points").First());
         MapControlUI.Map.Layers.Add(CreatePinLayer());
         MapControlUI.RefreshGraphics();
+    }
+    
+    public void RefreshPins()
+    {
+        MapControlUI.Map.Layers.Remove(MapControlUI.Map.Layers.FindLayer("Multiple points").First());
+        MapControlUI.Map.Layers.Add(CreatePinsLayer());
+        MapControlUI.RefreshGraphics();
+    }
+    
+    private void CollectionChangedMethod(object sender, NotifyCollectionChangedEventArgs e)
+    {
+        RefreshPins();
     }
 
     private ILayer CreatePinLayer()
@@ -57,6 +83,19 @@ public class MapViewModel : ViewModelBase
             
         };
     }
+    
+    private ILayer CreatePinsLayer()
+    {
+        return new MemoryLayer
+        {
+            Style = null,
+            Name = "Multiple points",
+            IsMapInfoLayer=true,
+            Features = GetListOfPoints(_points),
+            
+        };
+    }
+    
     private IEnumerable<IFeature> GetListOfPoints()
     {
         List<IFeature> list = new List<IFeature>();
@@ -73,6 +112,25 @@ public class MapViewModel : ViewModelBase
         feature["name"] = "MyPoint";
         feature.Styles.Add(Pin());
         list.Add(feature);
+
+        return list;
+    }
+    
+    private IEnumerable<IFeature> GetListOfPoints(ObservableCollection<MPoint> points)
+    {
+        List<IFeature> list = new List<IFeature>();
+        if (points == null)
+        {
+            points = new ObservableCollection<MPoint>();
+        }
+
+        foreach (var point in points)
+        {
+            var feature = new PointFeature(point);
+            feature["name"] = "MyPoint";
+            feature.Styles.Add(Pin());
+            list.Add(feature);
+        }
 
         return list;
     }

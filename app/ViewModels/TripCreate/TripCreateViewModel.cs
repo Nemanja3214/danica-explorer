@@ -1,9 +1,17 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Collections.Specialized;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using app.Models;
 using ExCSS;
+using Mapsui;
+using Mapsui.Extensions;
+using Mapsui.Projections;
+using NetTopologySuite.Geometries;
+using Point = NetTopologySuite.Geometries.Point;
 
 namespace app.ViewModels;
 
@@ -41,6 +49,17 @@ public class TripCreateViewModel
         _attractionVm = new DragNDropViewModel("Attractions", GetAttractionItems);
         _mapVm = new MapViewModel();
 
+        AttractionVm.AddedItems.CollectionChanged += CollectionChangedMethod;
+
+    }
+    
+    private void CollectionChangedMethod(object sender, NotifyCollectionChangedEventArgs e)
+    {
+        MapVm.Points.Clear();
+        foreach (var item in AttractionVm.AddedItems)
+        {
+            MapVm.Points.Add(SphericalMercator.FromLonLat(item.Location.X, item.Location.Y).ToMPoint());
+        }
     }
     
     // TODO simulation function delete
@@ -85,11 +104,13 @@ public class TripCreateViewModel
             {
                 Name = "yutyu",
                 Date = DateTime.Now,
+                Location = new Point(22.005859, 44.016521)
             },
             new Attraction()
             {
                 Name = "werw",
-                Date = DateTime.Now
+                Date = DateTime.Now,
+                Location = new Point(21.005859, 44.016521)
             }
         };
     }
