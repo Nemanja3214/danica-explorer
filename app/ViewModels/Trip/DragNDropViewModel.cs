@@ -7,6 +7,7 @@ using System.Reactive;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using app.DragNDrop;
+using app.Model;
 using app.Models;
 using app.Utils;
 using Avalonia.Controls;
@@ -25,10 +26,10 @@ public class DragNDropViewModel
 {
     public event EventHandler SelectionChanged;
     
-    private Func<string, Task<List<Sightseeing>>> _getSuggestionsFunc;
-    private Sightseeing _selected;
+    private Func<string, Task<List<ISigthSeeing>>> _getSuggestionsFunc;
+    private ISigthSeeing _selected;
 
-    public Sightseeing Selected
+    public ISigthSeeing Selected
     {
         get => _selected;
         set
@@ -40,13 +41,13 @@ public class DragNDropViewModel
         }
     }
 
-    public DragNDropViewModel(string title, Func<string, Task<List<Sightseeing>>> updateFunc)
+    public DragNDropViewModel(string title, Func<string, Task<List<ISigthSeeing>>> updateFunc)
     {
         _getSuggestionsFunc = updateFunc;
         Title = title;
         _removeCommand = ReactiveCommand.Create<Button>((e) =>
         {
-            Sightseeing dataObject = e.DataContext as Sightseeing;
+            ISigthSeeing dataObject = e.DataContext as ISigthSeeing;
             AddedItems.Remove(dataObject);
         });
         
@@ -54,7 +55,7 @@ public class DragNDropViewModel
         {
             if (e?.ItemCount > 0)
             {
-                SelectionModel<Sightseeing> selection = new SelectionModel<Sightseeing>();
+                SelectionModel<ISigthSeeing> selection = new SelectionModel<ISigthSeeing>();
                 var selectedListBoxItem = (ListBoxItem)e.ItemContainerGenerator.ContainerFromIndex(0);
                 selectedListBoxItem.Focus();
 
@@ -65,12 +66,12 @@ public class DragNDropViewModel
         
         _moveCommand = ReactiveCommand.Create<ListBox>((e) =>
         {
-            Sightseeing selected = e.SelectedItem as Sightseeing;
+            ISigthSeeing selected = e.SelectedItem as ISigthSeeing;
             AddedItems.Add(selected);
             OptionItems.Remove(selected);
         });
-        _optionItems = new ObservableCollection<Sightseeing>();
-        _addedItems = new ObservableCollection<Sightseeing>();
+        _optionItems = new ObservableCollection<ISigthSeeing>();
+        _addedItems = new ObservableCollection<ISigthSeeing>();
     }
 
     public ReactiveCommand<ListBox, Unit> MoveCommand => _moveCommand;
@@ -81,22 +82,22 @@ public class DragNDropViewModel
     public ReactiveCommand<ListBox, Unit> SelectListBoxCommand => _selectCommand;
     private readonly ReactiveCommand<ListBox, Unit> _selectCommand;
 
-    private ObservableCollection<Sightseeing> _optionItems;
+    private ObservableCollection<ISigthSeeing> _optionItems;
 
-    public ObservableCollection<Sightseeing> OptionItems
+    public ObservableCollection<ISigthSeeing> OptionItems
     {
         get => _optionItems;
         set => _optionItems = value ?? throw new ArgumentNullException(nameof(value));
     }
-    private ObservableCollection<Sightseeing> _addedItems;
+    private ObservableCollection<ISigthSeeing> _addedItems;
 
 
-    public ObservableCollection<Sightseeing> AddedItems
+    public ObservableCollection<ISigthSeeing> AddedItems
     {
         get => _addedItems;
         set => _addedItems = value ?? throw new ArgumentNullException(nameof(value));
     }
-    private Sightseeing _draggedItem;
+    private ISigthSeeing _draggedItem;
     private bool _isDragging;
     public string _query;
     private readonly ReactiveCommand<ListBox, Unit> _dragNdropCommand;
@@ -115,7 +116,7 @@ public class DragNDropViewModel
 
     private async void UpdateSuggestions()
     {
-        List<Sightseeing> locations = await _getSuggestionsFunc(_query);
+        List<ISigthSeeing> locations = await _getSuggestionsFunc(_query);
         locations = locations.Except(AddedItems).ToList();
 
         await Dispatcher.UIThread.InvokeAsync(() =>

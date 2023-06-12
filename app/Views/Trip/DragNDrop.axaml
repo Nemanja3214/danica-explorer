@@ -61,7 +61,7 @@
                 Name="lv"
                 SelectedItem="{Binding Selected}">
                 <ListBox.ItemTemplate>
-                    <DataTemplate DataType="models:Sightseeing">
+                    <DataTemplate DataType="models:IsSightseeing">
                         <Grid ColumnDefinitions="*, *" RowDefinitions="*">
                             <TextBlock
                                 Grid.Column="0"
@@ -107,7 +107,7 @@
                             Gesture="Enter" />
                     </ListBox.KeyBindings>
                     <ListBox.ItemTemplate>
-                        <DataTemplate DataType="models:Sightseeing">
+                        <DataTemplate DataType="models:IsSightseeing">
                             <Grid ColumnDefinitions="*" RowDefinitions="*">
                                 <TextBlock Grid.Column="0" Text="{Binding Name}" />
                             </Grid>

@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using app.DragNDrop;
+using app.Model;
 using app.Models;
 using app.ViewModels;
 
@@ -13,7 +14,7 @@ using Avalonia.Xaml.Interactions.DragAndDrop;
 
 public class AddItemsListBoxDropHandler : DropHandlerBase
 {
-    private bool Validate<T>(ListBox listBox, DragEventArgs e, object? sourceContext, object? targetContext, bool bExecute) where T : Sightseeing    {
+    private bool Validate<T>(ListBox listBox, DragEventArgs e, object? sourceContext, object? targetContext, bool bExecute) where T : ISigthSeeing    {
         if (sourceContext is not T sourceItem
             || targetContext is not DragNDropViewModel vm
             || listBox.GetVisualAt(e.GetPosition(listBox)) is not Control targetControl
@@ -22,7 +23,7 @@ public class AddItemsListBoxDropHandler : DropHandlerBase
             return false;
         }
 
-        var targetItems = listBox.Items as ObservableCollection<Sightseeing>;
+        var targetItems = listBox.Items as ObservableCollection<ISigthSeeing>;
         var targetItem = targetControl.DataContext as T ;
         if (vm.AddedItems.Contains(targetItem) && vm.AddedItems.Contains(sourceItem))
             return handleShuffle(vm, sourceItem, targetItem, e, bExecute);
@@ -33,8 +34,8 @@ public class AddItemsListBoxDropHandler : DropHandlerBase
 
     }
 
-    private bool handleAdding(DragNDropViewModel vm, Sightseeing sourceItem, Sightseeing targetItem,
-        IList<Sightseeing> targetItems, DragEventArgs e, bool bExecute)
+    private bool handleAdding(DragNDropViewModel vm, ISigthSeeing sourceItem, ISigthSeeing targetItem,
+        IList<ISigthSeeing> targetItems, DragEventArgs e, bool bExecute)
     {
         
         if ((targetItems.Contains(targetItem) && targetItems.Contains(sourceItem)) || targetItems.Equals(vm.OptionItems))
@@ -79,7 +80,7 @@ public class AddItemsListBoxDropHandler : DropHandlerBase
         }
     }
 
-    private bool handleShuffle(DragNDropViewModel vm, Sightseeing sourceItem, Sightseeing targetItem, DragEventArgs e,
+    private bool handleShuffle(DragNDropViewModel vm, ISigthSeeing sourceItem, ISigthSeeing targetItem, DragEventArgs e,
         bool bExecute)
     {
         var items = vm.AddedItems;
@@ -115,7 +116,7 @@ public class AddItemsListBoxDropHandler : DropHandlerBase
     {
         if (e.Source is Control && sender is ListBox listBox)
         {
-            return Validate<Sightseeing>(listBox, e, sourceContext, targetContext, true);
+            return Validate<ISigthSeeing>(listBox, e, sourceContext, targetContext, true);
         }
         return false;
     }
@@ -124,7 +125,7 @@ public class AddItemsListBoxDropHandler : DropHandlerBase
     {
         if (e.Source is Control && sender is ListBox listBox)
         {
-            return Validate<Sightseeing>(listBox, e, sourceContext, targetContext, true);
+            return Validate<ISigthSeeing>(listBox, e, sourceContext, targetContext, true);
         }
         return false;
     }

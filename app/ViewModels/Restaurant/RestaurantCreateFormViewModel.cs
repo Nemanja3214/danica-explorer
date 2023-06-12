@@ -94,6 +94,9 @@ public class RestaurantCreateFormViewModel :BaseViewModel, INotifyPropertyChange
         }
     }
 
+    public string RestaurantName { get; set; }
+    public string Description { get; set; }
+
 
     private async void UpdateSuggestions()
     {

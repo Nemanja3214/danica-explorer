@@ -17,7 +17,7 @@
     <ScrollViewer>
         <Grid ColumnDefinitions="*" RowDefinitions="*, *, *, *, *, *">
             <Grid ColumnDefinitions="*, *" Grid.Row="0">
-                <views:UploadPicture Grid.Column="0" />
+                <views:UploadPicture DataContext="Uvm" Grid.Column="0" />
                 <trip:TripCreateForm Grid.Column="1" />
             </Grid>
 

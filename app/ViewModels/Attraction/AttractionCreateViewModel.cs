@@ -2,6 +2,7 @@ using System;
 using System.ComponentModel;
 using System.Reactive;
 using app.Model;
+using app.Services.Interfaces;
 using app.Utils;
 using app.Views;
 using Avalonia.Controls;
@@ -20,9 +21,9 @@ public class AttractionCreateViewModel
 {
     private readonly Window _parent;
 
-    public AttractionCreateViewModel(Window parent)
+    public AttractionCreateViewModel()
     {
-        _parent = parent;
+        _parent = MainWindowViewModel.GetMainWindow();
         Form = Locator.Current.GetService<AttractionCreateFormViewModel>();
         MapVM = Locator.Current.GetService<MapViewModel>();
         Form.LocationChanged += LocationChanged;
@@ -35,7 +36,7 @@ public class AttractionCreateViewModel
                 messageBoxStandardWindow.Show();
                 return;
             }
-            // TODO delete current
+            Locator.Current.GetService<IAttractionService>().Delete(CurrentAttraction);
             CurrentAttraction = PreviousAttraction;
             PreviousAttraction = null;
         });
@@ -43,8 +44,9 @@ public class AttractionCreateViewModel
         _saveCommand = ReactiveCommand.Create<Unit>(e =>
         {
             Attraction a = FormAttraction();
-            
-            // TODO persist
+            a = Locator.Current.GetService<IAttractionService>().Create(a);
+            PreviousAttraction = CurrentAttraction;
+            CurrentAttraction = a;
         });
     }
     
@@ -101,13 +103,11 @@ public class AttractionCreateViewModel
         a.Description = Form.Description;
         a.Title = Form.AttractionName;
 
-        Location location = new Location();
         if (Form.SelectedLocation == null)
             return null;
-        location.Latitude = Double.Parse(Form.SelectedLocation.lat);
-        location.Longitude= Double.Parse(Form.SelectedLocation.lon);
+        Location location = new Location(Double.Parse(Form.SelectedLocation.lat), Double.Parse(Form.SelectedLocation.lon));
         a.Location = location;
-
+        
         return a;
     }
 }
