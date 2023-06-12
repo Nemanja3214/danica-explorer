@@ -55,5 +55,13 @@
         <DependentUpon>UploadPicture.axaml</DependentUpon>
         <SubType>Code</SubType>
       </Compile>
+      <Compile Update="Views\Trip\DayPlan.axaml.cs">
+        <DependentUpon>DayPlan.axaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="Views\Trip\TripDetails.axaml.cs">
+        <DependentUpon>TripDetails.axaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
     </ItemGroup>
 </Project>
