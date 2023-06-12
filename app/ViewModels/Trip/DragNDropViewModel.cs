@@ -10,6 +10,7 @@ using app.DragNDrop;
 using app.Models;
 using app.Utils;
 using Avalonia.Controls;
+using Avalonia.Controls.Selection;
 using Avalonia.Input;
 using Avalonia.Interactivity;
 using Avalonia.Threading;
@@ -48,12 +49,28 @@ public class DragNDropViewModel
             Sightseeing dataObject = e.DataContext as Sightseeing;
             AddedItems.Remove(dataObject);
         });
+        
+        _selectCommand = ReactiveCommand.Create<ListBox>((e) =>
+        {
+            if (e?.ItemCount > 0)
+            {
+                SelectionModel<Sightseeing> selection = new SelectionModel<Sightseeing>();
+                var selectedListBoxItem = (ListBoxItem)e.ItemContainerGenerator.ContainerFromIndex(0);
+                selectedListBoxItem.Focus();
+
+                selection.Select(0);
+                e.Selection = selection;
+            }
+        });
         _optionItems = new ObservableCollection<Sightseeing>();
         _addedItems = new ObservableCollection<Sightseeing>();
     }
 
     public ReactiveCommand<Button, Unit> RemoveCommand => _removeCommand;
     private readonly ReactiveCommand<Button, Unit> _removeCommand;
+    
+    public ReactiveCommand<ListBox, Unit> SelectListBoxCommand => _selectCommand;
+    private readonly ReactiveCommand<ListBox, Unit> _selectCommand;
 
     private ObservableCollection<Sightseeing> _optionItems;
 

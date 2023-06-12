@@ -100,8 +100,18 @@
                 Grid.Row="0"
                 HorizontalAlignment="Stretch"
                 Margin="30">
-                <TextBox Text="{Binding Query}" />
-                <ListBox Classes="Drag" Items="{Binding OptionItems}">
+                <TextBox Text="{Binding Query}">
+                    <TextBox.KeyBindings>
+                        <KeyBinding
+                            Command="{Binding DataContext.SelectListBoxCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type StackPanel}}}"
+                            CommandParameter="{Binding #SuggestionListBox}"
+                            Gesture="Down" />
+                    </TextBox.KeyBindings>
+                </TextBox>
+                <ListBox
+                    Classes="Drag"
+                    Items="{Binding OptionItems}"
+                    Name="SuggestionListBox">
                     <ListBox.ItemTemplate>
                         <DataTemplate DataType="models:Sightseeing">
                             <Grid ColumnDefinitions="*" RowDefinitions="*">
