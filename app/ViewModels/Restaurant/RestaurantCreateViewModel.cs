@@ -11,12 +11,14 @@ using Mapsui;
 using Mapsui.Extensions;
 using Mapsui.Projections;
 using ReactiveUI;
+using ReactiveValidation;
+using ReactiveValidation.Extensions;
 using Splat;
 using Location = app.Model.Location;
 
 namespace app.ViewModels;
 
-public class RestaurantCreateViewModel
+public class RestaurantCreateViewModel : BaseViewModel
 {
     private readonly Window _parent;
     private ReactiveCommand<Unit, Unit> _undoCommand;
@@ -29,7 +31,7 @@ public class RestaurantCreateViewModel
         MapVM = Locator.Current.GetService<MapViewModel>();
         Form.LocationChanged += LocationChanged;
         Uvm = new UploadViewModel();
-        
+
         _undoCommand = ReactiveCommand.Create<Unit>(e =>
         {
             if (PreviousService == null)
@@ -48,7 +50,11 @@ public class RestaurantCreateViewModel
         {
             Service a = FormRestaurant();
             a = Locator.Current.GetService<IServiceService>().Create(a);
-            PreviousService = CurrentService;
+            if (CurrentService != null)
+            {
+                PreviousService = CurrentService;
+            }
+
             CurrentService = a;
         });
     }
@@ -110,11 +116,13 @@ public class RestaurantCreateViewModel
 
         if (Uvm.ImageToView != null)
         {
-        s.Image = UploadViewModel.ImageToByte(Uvm.ImageToView);
+            s.Image = UploadViewModel.ImageToByte(Uvm.ImageToView);
         }
         s.Title = Form.RestaurantName;
         s.Ishotel = false;
         
         return s;
     }
+
+
 }

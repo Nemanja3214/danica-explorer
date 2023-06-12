@@ -95,7 +95,7 @@ public class AuthViewModel : BaseViewModel
     private void RegisterValidate()
     {
         IsRegisterButtonEnabled = RegEmail != null && RegPassword != null && regPassword.Length >= 8 && Regex.IsMatch(regEmail, "[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$")
-            && Name != null && Phone != null && Regex.IsMatch(Phone, "^\\d{1,12}$");
+            && Name != null && Name.Length > 0 && Phone != null && Regex.IsMatch(Phone, "^\\d{1,12}$");
         OnPropertyChanged(nameof(IsRegisterButtonEnabled));
     }
 

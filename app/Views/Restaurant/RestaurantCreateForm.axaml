@@ -15,7 +15,7 @@
         <viewModels:RestaurantCreateFormViewModel/>
     </Control.DataContext>
     <StackPanel Margin="10">
-        <TextBox Margin="10" Text="{Binding RestaurantName}" />
+        <TextBox Margin="10" Watermark="Naziv restorana (Obavezno)" Text="{Binding RestaurantName}" />
         <viewModels:RatingControl NumberOfStars="5" Value="{Binding RatingValue}" />
 
         <Grid>
@@ -28,6 +28,7 @@
             <TextBox
                 Grid.Row="0"
                 Margin="10"
+                Watermark="Lokacija (Obavezno)"
                 Text="{Binding Query}"
                 x:Name="SearchBox" />
             <ListBox
@@ -49,6 +50,7 @@
             Height="100"
             Margin="10"
             Name="tbMultiLine"
+            Watermark="Opis restorana"
             Text="{Binding Description}"
             TextWrapping="Wrap" />
     </StackPanel>
