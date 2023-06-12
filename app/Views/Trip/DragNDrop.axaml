@@ -9,12 +9,8 @@
     xmlns:dragNDrop="clr-namespace:app.DragNDrop;assembly=app"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:models="clr-namespace:app.Models;assembly=app"
-    xmlns:system="clr-namespace:System;assembly=System.Runtime"
     xmlns:viewModels="clr-namespace:app.ViewModels;assembly=app"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    <Design.DataContext>
-        <viewModels:DragNDropViewModel />
-    </Design.DataContext>
     <UserControl.Styles>
         <Style Selector="ListBox.LeftListBox">
             <Style.Resources>
@@ -101,7 +97,10 @@
                 HorizontalAlignment="Stretch"
                 Margin="30">
                 <TextBox Text="{Binding Query}" />
-                <ListBox Classes="Drag" Items="{Binding OptionItems}">
+                <ListBox
+                    Classes="Drag"
+                    Items="{Binding OptionItems}"
+                    Name="OptionsListBox">
                     <ListBox.ItemTemplate>
                         <DataTemplate DataType="models:Sightseeing">
                             <Grid ColumnDefinitions="*" RowDefinitions="*">

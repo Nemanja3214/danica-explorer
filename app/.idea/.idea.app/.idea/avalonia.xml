@@ -11,6 +11,9 @@
         <entry key="Views/LandingPage.axaml" value="app.csproj" />
         <entry key="Views/MainWindow.axaml" value="app.csproj" />
         <entry key="Views/Menu.axaml" value="app.csproj" />
+        <entry key="Views/Trip/DayPlan.axaml" value="app.csproj" />
+        <entry key="Views/Trip/DragNDrop.axaml" value="app.csproj" />
+        <entry key="Views/Trip/TripCreate.axaml" value="app.csproj" />
       </map>
     </option>
   </component>

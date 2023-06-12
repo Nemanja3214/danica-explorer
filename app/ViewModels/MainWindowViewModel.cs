@@ -11,19 +11,12 @@ public class MainWindowViewModel : BaseViewModel
 {
     private readonly Window _parent;
 
-    public RestaurantCreateViewModel AcmVm { get; set; }
-    private readonly NavigationStore _navigationStore;
-    public BaseViewModel CurrentViewModel => _navigationStore.CurrentViewModel ;
-
     public MainWindowViewModel(Window parent)
     {
-         _parent = parent;
-        _navigationStore = NavigationStore.Instance();
-        _navigationStore.CurrentViewModelChanged += OnCurrentViewModelChanged;
+        _parent = parent;
+        Tcvm = new TripCreateViewModel();
     }
-    
-    private void OnCurrentViewModelChanged()
-    {
-        OnPropertyChanged(nameof(CurrentViewModel));
-    }
+
+    public TripCreateViewModel Tcvm { get; set; }
+
 }

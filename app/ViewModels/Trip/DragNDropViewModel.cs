@@ -48,12 +48,20 @@ public class DragNDropViewModel
             Sightseeing dataObject = e.DataContext as Sightseeing;
             AddedItems.Remove(dataObject);
         });
+        _moveToListBoxCommand = ReactiveCommand.Create<ListBox>(e =>
+        {
+            ListBox lb = e.DataContext as ListBox;
+            lb.SelectedIndex = 0;
+        });
         _optionItems = new ObservableCollection<Sightseeing>();
         _addedItems = new ObservableCollection<Sightseeing>();
     }
 
     public ReactiveCommand<Button, Unit> RemoveCommand => _removeCommand;
     private readonly ReactiveCommand<Button, Unit> _removeCommand;
+    
+    public ReactiveCommand<ListBox, Unit> MoveToListBoxCommand => _moveToListBoxCommand;
+    private readonly ReactiveCommand<ListBox, Unit> _moveToListBoxCommand;
 
     private ObservableCollection<Sightseeing> _optionItems;
 

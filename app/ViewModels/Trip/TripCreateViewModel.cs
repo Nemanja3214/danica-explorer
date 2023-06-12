@@ -12,43 +12,49 @@ using Mapsui;
 using Mapsui.Extensions;
 using Mapsui.Projections;
 using NetTopologySuite.Geometries;
+using ReactiveUI;
 using Point = NetTopologySuite.Geometries.Point;
 
 namespace app.ViewModels;
 
-public class TripCreateViewModel
+public class TripCreateViewModel : BaseViewModel
 {
     private DragNDropViewModel _hotelVm;
     private DragNDropViewModel _restaurantVm;
     private DragNDropViewModel _attractionVm;
-    private readonly MapViewModel _mapVm;
-
-    public DragNDropViewModel AttractionVm
-    {
-        get => _attractionVm;
-        set => _attractionVm = value ?? throw new ArgumentNullException(nameof(value));
-    }
+    private MapViewModel _mapVm;
 
     public DragNDropViewModel HotelVm
     {
         get => _hotelVm;
-        set => _hotelVm = value ?? throw new ArgumentNullException(nameof(value));
+        set => this.RaiseAndSetIfChanged(ref _hotelVm, value);
     }
 
     public DragNDropViewModel RestaurantVm
     {
         get => _restaurantVm;
-        set => _restaurantVm = value ?? throw new ArgumentNullException(nameof(value));
+        set => this.RaiseAndSetIfChanged(ref _restaurantVm, value);
     }
 
-    public MapViewModel MapVm => _mapVm;
+    public DragNDropViewModel AttractionVm
+    {
+        get => _attractionVm;
+        set => this.RaiseAndSetIfChanged(ref _attractionVm, value);
+    }
+
+    public MapViewModel MapVm
+    {
+        get => _mapVm;
+        set => this.RaiseAndSetIfChanged(ref _mapVm, value);
+    }
+
 
     public TripCreateViewModel()
     {
-        _hotelVm = new DragNDropViewModel("Hotels", GetHotelItems);
-        _restaurantVm = new DragNDropViewModel("Restaurants", GetRestaurantItems);
-        _attractionVm = new DragNDropViewModel("Attractions", GetAttractionItems);
-        _mapVm = new MapViewModel();
+        HotelVm = new DragNDropViewModel("Hotels", GetHotelItems);
+        RestaurantVm = new DragNDropViewModel("Restaurants", GetRestaurantItems);
+        AttractionVm = new DragNDropViewModel("Attractions", GetAttractionItems);
+        MapVm = new MapViewModel();
 
         AttractionVm.AddedItems.CollectionChanged += CollectionChangedMethod;
         AttractionVm.SelectionChanged += SelectionChangedMethod;

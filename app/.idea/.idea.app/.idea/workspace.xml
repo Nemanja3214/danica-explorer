@@ -8,15 +8,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b73f94c2-25cf-4823-8e05-042f234e2a8a" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.app/.idea/avalonia.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.app/.idea/avalonia.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.app/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.app/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ViewModels/Accomodation/AccomodationCreateFormViewModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ViewModels/Accomodation/AccomodationCreateFormViewModel.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ViewModels/Accomodation/UploadViewModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ViewModels/Accomodation/UploadViewModel.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ViewModels/Attraction/AttractionCreateFormViewModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ViewModels/Attraction/AttractionCreateFormViewModel.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/App.axaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/App.axaml.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ViewModels/MainWindowViewModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ViewModels/MainWindowViewModel.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ViewModels/MapViewModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ViewModels/MapViewModel.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ViewModels/Restaurant/RestaurantCreateFormViewModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ViewModels/Restaurant/RestaurantCreateFormViewModel.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Views/Components/Menu.axaml" beforeDir="false" afterPath="$PROJECT_DIR$/Views/Components/Menu.axaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ViewModels/Trip/DragNDropViewModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ViewModels/Trip/DragNDropViewModel.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ViewModels/Trip/TripCreateViewModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ViewModels/Trip/TripCreateViewModel.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Views/MainWindow.axaml" beforeDir="false" afterPath="$PROJECT_DIR$/Views/MainWindow.axaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Views/Trip/DragNDrop.axaml" beforeDir="false" afterPath="$PROJECT_DIR$/Views/Trip/DragNDrop.axaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,14 +23,45 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7544d03464df43f0b7430a762f67ee489eba00/6a/5f92c796/Action.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/17e74ab61fe0ba52377e6be4626e748b457547f6bc2e4353acda3221accd0/Subject.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/2524e2725c12b23062ed9f148b9dffc3d719fee31f8ff9ab4e667c2f557f17a/Border.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/a45696f9a5ff6cb1a62df8ddc1cced1fa76fd45c83396560d628148eb19862/RoutedEvent.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/b2c66afceabede0107eef1a7e53aaa548bdf28d878c14952ca578c37f823f/AnonymousObserver.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/e15b7d564ccc9c5bad5fff5763f6da0a5b1e2fdedf57f2958b195afcd284c/ObserverBase.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/e4189e7887012ec43f6dc7f3ebd6563943c363f23283b1b2d01eebcefb62e7/MenuItem.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/metadata/421b03ffa6db473bb85b37784ceb96a5eb400/4d/129f1b05/Avalonia.Controls.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/134622bcf8ad016d3faf7776eb0457b76a5798c537458aa82651ab2cee6e1/ThrowHelper.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/16eb1d4514a6173ba324e783f236b696147cb692fbc2b74eb6d36731af1137/DateTimeOffset.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/1eb72194169f26a3b3ba36b2d3a950ef64f2a77dfcda2f18ad6afc9d3698f8/BehaviorCollection.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/339c1beeda7cf80fc7316d87a3775a91cdb1d45c5c5e15496f8082855fb1/BindingOperations.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/4d9cd536fe8d6adaf3b1c481f347ac6e017eb67bd2be4ed229b27c3583099b0/InpcPropertyAccessorPlugin.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/5028320658ac437c327e7d57cfe06dfc5a791c618d8c2bb0545639ff987b/Sink.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/5694bd56e4e10a784ee7d1dfcc2e495a7573ae1461560bab36492b566633e8a/DragEventArgs.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/5b9338bfa54d594d6e931431d71fd0c461984c5e1f4ee297bc4eef173c2ce3ce/AvaloniaPropertyObservable.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/63c1eab2574626b923d4d3fce4433e6b21af8782a63f57f145c2f1157acf/KeyBinding.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/6a1a894fd313c5c75f553c86ffb1889d404ca69b926e625444445aad19db61/ReactiveCommandBase.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/728348be4074afee1a7116a7b6929e9758e36bf2c364cfc1dbd3a1fa31/ExpressionMixins.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/74d1dea0891bd9f3515fc4d4fd5570c65da55efb64d7e992e68fd5821ebc24c0/AnonymousSafeObserver.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/7dd4998ad98a2a286efd57da7647ec7fdc0eb71bf768f611fa0dc4e943bf45f/WebClient.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/7fe79a50e72b83d86bcb87e6e177c55c4e64595e94e8591a17f6ec586ffc9f71/Interop.IOErrors.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/803dd2a0533e3494d227cc387a3e4cee40dcdb424ec7f1ddf24787c068a54d/DataFormats.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/93736f6387b2ea5887d1b889641f6fd9d2741d138a921f1994bf49b1812/CombineLatest.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/9e48c385a0f8c4d27705158a41832ed686216b07b40ba171e89b41411bcc4dc/RxApp.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/a17fc2f57c26a0fc1ad41ffcfe8d3a32d663be7848df6d9e737f0cd3bc/BindingExpression.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/a189637ee62ade5a353f967e8f9214fb749ea16c9375dc6d2b6df37388f81/CastHelpers.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/a3b599fce1937c7d114bae7b4c5e418f4fed9c12b9a148e164476f459d06d4a/ExpressionRewriter.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/ae2cfb54f2f6cafe669bafb48f2d2908f6a1e3cde9bf6723a8a29c10e29266/AssetLoader.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/aec8f52367c5a362193c977347c963ff857cd35a4345376c7a7f6ea6edbef8/RuntimeType.CoreCLR.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/b59955b1dd7ec0c1c0a3d44e4ea8b44178c987c47362d6b2542d54cb8610c88f/Key.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/bb44e95737425f1a5576f158fc349e1dadbe84b3f7bf486898df0d89acacd/ScrollBar.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/c33c30ad5fd7ee9334eef7fe887617ba9532eedc785c2c16f1880b6ce9fa11/PropertyAccessorNode.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/c4eb7dc5de3d7f4cac64472de64906aa936e956c93c3d6ca8fe633eedaf/DragDrop.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/cb2f03d4479eceb38bf4e4ea81f6de2c8c4b571d86b54a7cbf37f2253455e/AvaloniaObject.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/cc485def2c4bc49e57483bec55714ffbb5ec221fd7524e0fdc3ef3d35eacd93/ContextDropBehavior.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/d26e404ac58ca64352f82d63225af941b01d79f89cb16fe24ae7147f58237ba/ExpressionObserver.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/d3ba4a335e7882322b775591cbed572b134b20d48ffc8d14c34a3eed92152cd/DropHandlerBase.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/dacb4ca9c16794647c48c02a6a806e279d197d9c524ed64ebe4f51ff8ad3e/SafeFileHandle.Unix.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/e2a6cd21b9c2063361213cbd8f1dba325321ab9c28ea2d3a5be7ab35d83f66f/UriExt.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/e3ccd79268ba14eafaa74eb63505c683a9aff61ce455495ff3f1f0d426b93d/KeyGesture.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/e69a7559e7ce8bed5d3323281ce8679fdb42944209ebac71cbded5b3caeff7/ImmutableBitmap.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/ee601c6faf1be3e32f8c94ad27a74dbdaa77d2cb3dd42b16596c471fdce595/SettableNode.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/f4d3bd41e521ab4da594387fe902fbfa593cc4895f3f1163a2c4edcb5b5a46/ObservableCollection.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/f6ae74fafdb6857a99ccc756ccc5a7fe7656165317fa734333b7e9d6fe087f/X11PlatformThreading.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Program.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Views/AuthPage.axaml" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Views/AuthPage.axaml.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Views/LandingPage.axaml.cs" root0="FORCE_HIGHLIGHTING" />
@@ -55,6 +85,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
+    "XThreadsFramesViewSplitterKey": "0.94832826",
     "last_opened_file_path": "/home/mica/Documents/ftn/predmeti/HCI/Projekat2/danica-explorer/app/app.sln",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
@@ -141,6 +172,84 @@
             </endOffsets>
           </properties>
           <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/ViewModels/Trip/DragNDropViewModel.cs</url>
+          <line>52</line>
+          <properties documentPath="$PROJECT_DIR$/ViewModels/Trip/DragNDropViewModel.cs" initialLine="52" containingFunctionPresentation="Lambda expression inside Constructor 'DragNDropViewModel'">
+            <startOffsets>
+              <option value="1398" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1436" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="58" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/ViewModels/Trip/DragNDropViewModel.cs</url>
+          <line>97</line>
+          <properties documentPath="$PROJECT_DIR$/ViewModels/Trip/DragNDropViewModel.cs" initialLine="97" containingFunctionPresentation="Method 'UpdateSuggestions'">
+            <startOffsets>
+              <option value="2752" />
+            </startOffsets>
+            <endOffsets>
+              <option value="2816" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="61" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/ViewModels/Trip/DragNDropViewModel.cs</url>
+          <line>89</line>
+          <properties documentPath="$PROJECT_DIR$/ViewModels/Trip/DragNDropViewModel.cs" initialLine="89" containingFunctionPresentation="Property 'Query'">
+            <startOffsets>
+              <option value="2618" />
+            </startOffsets>
+            <endOffsets>
+              <option value="2638" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="62" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/ViewModels/Trip/DragNDropViewModel.cs</url>
+          <line>88</line>
+          <properties documentPath="$PROJECT_DIR$/ViewModels/Trip/DragNDropViewModel.cs" initialLine="88" containingFunctionPresentation="Property 'Query'">
+            <startOffsets>
+              <option value="2590" />
+            </startOffsets>
+            <endOffsets>
+              <option value="2605" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="64" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/App.axaml.cs</url>
+          <line>32</line>
+          <properties documentPath="$PROJECT_DIR$/App.axaml.cs" initialLine="32" containingFunctionPresentation="Method 'OnFrameworkInitializationCompleted'">
+            <startOffsets>
+              <option value="917" />
+            </startOffsets>
+            <endOffsets>
+              <option value="971" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="71" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/App.axaml.cs</url>
+          <line>31</line>
+          <properties documentPath="$PROJECT_DIR$/App.axaml.cs" initialLine="31" containingFunctionPresentation="Method 'OnFrameworkInitializationCompleted'">
+            <startOffsets>
+              <option value="863" />
+            </startOffsets>
+            <endOffsets>
+              <option value="901" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="72" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
