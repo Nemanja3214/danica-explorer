@@ -1,4 +1,5 @@
 using System;
+using System.ComponentModel;
 using app.ViewModels;
 using Avalonia;
 using Avalonia.Controls;
@@ -20,16 +21,25 @@ namespace app.Views
             AvaloniaXamlLoader.Load(this);
         }
 
-        protected override void OnDataContextChanged(EventArgs e)
+        private void showData(object? sender, PropertyChangedEventArgs propertyChangedEventArgs)
         {
             UniformGrid grid = this.FindControl<UniformGrid>("Grid");
             AllTripsViewModel context = (AllTripsViewModel)DataContext;
-            if (context != null)
+            if (context != null && propertyChangedEventArgs.PropertyName.Equals(nameof(context.AllTrips)))
             {
                 foreach (TripCard trip in context.AllTrips)
                 {
                     grid.Children.Add(trip);
                 }
+            }
+        }
+
+        protected override void OnDataContextChanged(EventArgs e)
+        {
+            AllTripsViewModel context = (AllTripsViewModel)DataContext;
+            if (context != null)
+            {
+                context.PropertyChanged += showData;
             }
         }
 

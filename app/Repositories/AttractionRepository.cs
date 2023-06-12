@@ -17,12 +17,17 @@ public class AttractionRepository : IAttractionRepository
 
     public async Task<IEnumerable<Attraction>> GetAll()
     {
-        return await _context.Attractions.ToListAsync();
+        return await _context.Attractions
+            .Include(x => x.Location)
+            .ToListAsync();
     }
 
-    public async Task<Attraction> GetById(int id)
+    public async Task<Attraction?> GetById(int id)
     {
-        return await _context.Attractions.FindAsync(id);
+        return await _context.Attractions
+            .Include(x => x.Location)
+            .Where(x => x.Id == id)
+            .FirstOrDefaultAsync();
     }
 
     public Attraction Create(Attraction attraction)

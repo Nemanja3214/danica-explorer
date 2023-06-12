@@ -3,6 +3,7 @@ using app.Model;
 using app.Services.Interfaces;
 using app.Stores;
 using app.ViewModels;
+using Splat;
 
 namespace app.Commands.Auth;
 
@@ -15,6 +16,7 @@ public class RegisterCommand : BaseCommand
 
     public RegisterCommand(AuthViewModel authViewModel)
     {
+        _userService = Locator.Current.GetService<IUserService>();
         _core = AppCore.Instance();
         _navigation = NavigationStore.Instance();
         _authViewModel = authViewModel;
@@ -30,8 +32,8 @@ public class RegisterCommand : BaseCommand
         };
         try
         {
-            // await _userService.Register(this._authViewModel.Email, this._authViewModel.Password);
-            // _navigation.CurrentViewModel = new LandingViewModel();
+            User res = await _userService.Register(user);
+            _navigation.CurrentViewModel = new LandingViewModel();
         }
         catch (InvalidOperationException)
         {

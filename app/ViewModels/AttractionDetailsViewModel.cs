@@ -6,13 +6,24 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using app.Model;
+using app.Services.Interfaces;
 using Splat;
 
 namespace app.ViewModels
 {
     public class AttractionDetailsViewModel : BaseViewModel
     {
-        public ObservableCollection<TripCard> AllTrips;
+        private ObservableCollection<TripCard> _allTrips;
+        public ObservableCollection<TripCard> AllTrips
+        {
+            get => _allTrips;
+            set
+            {
+                _allTrips = value;
+                OnPropertyChanged(nameof(AllTrips));
+            }
+        }
 
         private string _imageSource;
         public string ImageSource { get => _imageSource; set => _imageSource = value; }
@@ -25,6 +36,7 @@ namespace app.ViewModels
 
         private string _attractionDescription;
         public string AttractionDescription { get => _attractionDescription; set => _attractionDescription= value; }
+        public Attraction Attraction { get; private set; }
 
         public AttractionDetailsViewModel()
         {
@@ -48,6 +60,32 @@ namespace app.ViewModels
                 card.DataContext = viewModel;
                 AllTrips.Add(card);
             }
+        }
+
+        public AttractionDetailsViewModel(Attraction viewModelAttraction)
+        {
+            Attraction = viewModelAttraction;
+            _imageSource = "../Assets/tripimage.jpeg";
+            _attractionName = viewModelAttraction.Title;
+            //_attractionLocation = viewModelAttraction.Location.Longitude + " " + viewModelAttraction.Location.Latitude;
+            _attractionLocation = "";
+            _attractionDescription = viewModelAttraction.Description;
+
+            AllTrips = new ObservableCollection<TripCard>();
+            GetAllTrips();
+        }
+
+        private async void GetAllTrips()
+        {
+            IEnumerable<Trip> trips = await Locator.Current.GetService<ITripAttractionService>().GetTripsForAttraction(Attraction);
+            foreach (var trip in trips)
+            {
+                TripCardViewModel viewModel = new TripCardViewModel(trip);
+                TripCard card = new TripCard();
+                card.DataContext = viewModel;
+                AllTrips.Add(card);
+            }
+            OnPropertyChanged(nameof(AllTrips));
         }
     }
 }

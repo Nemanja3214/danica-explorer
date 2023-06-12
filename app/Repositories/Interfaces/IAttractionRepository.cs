@@ -8,7 +8,7 @@ public interface IAttractionRepository
 {
     public Task<IEnumerable<Attraction>> GetAll();
 
-    public Task<Attraction> GetById(int id);
+    public Task<Attraction?> GetById(int id);
     
     public Attraction Create(Attraction attraction);
 

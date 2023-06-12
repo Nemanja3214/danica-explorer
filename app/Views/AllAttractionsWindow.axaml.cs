@@ -1,4 +1,5 @@
 using System;
+using System.ComponentModel;
 using app.ViewModels;
 using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
@@ -17,16 +18,25 @@ namespace app.Views
             AvaloniaXamlLoader.Load(this);
         }
 
-        protected override void OnDataContextChanged(EventArgs e)
+        private void showData(object? sender, PropertyChangedEventArgs propertyChangedEventArgs)
         {
             UniformGrid grid = this.FindControl<UniformGrid>("Grid");
             AllAttractionsViewModel context = (AllAttractionsViewModel)DataContext;
-            if (context != null)
+            if (context != null && propertyChangedEventArgs.PropertyName.Equals(nameof(context.AllAttractions)))
             {
                 foreach (AttractionCard attraction in context.AllAttractions)
                 {
                     grid.Children.Add(attraction);
                 }
+            }
+        }
+
+        protected override void OnDataContextChanged(EventArgs e)
+        {
+            AllAttractionsViewModel context = (AllAttractionsViewModel)DataContext;
+            if (context != null)
+            {
+                context.PropertyChanged += showData;
             }
         }
 

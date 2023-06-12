@@ -19,6 +19,8 @@ using Avalonia.Metadata;
 using Avalonia.Threading;
 using ExCSS;
 using ReactiveUI;
+using ReactiveValidation;
+using ReactiveValidation.Extensions;
 
 namespace app.ViewModels;
 
@@ -114,6 +116,7 @@ public class AccomodationCreateFormViewModel :BaseViewModel
 
     public AccomodationCreateFormViewModel()
     {
+        Validator = GetValidator();
         GeneratedCompletes = new ObservableCollection<LocationDTO>();
         _raiseRating = ReactiveCommand.Create<EventArgs>((e) =>
         {
@@ -131,5 +134,32 @@ public class AccomodationCreateFormViewModel :BaseViewModel
     public ReactiveCommand<EventArgs, Unit> LowerRating => _lowerRating;
     public string Description { get; set; }
     public string Title { get; set; }
-    
+
+
+    private IObjectValidator GetValidator()
+    {
+        var builder = new ValidationBuilder<AccomodationCreateFormViewModel>();
+
+        builder.RuleFor(vm => vm.Title)
+            .NotEmpty()
+            .WithMessage("Obavezno polje")
+            .AllWhen(vm => vm.Title != null);
+
+        builder.RuleFor(vm => vm.SelectedLocation.display_name)
+            .NotEmpty()
+            .WithMessage("Obavezno polje")
+            .AllWhen(vm => vm.SelectedLocation != null);
+
+        builder.RuleFor(vm => vm.RatingValue)
+            .NotNull()
+            .WithMessage("Obavezno polje")
+            .GreaterThanOrEqualTo(0)
+            .WithMessage("Broj zvezdica mora biti izmedju 0 i 5")
+            .LessThanOrEqualTo(5)
+            .WithMessage("Broj zvezdica mora biti izmedju 0 i 5")
+            .AllWhen(vm => vm.RatingValue != null);
+
+        return builder.Build(this);
+    }
+
 }

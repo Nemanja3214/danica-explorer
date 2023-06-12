@@ -1,4 +1,6 @@
-﻿namespace app.Converters;
+﻿using System.IO;
+
+namespace app.Converters;
 
 using Avalonia;
 using Avalonia.Markup;
@@ -13,23 +15,32 @@ public class BitmapValueConverter : IValueConverter
 
     public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
     {
-        if (value is string && targetType.IsAssignableFrom(typeof(Bitmap)))
+        try
         {
-            var uri = new Uri((string)value, UriKind.RelativeOrAbsolute);
-            var scheme = uri.IsAbsoluteUri ? uri.Scheme : "file";
-
-            switch (scheme)
+            if (value is string && targetType.IsAssignableFrom(typeof(Bitmap)))
             {
-                case "file":
-                    return new Bitmap((string)value);
+                var uri = new Uri((string)value, UriKind.RelativeOrAbsolute);
+                var scheme = uri.IsAbsoluteUri ? uri.Scheme : "file";
 
-                default:
-                    var assets = AvaloniaLocator.Current.GetService<IAssetLoader>();
-                    return new Bitmap(assets.Open(uri));
+                switch (scheme)
+                {
+                    case "file":
+                        return new Bitmap((string)value);
+
+                    default:
+                        var assets = AvaloniaLocator.Current.GetService<IAssetLoader>();
+                        return new Bitmap(assets.Open(uri));
+                }
             }
+
+            throw new NotSupportedException();
+        }
+        catch (FileNotFoundException)
+        {
+
         }
 
-        throw new NotSupportedException();
+        return null;
     }
 
     public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

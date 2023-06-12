@@ -1,5 +1,7 @@
-﻿using System.Windows.Input;
+﻿using System;
+using System.Windows.Input;
 using app.Commands;
+using app.Model;
 
 namespace app.ViewModels;
 
@@ -40,5 +42,15 @@ public class TripCardViewModel : BaseViewModel
         _tripName = "Beogradska magija";
         _tripDate = "Datum: " + "01.01.2020.";
         _tripPrice = "Cena: " + "4500" + " din";
+    }
+
+    public TripCardViewModel(Trip trip)
+    {
+        BookCommand = new BookCommand();
+        LearnMoreCommand = new TripDetailsCommand();
+        _imageSource = "../Assets/banner.png";
+        _tripName = trip.Title;
+        _tripDate = "Datum: " + trip.Startdate.Value.ToString("dd.MM.yyyy.");
+        _tripPrice = "Cena: " + trip.Price + " din";
     }
 }

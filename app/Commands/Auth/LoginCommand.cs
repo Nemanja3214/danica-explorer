@@ -1,4 +1,5 @@
 using System;
+using app.Model;
 using app.Services.Interfaces;
 using app.Stores;
 using app.ViewModels;
@@ -6,6 +7,7 @@ using app.Views;
 using Avalonia;
 using MessageBox.Avalonia;
 using MessageBox.Avalonia.Enums;
+using Splat;
 
 namespace app.Commands.Auth;
 
@@ -18,6 +20,7 @@ public class LoginCommand : BaseCommand
 
     public LoginCommand(AuthViewModel authViewModel)
     {
+        _userService = Locator.Current.GetService<IUserService>();
         _core = AppCore.Instance();
         _navigation = NavigationStore.Instance();
         _authViewModel = authViewModel;
@@ -26,8 +29,8 @@ public class LoginCommand : BaseCommand
     {
         try
         {
-            // await _userService.Login(this._authViewModel.Email, this._authViewModel.Password);
-            // _navigation.CurrentViewModel = new LandingViewModel();
+            User res = await _userService.Login(this._authViewModel.Email, this._authViewModel.Password);
+            _navigation.CurrentViewModel = new LandingViewModel();
         }
         catch (InvalidOperationException)
         {
