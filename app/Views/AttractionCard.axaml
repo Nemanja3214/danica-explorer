@@ -12,35 +12,40 @@
 		<converters:BitmapValueConverter x:Key="imageConverter"/>
 	</UserControl.Resources>
 
-	<Grid MaxHeight="400">
+    <Border Background="#E0E4EB"
+            CornerRadius="10"
+            Padding="10 20"
+			Margin="30 10"
+            BoxShadow="0 4 10 0 Gray">
+	<Grid>
 		<Grid.RowDefinitions>
 			<RowDefinition Height="4*"></RowDefinition>
 			<RowDefinition Height="5*"></RowDefinition>
 		</Grid.RowDefinitions>
+			
+        <Image Opacity="0.9" MaxWidth="250" Source="{Binding ImageSource, Converter={StaticResource imageConverter}}" />
+		
+			    <Grid Grid.Row="1" MaxWidth="250">
+				    <Grid.RowDefinitions>
+					    <RowDefinition Height="1*"></RowDefinition>
+					    <RowDefinition Height="1*"></RowDefinition>
+                    </Grid.RowDefinitions>
+				    <Viewbox Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Center">
+					    <StackPanel Orientation="Vertical" MaxWidth="250">
+						    <TextBlock FontSize="10" Margin="5" Text="{Binding AttractionName}" FontWeight="Bold" TextWrapping="Wrap"/>
+					    </StackPanel>
+				    </Viewbox>
+                    <Grid Grid.Row="1">
+					    <Grid.ColumnDefinitions>
+						    <ColumnDefinition Width="1*"></ColumnDefinition>
+						    <ColumnDefinition Width="1*"></ColumnDefinition>
+					    </Grid.ColumnDefinitions>
 
-		<Image MaxWidth="250" Source="{Binding ImageSource, Converter={StaticResource imageConverter}}" />
-		<Border Grid.Row="1" BorderBrush="Black" BorderThickness="1 0 1 1">
-			<Grid Background="PaleGoldenrod" MaxWidth="250">
-				<Grid.RowDefinitions>
-					<RowDefinition Height="1.5*"></RowDefinition>
-					<RowDefinition Height="1*"></RowDefinition>
-                </Grid.RowDefinitions>
-				<Viewbox Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Center">
-					<StackPanel Orientation="Vertical" MaxWidth="250">
-						<TextBlock Margin="5" Text="{Binding AttractionName}" FontWeight="Bold" TextWrapping="Wrap"/>
-					</StackPanel>
-				</Viewbox>
-                <Grid Grid.Row="1">
-					<Grid.ColumnDefinitions>
-						<ColumnDefinition Width="1*"></ColumnDefinition>
-						<ColumnDefinition Width="1*"></ColumnDefinition>
-					</Grid.ColumnDefinitions>
-
-                    <Viewbox Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center">
-						<Button Command="{Binding LearnMoreCommand}" Margin="5 5 10 5">Saznaj više</Button>
-					</Viewbox>
-				</Grid>
-			</Grid>
-		</Border>
-	</Grid>
+                        <Viewbox Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center">
+						    <Button Background="#15B7B9" Foreground="White" FontWeight="Bold" Command="{Binding LearnMoreCommand}" Margin="5 5 10 5">Saznaj više</Button>
+					    </Viewbox>
+				    </Grid>
+                </Grid>
+        </Grid>
+	</Border>
 </UserControl>

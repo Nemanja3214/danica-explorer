@@ -16,7 +16,6 @@ public class AllAttractionsViewModel : BaseViewModel
             AttractionCardViewModel attractionCardViewModel = new AttractionCardViewModel();
             AttractionCard card = new AttractionCard();
             card.DataContext = attractionCardViewModel;
-            card.Margin = Thickness.Parse("10");
             AllAttractions.Add(card);
         }
     }

@@ -7,9 +7,17 @@
              x:DataType="vm:AllAttractionsViewModel"
              x:Class="app.Views.AllAttractionsWindow">
 	
-    <ScrollViewer VerticalScrollBarVisibility="Auto" MaxHeight="600" MaxWidth="1500">
-        <UniformGrid Columns="5" HorizontalAlignment="Stretch" Name="Grid" ScrollViewer.VerticalScrollBarVisibility="Visible">
-        </UniformGrid>
+    <ScrollViewer VerticalScrollBarVisibility="Auto" MaxHeight="800" MaxWidth="1500">
+		<StackPanel Orientation="Vertical" VerticalAlignment="Center">
+			<TextBlock TextAlignment="Center"
+                       VerticalAlignment="Center"
+                       FontWeight="Bold"
+                       FontSize="32"
+                       Text="Sve atrakcije iz asortimana"
+                       Margin="20"/>
+            <UniformGrid Columns="4" HorizontalAlignment="Stretch" Name="Grid" ScrollViewer.VerticalScrollBarVisibility="Visible">
+            </UniformGrid>
+        </StackPanel>
     </ScrollViewer>
 
 </UserControl>
