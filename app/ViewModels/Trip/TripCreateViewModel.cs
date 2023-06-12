@@ -12,6 +12,7 @@ using Mapsui;
 using Mapsui.Extensions;
 using Mapsui.Projections;
 using NetTopologySuite.Geometries;
+using Splat;
 using Point = NetTopologySuite.Geometries.Point;
 
 namespace app.ViewModels;
@@ -48,7 +49,7 @@ public class TripCreateViewModel
         _hotelVm = new DragNDropViewModel("Hotels", GetHotelItems);
         _restaurantVm = new DragNDropViewModel("Restaurants", GetRestaurantItems);
         _attractionVm = new DragNDropViewModel("Attractions", GetAttractionItems);
-        _mapVm = new MapViewModel();
+        _mapVm = Locator.Current.GetService<MapViewModel>();
 
         AttractionVm.AddedItems.CollectionChanged += CollectionChangedMethod;
         AttractionVm.SelectionChanged += SelectionChangedMethod;

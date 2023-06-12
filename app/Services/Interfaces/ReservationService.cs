@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace app.Services.Interfaces;
 
-public class ReservationService
+public class ReservationService : IReservationService
 {
     private readonly IReservationRepository _repository;
 

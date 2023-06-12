@@ -1,5 +1,6 @@
 using app.Stores;
 using app.ViewModels;
+using Splat;
 
 namespace app.Commands.Navigation;
 
@@ -15,6 +16,6 @@ public class AttractionsCommand : BaseCommand
     }
     public override void Execute(object parameter)
     {
-        _navigation.CurrentViewModel = new AllAttractionsViewModel();
+        _navigation.CurrentViewModel = Locator.Current.GetService<AllAttractionsViewModel>();
     }
 }

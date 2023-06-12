@@ -6,6 +6,7 @@ using Avalonia.Controls;
 using Mapsui;
 using Mapsui.Extensions;
 using Mapsui.Projections;
+using Splat;
 
 namespace app.ViewModels;
 
@@ -17,8 +18,8 @@ public class AttractionCreateViewModel
     {
         _parent = parent;
         Uvm = new UploadViewModel(_parent);
-        Form = new AttractionCreateFormViewModel();
-        MapVM = new MapViewModel();
+        Form = Locator.Current.GetService<AttractionCreateFormViewModel>();
+        MapVM = Locator.Current.GetService<MapViewModel>();
         Form.LocationChanged += LocationChanged;
     }
     

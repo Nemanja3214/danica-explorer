@@ -1,6 +1,8 @@
 ﻿using Avalonia;
 using Avalonia.ReactiveUI;
+using Splat;
 using System;
+using app.Dependency_injection;
 
 namespace app;
 
@@ -12,6 +14,7 @@ class Program
     [STAThread]
     public static void Main(string[] args)
     {
+        DependencyInjection.Register(Locator.CurrentMutable, Locator.Current);
         BuildAvaloniaApp()
             .StartWithClassicDesktopLifetime(args);
     }

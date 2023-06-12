@@ -6,6 +6,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Splat;
 
 namespace app.ViewModels
 {
@@ -42,7 +43,7 @@ namespace app.ViewModels
             AllTrips = new ObservableCollection<TripCard>();
             for (int i = 0; i < 20; i++)
             {
-                TripCardViewModel viewModel = new TripCardViewModel();
+                TripCardViewModel viewModel = Locator.Current.GetService<TripCardViewModel>();
                 TripCard card = new TripCard();
                 card.DataContext = viewModel;
                 AllTrips.Add(card);
