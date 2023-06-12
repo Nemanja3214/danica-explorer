@@ -1,0 +1,94 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 xmlns:vm="using:app.ViewModels"
+			 x:DataType="vm:TripStatisticsViewModel"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="app.Views.TripStatisticsWindow">
+	<ScrollViewer MaxWidth="1500" HorizontalScrollBarVisibility="Auto">
+
+
+		<Grid Margin="10 20">
+			<Grid.RowDefinitions>
+                <RowDefinition Height="Auto" ></RowDefinition>
+				<RowDefinition Height="Auto" ></RowDefinition>
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="*" />
+			</Grid.RowDefinitions>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="1*"></ColumnDefinition>
+				<ColumnDefinition Width="6*"></ColumnDefinition>
+				<ColumnDefinition Width="1*"></ColumnDefinition>
+			</Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="1" TextAlignment="Center"
+                       VerticalAlignment="Center"
+                       FontWeight="Bold"
+					   FontSize="32"
+                       Text="Pregled prodatih aranžmana za izabrano putovanje"
+                       Margin="20 0"/>
+			<StackPanel Margin="0 15" Grid.Column="1" Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBlock TextAlignment="Center"
+						   VerticalAlignment="Center"
+						   FontWeight="Bold"
+						   FontSize="20"
+                           Text="Izaberite putovanje: "
+                           Margin="20 0"/>
+                <ComboBox FontWeight="Bold" FontSize="20" Items="{Binding Options}" SelectedItem="{Binding SelectedOption}" />
+            </StackPanel>
+            <StackPanel ScrollViewer.HorizontalScrollBarVisibility="Auto" Margin="0 15 0 10" Grid.Column="1" Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center">
+				<TextBlock TextAlignment="Center"
+                           Text="Ime"
+                           Margin="20 0"
+						   FontWeight="Bold"
+                           MinWidth="200" />
+				<TextBlock TextAlignment="Center"
+                           Text="Prezime"
+                           Margin="20 0"
+						   FontWeight="Bold"
+                           MinWidth="200" />
+				<TextBlock TextAlignment="Center"
+                           Text="Broj telefona"
+                           Margin="20 0"
+						   FontWeight="Bold"
+                           MinWidth="200" />
+				<TextBlock TextAlignment="Center"
+                           Margin="20 0"
+                           Text="Datum rezervacije"
+						   FontWeight="Bold"
+                           MinWidth="200" />
+
+			</StackPanel>
+			<ListBox Grid.Row="3" Items="{Binding Reservations}"
+                     VerticalAlignment="Top"
+                     Grid.Column="1"
+                     SelectionMode="Single"
+                     ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                     ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                     HorizontalAlignment="Center">
+				<ListBox.ItemTemplate>
+					<DataTemplate>
+						<StackPanel Orientation="Horizontal">
+							<TextBlock TextAlignment="Center"
+									   Text="{Binding FirstName}"
+									   Margin="20 0"
+									   MinWidth="200" />
+							<TextBlock TextAlignment="Center"
+									   Text="{Binding LastName}"
+									   Margin="20 0"
+									   MinWidth="200" />
+							<TextBlock TextAlignment="Center"
+									   Text="{Binding PhoneNumber}"
+									   Margin="20 0"
+									   MinWidth="200" />
+							<TextBlock TextAlignment="Center"
+									   Text="{Binding DateOfBooking}"
+									   Margin="20 0"
+									   MinWidth="200" />
+						</StackPanel>
+					</DataTemplate>
+				</ListBox.ItemTemplate>
+			</ListBox>
+		</Grid>
+	</ScrollViewer>
+</UserControl>
