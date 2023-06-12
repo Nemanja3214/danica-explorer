@@ -29,8 +29,8 @@ public class TripCardViewModel : BaseViewModel
         set => _tripPrice = value;
     }
 
-    public ICommand BookCommand { get; }
-    public ICommand LearnMoreCommand { get; }
+    public BaseCommand BookCommand { get; }
+    public BaseCommand LearnMoreCommand { get; }
 
     public TripCardViewModel()
     {

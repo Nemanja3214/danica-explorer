@@ -20,7 +20,7 @@ public class AttractionCardViewModel : BaseViewModel
         set => _attractionName = value;
     }
 
-    public ICommand LearnMoreCommand { get; }
+    public BaseCommand LearnMoreCommand { get; }
 
     public AttractionCardViewModel()
     {
