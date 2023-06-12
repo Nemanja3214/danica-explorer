@@ -17,6 +17,7 @@ using Mapsui.Projections;
 using NetTopologySuite.Geometries;
 using ReactiveUI;
 using Attraction = app.Models.Attraction;
+using Splat;
 using Point = NetTopologySuite.Geometries.Point;
 
 namespace app.ViewModels;

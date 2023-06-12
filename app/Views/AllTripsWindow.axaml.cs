@@ -23,10 +23,14 @@ namespace app.Views
         {
             UniformGrid grid = this.FindControl<UniformGrid>("Grid");
             AllTripsViewModel context = (AllTripsViewModel)DataContext;
-            foreach (TripCard trip in context.AllTrips)
+            if (context != null)
             {
-                grid.Children.Add(trip);
+                foreach (TripCard trip in context.AllTrips)
+                {
+                    grid.Children.Add(trip);
+                }
             }
         }
+
     }
 }

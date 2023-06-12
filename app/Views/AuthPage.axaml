@@ -38,13 +38,15 @@
                                  FontSize="18" 
                                  Width="400" 
                                  Margin="0 40 0 10" 
-                                 Watermark="Email"/>
+                                 Watermark="Email"
+                                 Text="{Binding Email, Mode=TwoWay}"/>
                         <TextBox x:Name="PasswordBox" 
                                  FontSize="18" 
                                  Width="400" 
                                  Margin="0 0 0 40" 
                                  Watermark="Šifra"  
-                                 PasswordChar="●"/>
+                                 PasswordChar="●"
+                                 Text="{Binding Password, Mode=TwoWay}"/>
 
                         <Button Content="PRIJAVA" 
                                 FontSize="18" 
@@ -52,7 +54,8 @@
                                 Background="#15B7B9"
                                 Foreground="White"
                                 HorizontalAlignment="Center" 
-                                HorizontalContentAlignment="Center"/>
+                                HorizontalContentAlignment="Center"
+                                Command="{Binding LoginCommand}"/>
                     </StackPanel>
             </TabItem>
 
@@ -72,23 +75,27 @@
                                  FontSize="18" 
                                  Width="400" 
                                  Margin="0 40 0 10" 
-                                 Watermark="Ime i prezime"/>
+                                 Watermark="Ime i prezime"
+                                 Text="{Binding Name, Mode=TwoWay}"/>
                         <TextBox x:Name="PhoneTextBox" 
                                  FontSize="18" 
                                  Width="400" 
                                  Margin="0 0 0 10" 
-                                 Watermark="Broj telefona"/>
+                                 Watermark="Broj telefona"
+                                 Text="{Binding Phone, Mode=TwoWay}"/>
                         <TextBox x:Name="RegEmailTextBox" 
                                  FontSize="18" 
                                  Width="400" 
                                  Margin="0 0 0 10" 
-                                 Watermark="Email"/>
+                                 Watermark="Email"
+                                 Text="{Binding RegEmail, Mode=TwoWay}"/>
                         <TextBox x:Name="RegPasswordBox" 
                                  FontSize="18" 
                                  Width="400" 
                                  Margin="0 0 0 40" 
                                  Watermark="Šifra"  
-                                 PasswordChar="●"/>
+                                 PasswordChar="●"
+                                 Text="{Binding RegPassword, Mode=TwoWay}"/>
 
                         <Button Content="REGISTRACIJA" 
                                 FontSize="18" 
@@ -96,7 +103,8 @@
                                 Background="#15B7B9"
                                 Foreground="White"
                                 HorizontalAlignment="Center" 
-                                HorizontalContentAlignment="Center"/>
+                                HorizontalContentAlignment="Center"
+                                Command="{Binding RegisterCommand}"/>
                     </StackPanel>
             </TabItem>
         </TabControl>

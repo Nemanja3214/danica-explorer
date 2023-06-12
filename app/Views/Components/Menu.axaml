@@ -28,13 +28,13 @@
             </MenuItem.Header>
         </MenuItem>
         <MenuItem
-            Command="{Binding HomeCommand}"
+            Command="{Binding TripsCommand}"
             FontSize="18"
             FontWeight="DemiBold"
             Header="PUTOVANJA"
             Margin="0,0,20,0" />
         <MenuItem
-            Command="{Binding AuthCommand}"
+            Command="{Binding AttractionsCommand}"
             FontSize="18"
             FontWeight="DemiBold"
             Header="ATRAKCIJE"

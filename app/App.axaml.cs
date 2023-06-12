@@ -4,6 +4,7 @@ using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
 using app.ViewModels;
 using app.Views;
+using Splat;
 
 namespace app;
 
@@ -30,7 +31,7 @@ public partial class App : Application
             desktop.MainWindow = new MainWindow();
             MainWindowViewModel mwvm = new MainWindowViewModel(desktop.MainWindow);
             desktop.MainWindow.DataContext = mwvm;
-            _navigation.CurrentViewModel = new LandingViewModel();
+            _navigation.CurrentViewModel = Locator.Current.GetService<LandingViewModel>();
         }
 
     

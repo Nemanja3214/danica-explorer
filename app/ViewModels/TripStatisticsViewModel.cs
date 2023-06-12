@@ -1,6 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using System;
 using System.Linq;
+using Splat;
 
 namespace app.ViewModels;
 
@@ -41,7 +42,7 @@ public class TripStatisticsViewModel : BaseViewModel
         _reservations = new ObservableCollection<TripStatisticsItemViewModel>();
         for (int i = 0; i < 20; i++)
         {
-            _reservations.Add(new TripStatisticsItemViewModel());
+            _reservations.Add(Locator.Current.GetService<TripStatisticsItemViewModel>());
         }
     }
 }

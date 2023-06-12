@@ -1,13 +1,14 @@
-﻿using app.Model;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using app.Model;
+using app.Repositories.Interfaces;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 
-namespace app.Repositories;
-
-public class TripRepository
+public class TripRepository : ITripRepository
 {
-    public DanicaExplorerContext _context;
+    private readonly DanicaExplorerContext _context;
 
     public TripRepository(DanicaExplorerContext context)
     {
@@ -16,9 +17,31 @@ public class TripRepository
 
     public async Task<IEnumerable<Trip>> GetAll()
     {
-        return await _context.Trips
-            .Include(x => x.TripAttractions)
-            .Include(x => x.TripAttractions)
-            .ToListAsync();
+        return await _context.Trips.ToListAsync();
+    }
+
+    public async Task<Trip> GetById(int id)
+    {
+        return await _context.Trips.FindAsync(id);
+    }
+
+    public Trip Create(Trip trip)
+    {
+        Trip newTrip = _context.Trips.Add(trip).Entity;
+        _context.SaveChanges();
+        return newTrip;
+    }
+
+    public Trip Update(Trip trip)
+    {
+        EntityEntry<Trip> res = _context.Trips.Attach(trip);
+        _context.SaveChanges();
+        return res.Entity;
+    }
+
+    public Trip Delete(Trip trip)
+    {
+        trip.Isdeleted = true;
+        return Update(trip);
     }
 }

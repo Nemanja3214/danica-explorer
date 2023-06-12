@@ -27,6 +27,18 @@
         <DataTemplate DataType="{x:Type vm:AuthViewModel}">
             <views:AuthPage />
         </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:AllTripsViewModel}">
+            <views:AllTripsWindow/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:TripDetailsViewModel}">
+            <views:TripDetails/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:AllAttractionsViewModel}">
+            <views:AllAttractionsWindow/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:AttractionDetailsViewModel}">
+            <views:AttractionDetails/>
+        </DataTemplate>
     </Application.DataTemplates>
 
 </Application>

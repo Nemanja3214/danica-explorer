@@ -1,13 +1,14 @@
-﻿using app.Model;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using app.Model;
+using app.Repositories.Interfaces;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 
-namespace app.Repositories;
-
-public class AttractionRepository
+public class AttractionRepository : IAttractionRepository
 {
-    public DanicaExplorerContext _context;
+    private readonly DanicaExplorerContext _context;
 
     public AttractionRepository(DanicaExplorerContext context)
     {
@@ -16,8 +17,31 @@ public class AttractionRepository
 
     public async Task<IEnumerable<Attraction>> GetAll()
     {
-        return await _context.Attractions
-            .Include(x => x.Location)
-            .ToListAsync();
+        return await _context.Attractions.ToListAsync();
+    }
+
+    public async Task<Attraction> GetById(int id)
+    {
+        return await _context.Attractions.FindAsync(id);
+    }
+
+    public Attraction Create(Attraction attraction)
+    {
+        Attraction newAttraction = _context.Attractions.Add(attraction).Entity;
+         _context.SaveChanges();
+        return newAttraction;
+    }
+
+    public Attraction Update(Attraction attraction)
+    {
+        EntityEntry<Attraction> res = _context.Attractions.Attach(attraction);
+        _context.SaveChanges();
+        return res.Entity;
+    }
+
+    public Attraction Delete(Attraction attraction)
+    {
+        attraction.Isdeleted = true;
+        return Update(attraction);
     }
 }

@@ -1,12 +1,22 @@
 ﻿using System;
+using app.Stores;
+using app.ViewModels;
+using Splat;
 
 namespace app.Commands;
 
-public class TripDetailsCommand : CommandBase
+public class TripDetailsCommand : BaseCommand
 {
-    //Implement redirection to details page
-    public override void Execute(object? parameter)
+    private readonly AppCore _core;
+    private readonly NavigationStore _navigation;
+
+    public TripDetailsCommand()
     {
-        Console.Out.WriteLine("Learn more");
+        _core = AppCore.Instance();
+        _navigation = NavigationStore.Instance();
+    }
+    public override void Execute(object parameter)
+    {
+        _navigation.CurrentViewModel = Locator.Current.GetService<TripDetailsViewModel>();
     }
 }

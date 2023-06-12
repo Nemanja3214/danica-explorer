@@ -11,6 +11,8 @@ public partial class TripAttraction
 
     public int? TripId { get; set; }
 
+    public bool? Isdeleted { get; set; }
+
     public virtual Attraction? Attraction { get; set; }
 
     public virtual Trip? Trip { get; set; }
