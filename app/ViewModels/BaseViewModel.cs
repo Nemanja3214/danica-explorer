@@ -1,10 +1,11 @@
 ﻿using System;
 using System.ComponentModel;
 using ReactiveUI;
+using ReactiveValidation;
 
 namespace app.ViewModels;
 
-public class BaseViewModel : ReactiveObject, INotifyPropertyChanged
+public class BaseViewModel : ValidatableObject, INotifyPropertyChanged
 {
     public event PropertyChangedEventHandler PropertyChanged;
 

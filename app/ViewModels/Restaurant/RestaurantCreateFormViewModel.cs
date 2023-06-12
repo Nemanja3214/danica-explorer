@@ -30,7 +30,11 @@ public class RestaurantCreateFormViewModel :BaseViewModel, INotifyPropertyChange
     public int RatingValue
     {
         get { return _RatingValue; }
-        set { this.RaiseAndSetIfChanged(ref _RatingValue, value); }
+        set
+        {
+            _RatingValue = value;
+            OnPropertyChanged(nameof(RatingValue));
+        }
     }
 
     private ObservableCollection<LocationDTO> _generatedCompletes;
@@ -39,7 +43,11 @@ public class RestaurantCreateFormViewModel :BaseViewModel, INotifyPropertyChange
     {
         get => _generatedCompletes;
         // check again
-        set { this.RaiseAndSetIfChanged(ref _generatedCompletes, value); }
+        set
+        {
+            _generatedCompletes = value; 
+            OnPropertyChanged(nameof(GeneratedCompletes));
+        }
     }
     
     public event PropertyChangedEventHandler PropertyChanged;

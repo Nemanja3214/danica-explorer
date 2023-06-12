@@ -50,7 +50,8 @@
 
                         <Button Content="PRIJAVA" 
                                 FontSize="18" 
-                                Width="170" 
+                                Width="170"
+                                IsEnabled="{Binding IsLoginButtonEnabled}"
                                 Background="#15B7B9"
                                 Foreground="White"
                                 HorizontalAlignment="Center" 
@@ -102,6 +103,7 @@
                                 Width="170" 
                                 Background="#15B7B9"
                                 Foreground="White"
+                                IsEnabled="{Binding IsRegisterButtonEnabled}"
                                 HorizontalAlignment="Center" 
                                 HorizontalContentAlignment="Center"
                                 Command="{Binding RegisterCommand}"/>

@@ -22,7 +22,7 @@ using ReactiveUI;
 
 namespace app.ViewModels;
 
-public class AccomodationCreateFormViewModel :BaseViewModel, INotifyPropertyChanged, IReactiveObject
+public class AccomodationCreateFormViewModel :BaseViewModel
 {
     private int _ratingValue = 3;
     public event EventHandler LocationChanged;
@@ -30,8 +30,12 @@ public class AccomodationCreateFormViewModel :BaseViewModel, INotifyPropertyChan
     [Range(0, 5)]
     public int RatingValue
     {
-        get => _ratingValue;
-        set => this.RaiseAndSetIfChanged(ref _ratingValue, value);
+
+        get { return _ratingValue; }
+        set
+        {
+            _ratingValue = value;
+            OnPropertyChanged(nameof(RatingValue)); }
     }
 
     private ObservableCollection<LocationDTO> _generatedCompletes;
@@ -40,7 +44,11 @@ public class AccomodationCreateFormViewModel :BaseViewModel, INotifyPropertyChan
     {
         get => _generatedCompletes;
         // check again
-        set { this.RaiseAndSetIfChanged(ref _generatedCompletes, value); }
+        set
+        {
+            _generatedCompletes = value;
+            OnPropertyChanged(nameof(GeneratedCompletes));
+        }
     }
     
     public event PropertyChangedEventHandler PropertyChanged;
