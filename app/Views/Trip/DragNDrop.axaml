@@ -1,0 +1,116 @@
+<UserControl
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d"
+    x:Class="app.Views.DragNDrop"
+    x:DataType="viewModels:DragNDropViewModel"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:dragNDrop="clr-namespace:app.DragNDrop;assembly=app"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:models="clr-namespace:app.Models;assembly=app"
+    xmlns:system="clr-namespace:System;assembly=System.Runtime"
+    xmlns:viewModels="clr-namespace:app.ViewModels;assembly=app"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Design.DataContext>
+        <viewModels:DragNDropViewModel />
+    </Design.DataContext>
+    <UserControl.Styles>
+        <Style Selector="ListBox.LeftListBox">
+            <Style.Resources>
+                <dragNDrop:AddItemsListBoxDropHandler x:Key="AddItemsListBoxDropHandler" />
+            </Style.Resources>
+            <Setter Property="(Interaction.Behaviors)">
+                <BehaviorCollectionTemplate>
+                    <BehaviorCollection>
+                        <ContextDropBehavior Handler="{StaticResource AddItemsListBoxDropHandler}" />
+                    </BehaviorCollection>
+                </BehaviorCollectionTemplate>
+            </Setter>
+        </Style>
+
+        <!--  ITEMS  -->
+        <Style Selector="ListBoxItem">
+            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+            <Setter Property="(Interaction.Behaviors)">
+                <BehaviorCollectionTemplate>
+                    <BehaviorCollection>
+                        <ContextDragBehavior HorizontalDragThreshold="3" VerticalDragThreshold="3" />
+                    </BehaviorCollection>
+                </BehaviorCollectionTemplate>
+            </Setter>
+        </Style>
+    </UserControl.Styles>
+
+    <StackPanel>
+        <!-- <ItemsControl> -->
+        <!--     <DatePicker /> -->
+        <!-- </ItemsControl> -->
+        <!-- <ListBoxItem> -->
+        <!--     <DatePicker /> -->
+        <!-- </ListBoxItem> -->
+        <TextBlock Text="{Binding Title}" TextAlignment="Center" />
+        <Grid ColumnDefinitions="*, *" RowDefinitions="*">
+            <ListBox
+                Classes="LeftListBox"
+                DragDrop.AllowDrop="True"
+                Grid.Column="0"
+                Grid.Row="0"
+                Items="{Binding AddedItems}"
+                Margin="10"
+                Name="lv"
+                SelectedItem="{Binding Selected}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate DataType="models:Sightseeing">
+                        <Grid ColumnDefinitions="Auto, Auto, Auto, *" RowDefinitions="*">
+                            <TextBlock
+                                Grid.Column="0"
+                                HorizontalAlignment="Center"
+                                Margin="5"
+                                Text="{Binding Name}"
+                                TextAlignment="Center"
+                                VerticalAlignment="Center" />
+                            <TimePicker
+                                Grid.Column="1"
+                                Margin="5"
+                                SelectedTime="{Binding Time}" />
+                            <DatePicker
+                                DayVisible="False"
+                                Focusable="True"
+                                Grid.Column="2"
+                                Margin="5"
+                                SelectedDate="{Binding DateOffset}"
+                                YearVisible="True"
+                                ZIndex="100" />
+                            <Button
+                                Command="{Binding DataContext.RemoveCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ListBox}}}"
+                                CommandParameter="{Binding RelativeSource={RelativeSource Self}}"
+                                Grid.Column="3"
+                                HorizontalAlignment="Right"
+                                Margin="5">
+                                X
+                            </Button>
+                        </Grid>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+
+            <StackPanel
+                Grid.Column="1"
+                Grid.Row="0"
+                HorizontalAlignment="Stretch"
+                Margin="30">
+                <TextBox Text="{Binding Query}" />
+                <ListBox Classes="Drag" Items="{Binding OptionItems}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate DataType="models:Sightseeing">
+                            <Grid ColumnDefinitions="*" RowDefinitions="*">
+                                <TextBlock Grid.Column="0" Text="{Binding Name}" />
+                            </Grid>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </StackPanel>
+        </Grid>
+    </StackPanel>
+</UserControl>

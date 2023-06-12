@@ -1,0 +1,54 @@
+<UserControl
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    d:Title="Trip details"
+    mc:Ignorable="d"
+    x:Class="app.Views.TripDetails"
+    x:DataType="viewModels:TripDetailsViewModel"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewModels="clr-namespace:app.ViewModels"
+    xmlns:views="clr-namespace:app.Views"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <ScrollViewer IsEnabled="{Binding MapNotHovered, Mode=OneWay}">
+        <Grid
+            ColumnDefinitions="*"
+            Margin="30"
+            RowDefinitions="10,*, *, *, *, *, *">
+
+            <views:MapComponent
+                Grid.Row="1"
+                Height="400"
+                IsPointerOver="{Binding MapHovered, Mode=OneWayToSource}" />
+            <StackPanel
+                Grid.Row="2"
+                Margin="30"
+                Orientation="Horizontal">
+                <views:DayPlan />
+                <views:DayPlan />
+            </StackPanel>
+            <TextBlock
+                Grid.Row="3"
+                Text="Accomodations"
+                TextAlignment="Center" />
+            <ListBox Grid.Row="4" IsHitTestVisible="False">
+                <ListBoxItem>ListBox Item #1</ListBoxItem>
+                <ListBoxItem>ListBox Item #2</ListBoxItem>
+            </ListBox>
+            <TextBlock
+                Grid.Row="5"
+                Text="Restaurants"
+                TextAlignment="Center" />
+            <ListBox Grid.Row="6" IsHitTestVisible="False">
+                <ListBoxItem>ListBox Item #1</ListBoxItem>
+                <ListBoxItem>ListBox Item #2</ListBoxItem>
+            </ListBox>
+
+        </Grid>
+    </ScrollViewer>
+
+
+
+
+</UserControl>

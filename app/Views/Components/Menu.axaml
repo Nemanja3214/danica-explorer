@@ -1,44 +1,50 @@
-<UserControl xmlns="https://github.com/avaloniaui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:vm="using:app.ViewModels"
-             x:Class="app.Views.Components.Menu">
-    
+<UserControl
+    x:Class="app.Views.Components.Menu"
+    x:DataType="viewModels:MenuViewModel"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewModels="clr-namespace:app.ViewModels;assembly=app"
+    xmlns:vm="using:app.ViewModels"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
     <UserControl.DataContext>
-        <vm:MenuViewModel/>
+        <vm:MenuViewModel />
     </UserControl.DataContext>
 
-    <Menu HorizontalAlignment="Stretch" 
-          VerticalAlignment="Top"
-          Height="45"
-          Margin="30 10">
+    <Menu
+        Height="45"
+        HorizontalAlignment="Stretch"
+        Margin="30,10"
+        VerticalAlignment="Top">
         <Menu.ItemsPanel>
             <ItemsPanelTemplate>
-                <DockPanel HorizontalAlignment="Stretch"/>
+                <DockPanel HorizontalAlignment="Stretch" />
             </ItemsPanelTemplate>
         </Menu.ItemsPanel>
-        <MenuItem Margin="0 0 50 0"
-                  Command="{Binding HomeCommand }"> 
+        <MenuItem Command="{Binding HomeCommand}" Margin="0,0,50,0">
             <MenuItem.Header>
-                    <Image Source="../../Assets/logo.png"/>
+                <Image Source="../../Assets/logo.png" />
             </MenuItem.Header>
         </MenuItem>
-        <MenuItem Header="PUTOVANJA" 
-                  Margin="0 0 20 0" 
-                  FontWeight="DemiBold"
-                  FontSize="18"
-                  Command="{Binding HomeCommand }"/>
-        <MenuItem Header="ATRAKCIJE" 
-                  Margin="0 0 20 0" 
-                  FontWeight="DemiBold"
-                  FontSize="18"
-                  Command="{Binding AuthCommand }"/>
-        <MenuItem Header="PRIJAVI SE" 
-                  HorizontalAlignment="Right"
-                  FontWeight="DemiBold"
-                  FontSize="18"
-                  Command="{Binding AuthCommand }"/>
+        <MenuItem
+            Command="{Binding HomeCommand}"
+            FontSize="18"
+            FontWeight="DemiBold"
+            Header="PUTOVANJA"
+            Margin="0,0,20,0" />
+        <MenuItem
+            Command="{Binding AuthCommand}"
+            FontSize="18"
+            FontWeight="DemiBold"
+            Header="ATRAKCIJE"
+            Margin="0,0,20,0" />
+        <MenuItem
+            Command="{Binding AuthCommand}"
+            FontSize="18"
+            FontWeight="DemiBold"
+            Header="PRIJAVI SE"
+            HorizontalAlignment="Right" />
     </Menu>
 
 

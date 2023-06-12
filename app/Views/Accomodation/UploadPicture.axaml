@@ -1,0 +1,33 @@
+<UserControl
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d"
+    x:Class="app.Views.UploadPicture"
+    x:DataType="viewModels:UploadViewModel"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewModels="clr-namespace:app.ViewModels"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <StackPanel Margin="50" Orientation="Vertical">
+        <Image
+            Height="400"
+            HorizontalAlignment="Center"
+            IsVisible="True"
+            Source="{Binding ImageToView, Mode=TwoWay}"
+            VerticalAlignment="Center"
+            Width="400" />
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Button
+                Command="{Binding Upload}"
+                Content="Upload"
+                DockPanel.Dock="Right"
+                Grid.Column="1" />
+        </Grid>
+
+    </StackPanel>
+</UserControl>

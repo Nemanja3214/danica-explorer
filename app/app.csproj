@@ -24,6 +24,62 @@
         <!--Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration.-->
         <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="0.10.21" />
         <PackageReference Include="Avalonia.ReactiveUI" Version="0.10.21" />
+        <PackageReference Include="Avalonia.Xaml.Interactions" Version="0.10.19" />
+        <PackageReference Include="Mapsui.Avalonia" Version="4.0.0-rc.1" />
+        <PackageReference Include="Mapsui.Forms" Version="3.0.2" />
+        <PackageReference Include="ProjNET" Version="2.0.0" />
+        <PackageReference Include="XamlNameReferenceGenerator" Version="1.6.1" />
+    </ItemGroup>
+    
+    <ItemGroup>
+    <EmbeddedResource Include="Assets/*" />
+  </ItemGroup>
+    
+    <ItemGroup>
+      <Compile Update="Views\AccomodationCreate\AccomodationCreate.axaml.cs">
+        <DependentUpon>AccomodationCreate.axaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="Views\AccomodationCreate\AccomodationCreateForm.axaml.cs">
+        <DependentUpon>AccomodationCreateForm.axaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="Views\TripCreate\DragNDrop.axaml.cs">
+        <DependentUpon>DragNDrop.axaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="Views\TripCreate\TripCreate.axaml.cs">
+        <DependentUpon>TripCreate.axaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="Views\AccomodationCreate\UploadPicture.axaml.cs">
+        <DependentUpon>UploadPicture.axaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="Views\Trip\DayPlan.axaml.cs">
+        <DependentUpon>DayPlan.axaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="Views\Trip\TripDetails.axaml.cs">
+        <DependentUpon>TripDetails.axaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="Views\Attraction\AttractionCreate.axaml.cs">
+        <DependentUpon>AccomodationCreate.axaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="Views\Attraction\AttractionCreateForm.axaml.cs">
+        <DependentUpon>AccomodationCreateForm.axaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="Views\Restaurant\RestaurantCreate.axaml.cs">
+        <DependentUpon>AccomodationCreate.axaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="Views\Restaurant\RestaurantCreateForm.axaml.cs">
+        <DependentUpon>AccomodationCreateForm.axaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
         <PackageReference Include="XamlNameReferenceGenerator" Version="1.6.1" />
     </ItemGroup>
 
