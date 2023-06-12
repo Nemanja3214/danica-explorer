@@ -25,7 +25,7 @@
                        VerticalAlignment="Center"
                        FontWeight="Bold"
 					   FontSize="32"
-                       Text="Pregled prodatih aranžmana za izabrano putovanje"
+                       Text="Pregled prodatih aranÅ¾mana za izabrano putovanje"
                        Margin="20 0"/>
 			<StackPanel Margin="0 15" Grid.Column="1" Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                 <TextBlock TextAlignment="Center"
