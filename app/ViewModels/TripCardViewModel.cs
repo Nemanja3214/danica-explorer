@@ -36,8 +36,8 @@ public class TripCardViewModel : BaseViewModel
     {
         BookCommand = new BookCommand();
         LearnMoreCommand = new TripDetailsCommand();
-        _imageSource = "../Assets/tripimage.jpeg";
-        _tripName = "Barselona";
+        _imageSource = "Assets/banner.png";
+        _tripName = "Beogradska magija";
         _tripDate = "Datum: " + "01.01.2020.";
         _tripPrice = "Cena: " + "4500" + " din";
     }

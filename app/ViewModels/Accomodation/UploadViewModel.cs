@@ -41,7 +41,15 @@ public class UploadViewModel: BaseViewModel
         get => currentPath;
         set => currentPath = value ?? throw new ArgumentNullException(nameof(value));
     }
-    public Bitmap ImageToView { get => _image;   private set => this.RaiseAndSetIfChanged(ref _image, value); }
+    public Bitmap ImageToView
+    {
+        get => _image;
+        private set
+        {
+            _image = value;
+            OnPropertyChanged(nameof(ImageToView));
+        }
+    }
 
     public UploadViewModel()
     {

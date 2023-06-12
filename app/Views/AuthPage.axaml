@@ -58,15 +58,16 @@
                             Width="400"
                             x:Name="PasswordBox" />
 
-                        <Button
-                            Background="#15B7B9"
-                            Command="{Binding LoginCommand}"
-                            Content="PRIJAVA"
-                            FontSize="18"
-                            Foreground="White"
-                            HorizontalAlignment="Center"
-                            HorizontalContentAlignment="Center"
-                            Width="170" />
+
+                        <Button Content="PRIJAVA" 
+                                FontSize="18" 
+                                Width="170"
+                                IsEnabled="{Binding IsLoginButtonEnabled}"
+                                Background="#15B7B9"
+                                Foreground="White"
+                                HorizontalAlignment="Center" 
+                                HorizontalContentAlignment="Center"
+                                Command="{Binding LoginCommand}"/>
                     </StackPanel>
                 </TabItem>
 
@@ -113,15 +114,15 @@
                             Width="400"
                             x:Name="RegPasswordBox" />
 
-                        <Button
-                            Background="#15B7B9"
-                            Command="{Binding RegisterCommand}"
-                            Content="REGISTRACIJA"
-                            FontSize="18"
-                            Foreground="White"
-                            HorizontalAlignment="Center"
-                            HorizontalContentAlignment="Center"
-                            Width="170" />
+                        <Button Content="REGISTRACIJA" 
+                                FontSize="18" 
+                                Width="170" 
+                                Background="#15B7B9"
+                                Foreground="White"
+                                IsEnabled="{Binding IsRegisterButtonEnabled}"
+                                HorizontalAlignment="Center" 
+                                HorizontalContentAlignment="Center"
+                                Command="{Binding RegisterCommand}"/>
                     </StackPanel>
                 </TabItem>
             </TabControl>
