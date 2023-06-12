@@ -49,13 +49,16 @@
         <!-- <ListBoxItem> -->
         <!--     <DatePicker /> -->
         <!-- </ListBoxItem> -->
-        <TextBlock Text="{Binding Title}" TextAlignment="Center" />
+        <TextBlock Text="{Binding Title}" TextAlignment="Center" FontWeight="SemiBold" />
         <Grid ColumnDefinitions="*, *" RowDefinitions="*">
             <ListBox
                 Classes="LeftListBox"
                 DragDrop.AllowDrop="True"
                 Grid.Column="0"
                 Grid.Row="0"
+                Background="#EEF0F4"
+                CornerRadius="10"
+                Height="180"
                 Items="{Binding AddedItems}"
                 Margin="10"
                 Name="lv"
@@ -76,7 +79,7 @@
                                 Grid.Column="1"
                                 HorizontalAlignment="Right"
                                 Margin="5">
-                                X
+                                ✖
                             </Button>
                         </Grid>
                     </DataTemplate>
@@ -87,8 +90,10 @@
                 Grid.Column="1"
                 Grid.Row="0"
                 HorizontalAlignment="Stretch"
-                Margin="30">
-                <TextBox Text="{Binding Query}">
+                VerticalAlignment="Top"
+                Margin="20 10">
+                <TextBox 
+                    VerticalAlignment="Top" Watermark="Pretraga..." Text="{Binding Query}">
                     <TextBox.KeyBindings>
                         <KeyBinding
                             Command="{Binding DataContext.SelectListBoxCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type StackPanel}}}"

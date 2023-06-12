@@ -50,7 +50,9 @@ public class MapViewModel : BaseViewModel
         MapControlUI.Map.Layers.Add(OpenStreetMap.CreateTileLayer());
         MapControlUI.Map.Layers.Add(CreatePinLayer());
         MapControlUI.Map.Layers.Add(CreatePinsLayer());
-
+        
+        // MapControlUI.IsHitTestVisible = false;
+        
         MapControlUI.Map.Home = n => n.CenterOnAndZoomTo(CurrentSphericalMercatorCoordinate, n.Resolutions[7]);
     }
 

@@ -14,16 +14,39 @@
     </UserControl.DataContext>
     <Border Padding="10">
         <StackPanel>
-            <TextBox Margin="10" Text="{Binding Title}" />
+            <TextBox Watermark="Naziv putovanja" Margin="10" Text="{Binding Title}" />
             <TextBox
                 AcceptsReturn="True"
                 Height="100"
                 Margin="10"
                 Name="tbMultiLine"
+                Watermark="Opis putovanja"
                 Text="{Binding Description}"
                 TextWrapping="Wrap" />
-            <DatePicker Margin="10" />
-            <TextBox Margin="10" />
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="2*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <TextBlock VerticalAlignment="Center" Margin="10" Text="Datum polaska: " />
+                <DatePicker Grid.Column="1" Margin="10" />
+            </Grid>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="2*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <TextBlock VerticalAlignment="Center" Margin="10" Text="Trajanje u danima: " />
+                <NumericUpDown Grid.Column="1" VerticalAlignment="Center" Margin="10" HorizontalAlignment="Left"/>
+            </Grid>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="2*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <TextBlock VerticalAlignment="Center" Margin="10" Text="Cena u dinarima: " />
+                <NumericUpDown Grid.Column="1" VerticalAlignment="Center" Margin="10" HorizontalAlignment="Left"/>
+            </Grid>
         </StackPanel>
     </Border>
 

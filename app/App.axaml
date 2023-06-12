@@ -55,6 +55,18 @@
         <DataTemplate DataType="{x:Type vm:AccomodationCreateFormViewModel}">
             <views:AccomodationCreateForm />
         </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:RestaurantCreateViewModel}">
+            <views:RestaurantCreate />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:RestaurantCreateFormViewModel}">
+            <views:RestaurantCreateForm />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:AttractionCardViewModel}">
+            <views:AttractionCreate />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:AttractionCreateFormViewModel}">
+            <views:AttractionCreateForm />
+        </DataTemplate>
         <DataTemplate DataType="{x:Type vm:MapViewModel}">
             <views:MapComponent />
         </DataTemplate>

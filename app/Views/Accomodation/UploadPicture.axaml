@@ -12,24 +12,27 @@
     <UserControl.DataContext>
         <viewModels:UploadViewModel />
     </UserControl.DataContext>
-    <StackPanel Margin="50" Orientation="Vertical">
-        <Image
-            Height="400"
+    <StackPanel Margin="20" Orientation="Vertical">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="3*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Image
+            Height="300"
             HorizontalAlignment="Center"
             IsVisible="True"
             Source="{Binding ImageToView, Mode=TwoWay}"
             VerticalAlignment="Center"
+            Stretch="UniformToFill"
             Width="400" />
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="Auto" />
-            </Grid.ColumnDefinitions>
-            <Button
+            <Button Grid.Row="1"
                 Command="{Binding Upload}"
-                Content="Upload"
+                Content="Učitaj sliku"
+                HorizontalAlignment="Center"
+                Margin="10 10 0 0"
                 DockPanel.Dock="Right"
-                Grid.Column="1" />
+            />
         </Grid>
 
     </StackPanel>
