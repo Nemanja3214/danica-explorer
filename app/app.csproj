@@ -11,6 +11,8 @@
     <ItemGroup>
         <Folder Include="Models\" />
         <AvaloniaResource Include="Assets\**" />
+        <Folder Include="Services\" />
+        <Folder Include="Repositories\" />
     </ItemGroup>
 
     <ItemGroup>
@@ -27,6 +29,11 @@
         <PackageReference Include="Avalonia.Xaml.Interactions" Version="0.10.19" />
         <PackageReference Include="Mapsui.Avalonia" Version="4.0.0-rc.1" />
         <PackageReference Include="Mapsui.Forms" Version="3.0.2" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.5">
+          <PrivateAssets>all</PrivateAssets>
+          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="7.0.4" />
         <PackageReference Include="ProjNET" Version="2.0.0" />
         <PackageReference Include="XamlNameReferenceGenerator" Version="1.6.1" />
     </ItemGroup>
