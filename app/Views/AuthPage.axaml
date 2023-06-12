@@ -1,0 +1,105 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:vm="using:app.ViewModels"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="app.Views.AuthPage">
+
+    <UserControl.DataContext>
+        <vm:AuthViewModel/>
+    </UserControl.DataContext>
+
+    <Grid>
+        <Image Source="../../Assets/banner.png"
+               Stretch="UniformToFill"
+               Opacity="0.5" />
+            <Border HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Height="550"
+                    Background="#E0E4EB"
+                    CornerRadius="10"
+                    Padding="40 10 40 50"
+                    BoxShadow="0 4 10 0 Gray">
+                <TabControl>
+            <TabItem Header="PRIJAVA"
+                     Margin="40 30 0 30">
+                    <StackPanel VerticalAlignment="Center">
+                        <TextBlock Text="Već imaš nalog ?"
+                                   FontSize="20" 
+                                   FontWeight="SemiLight" 
+                                   HorizontalAlignment="Center"/>
+                        <TextBlock Text="Prijavi se !"
+                                   FontSize="20" 
+                                   FontWeight="Bold" 
+                                   HorizontalAlignment="Center"/>
+
+                        <TextBox x:Name="EmailTextBox" 
+                                 FontSize="18" 
+                                 Width="400" 
+                                 Margin="0 40 0 10" 
+                                 Watermark="Email"/>
+                        <TextBox x:Name="PasswordBox" 
+                                 FontSize="18" 
+                                 Width="400" 
+                                 Margin="0 0 0 40" 
+                                 Watermark="Šifra"  
+                                 PasswordChar="●"/>
+
+                        <Button Content="PRIJAVA" 
+                                FontSize="18" 
+                                Width="170" 
+                                Background="#15B7B9"
+                                Foreground="White"
+                                HorizontalAlignment="Center" 
+                                HorizontalContentAlignment="Center"/>
+                    </StackPanel>
+            </TabItem>
+
+            <TabItem Header="REGISTRACIJA"
+                     Margin="40 30 0 30">
+                <StackPanel VerticalAlignment="Center">
+                        <TextBlock Text="Nemaš nalog ?"
+                                   FontSize="20" 
+                                   FontWeight="SemiLight" 
+                                   HorizontalAlignment="Center"/>
+                        <TextBlock Text="Registruj se !"
+                                   FontSize="20" 
+                                   FontWeight="Bold" 
+                                   HorizontalAlignment="Center"/>
+
+                        <TextBox x:Name="NameTextBox" 
+                                 FontSize="18" 
+                                 Width="400" 
+                                 Margin="0 40 0 10" 
+                                 Watermark="Ime i prezime"/>
+                        <TextBox x:Name="PhoneTextBox" 
+                                 FontSize="18" 
+                                 Width="400" 
+                                 Margin="0 0 0 10" 
+                                 Watermark="Broj telefona"/>
+                        <TextBox x:Name="RegEmailTextBox" 
+                                 FontSize="18" 
+                                 Width="400" 
+                                 Margin="0 0 0 10" 
+                                 Watermark="Email"/>
+                        <TextBox x:Name="RegPasswordBox" 
+                                 FontSize="18" 
+                                 Width="400" 
+                                 Margin="0 0 0 40" 
+                                 Watermark="Šifra"  
+                                 PasswordChar="●"/>
+
+                        <Button Content="REGISTRACIJA" 
+                                FontSize="18" 
+                                Width="170" 
+                                Background="#15B7B9"
+                                Foreground="White"
+                                HorizontalAlignment="Center" 
+                                HorizontalContentAlignment="Center"/>
+                    </StackPanel>
+            </TabItem>
+        </TabControl>
+        </Border>
+    </Grid>
+</UserControl>

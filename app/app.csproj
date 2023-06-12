@@ -9,6 +9,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <Folder Include="Models\" />
         <AvaloniaResource Include="Assets\**" />
     </ItemGroup>
 
@@ -79,5 +80,19 @@
         <DependentUpon>AccomodationCreateForm.axaml</DependentUpon>
         <SubType>Code</SubType>
       </Compile>
+        <PackageReference Include="XamlNameReferenceGenerator" Version="1.6.1" />
     </ItemGroup>
+
+    <ItemGroup>
+      <UpToDateCheckInput Remove="Assets\Static\ColorTheme.xaml" />
+      <UpToDateCheckInput Remove="ViewModels\Components\PasswordBox.axaml" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Update="Views\Components\Menu.axaml.cs">
+        <DependentUpon>Menu.axaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+    </ItemGroup>
+
 </Project>

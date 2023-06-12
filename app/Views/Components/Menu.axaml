@@ -1,0 +1,46 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:app.ViewModels"
+             x:Class="app.Views.Components.Menu">
+    
+    <UserControl.DataContext>
+        <vm:MenuViewModel/>
+    </UserControl.DataContext>
+
+    <Menu HorizontalAlignment="Stretch" 
+          VerticalAlignment="Top"
+          Height="45"
+          Margin="30 10">
+        <Menu.ItemsPanel>
+            <ItemsPanelTemplate>
+                <DockPanel HorizontalAlignment="Stretch"/>
+            </ItemsPanelTemplate>
+        </Menu.ItemsPanel>
+        <MenuItem Margin="0 0 50 0"
+                  Command="{Binding HomeCommand }"> 
+            <MenuItem.Header>
+                    <Image Source="../../Assets/logo.png"/>
+            </MenuItem.Header>
+        </MenuItem>
+        <MenuItem Header="PUTOVANJA" 
+                  Margin="0 0 20 0" 
+                  FontWeight="DemiBold"
+                  FontSize="18"
+                  Command="{Binding HomeCommand }"/>
+        <MenuItem Header="ATRAKCIJE" 
+                  Margin="0 0 20 0" 
+                  FontWeight="DemiBold"
+                  FontSize="18"
+                  Command="{Binding AuthCommand }"/>
+        <MenuItem Header="PRIJAVI SE" 
+                  HorizontalAlignment="Right"
+                  FontWeight="DemiBold"
+                  FontSize="18"
+                  Command="{Binding AuthCommand }"/>
+    </Menu>
+
+
+
+</UserControl>

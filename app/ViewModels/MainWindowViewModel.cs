@@ -5,16 +5,27 @@ using Avalonia.Controls;
 using ReactiveUI;
 
 namespace app.ViewModels;
+using app.Stores;
 
-public class MainWindowViewModel : ViewModelBase
+namespace app.ViewModels;
+
+public class MainWindowViewModel : BaseViewModel
 {
     private readonly Window _parent;
 
+    public RestaurantCreateViewModel AcmVm { get; set; }
+    private readonly NavigationStore _navigationStore;
+    public BaseViewModel CurrentViewModel => _navigationStore.CurrentViewModel ;
+
     public MainWindowViewModel(Window parent)
     {
-        _parent = parent;
-        AcmVm = new RestaurantCreateViewModel(_parent);
+         _parent = parent;
+        _navigationStore = NavigationStore.Instance();
+        _navigationStore.CurrentViewModelChanged += OnCurrentViewModelChanged;
     }
-
-    public RestaurantCreateViewModel AcmVm { get; set; }
+    
+    private void OnCurrentViewModelChanged()
+    {
+        OnPropertyChanged(nameof(CurrentViewModel));
+    }
 }
