@@ -6,9 +6,21 @@ namespace app.Models;
 public class Sightseeing
 {
     protected string name;
-    protected DateTime time;
+    protected Time time;
+    protected DateTime date;
+    
+    public DateTimeOffset DateOffset
+    {
+        get => new DateTimeOffset(date);
+    }
 
-    public DateTime Time
+    public DateTime Date
+    {
+        get => date;
+        set => date = value;
+    }
+
+    public Time Time
     {
         get => time;
         set => time = value;
@@ -22,7 +34,7 @@ public class Sightseeing
 
     protected bool Equals(Sightseeing other)
     {
-        return name == other.name && time.Equals(other.time);
+        return name == other.name && time.Equals(other.time) && date.Equals(other.date);
     }
 
     public override bool Equals(object? obj)
@@ -35,7 +47,7 @@ public class Sightseeing
 
     public override int GetHashCode()
     {
-        return HashCode.Combine(name, time.ToString());
+        return HashCode.Combine(name, time, date);
     }
 
     public virtual string GetName()

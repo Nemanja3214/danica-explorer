@@ -9,6 +9,7 @@
     xmlns:dragNDrop="clr-namespace:app.DragNDrop;assembly=app"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:models="clr-namespace:app.Models;assembly=app"
+    xmlns:system="clr-namespace:System;assembly=System.Runtime"
     xmlns:viewModels="clr-namespace:app.ViewModels;assembly=app"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <Design.DataContext>
@@ -42,6 +43,12 @@
     </UserControl.Styles>
 
     <StackPanel>
+        <!-- <ItemsControl> -->
+        <!--     <DatePicker /> -->
+        <!-- </ItemsControl> -->
+        <!-- <ListBoxItem> -->
+        <!--     <DatePicker /> -->
+        <!-- </ListBoxItem> -->
         <TextBlock Text="{Binding Title}" TextAlignment="Center" />
         <Grid ColumnDefinitions="*, *" RowDefinitions="*">
             <ListBox
@@ -50,18 +57,36 @@
                 Grid.Column="0"
                 Grid.Row="0"
                 Items="{Binding AddedItems}"
-                Margin="30"
-                Name="lv"
-                Width="400">
+                Margin="10"
+                Name="lv">
                 <ListBox.ItemTemplate>
                     <DataTemplate DataType="models:Sightseeing">
-                        <Grid ColumnDefinitions="*, *" RowDefinitions="*">
-                            <TextBlock Grid.Column="0" Text="{Binding Name}" />
+                        <Grid ColumnDefinitions="Auto, Auto, Auto, *" RowDefinitions="*">
+                            <TextBlock
+                                Grid.Column="0"
+                                HorizontalAlignment="Center"
+                                Margin="5"
+                                Text="{Binding Name}"
+                                TextAlignment="Center"
+                                VerticalAlignment="Center" />
+                            <TimePicker
+                                Grid.Column="1"
+                                Margin="5"
+                                SelectedTime="{Binding Time}" />
+                            <DatePicker
+                                DayVisible="False"
+                                Focusable="True"
+                                Grid.Column="2"
+                                Margin="5"
+                                SelectedDate="{Binding DateOffset}"
+                                YearVisible="True"
+                                ZIndex="100" />
                             <Button
                                 Command="{Binding DataContext.RemoveCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ListBox}}}"
                                 CommandParameter="{Binding RelativeSource={RelativeSource Self}}"
-                                Grid.Column="1"
-                                HorizontalAlignment="Right">
+                                Grid.Column="3"
+                                HorizontalAlignment="Right"
+                                Margin="5">
                                 X
                             </Button>
                         </Grid>
@@ -72,13 +97,10 @@
             <StackPanel
                 Grid.Column="1"
                 Grid.Row="0"
-                HorizontalAlignment="Center"
+                HorizontalAlignment="Stretch"
                 Margin="30">
                 <TextBox Text="{Binding Query}" />
-                <ListBox
-                    Classes="Drag"
-                    Items="{Binding OptionItems}"
-                    Width="400">
+                <ListBox Classes="Drag" Items="{Binding OptionItems}">
                     <ListBox.ItemTemplate>
                         <DataTemplate DataType="models:Sightseeing">
                             <Grid ColumnDefinitions="*" RowDefinitions="*">
