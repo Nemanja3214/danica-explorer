@@ -17,5 +17,7 @@ public partial class User
 
     public bool? Isagent { get; set; }
 
+    public bool? Isdeleted { get; set; }
+
     public virtual ICollection<Reservation> Reservations { get; set; } = new List<Reservation>();
 }

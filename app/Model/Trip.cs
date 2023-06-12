@@ -19,6 +19,8 @@ public partial class Trip
 
     public byte[]? Image { get; set; }
 
+    public bool? Isdeleted { get; set; }
+
     public virtual ICollection<Reservation> Reservations { get; set; } = new List<Reservation>();
 
     public virtual ICollection<TripAttraction> TripAttractions { get; set; } = new List<TripAttraction>();

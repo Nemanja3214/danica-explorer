@@ -11,6 +11,8 @@ public partial class Location
 
     public double? Longitude { get; set; }
 
+    public bool? Isdeleted { get; set; }
+
     public virtual ICollection<Attraction> Attractions { get; set; } = new List<Attraction>();
 
     public virtual ICollection<Service> Services { get; set; } = new List<Service>();

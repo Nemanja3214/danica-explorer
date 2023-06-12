@@ -13,6 +13,8 @@ public partial class Reservation
 
     public int? TripId { get; set; }
 
+    public bool? Isdeleted { get; set; }
+
     public virtual Trip? Trip { get; set; }
 
     public virtual User? User { get; set; }

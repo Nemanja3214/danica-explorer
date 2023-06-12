@@ -17,6 +17,8 @@ public partial class Service
 
     public bool? Ishotel { get; set; }
 
+    public bool? Isdeleted { get; set; }
+
     public virtual Location? Location { get; set; }
 
     public virtual ICollection<TripService> TripServices { get; set; } = new List<TripService>();

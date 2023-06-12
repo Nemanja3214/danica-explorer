@@ -11,6 +11,8 @@ public partial class TripService
 
     public int? TripId { get; set; }
 
+    public bool? Isdeleted { get; set; }
+
     public virtual Service? Service { get; set; }
 
     public virtual Trip? Trip { get; set; }

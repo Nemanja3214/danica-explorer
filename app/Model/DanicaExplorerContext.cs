@@ -48,6 +48,7 @@ public partial class DanicaExplorerContext : DbContext
                 .HasMaxLength(255)
                 .HasColumnName("description");
             entity.Property(e => e.Image).HasColumnName("image");
+            entity.Property(e => e.Isdeleted).HasColumnName("isdeleted");
             entity.Property(e => e.LocationId).HasColumnName("location_id");
             entity.Property(e => e.Title)
                 .HasMaxLength(255)
@@ -65,6 +66,7 @@ public partial class DanicaExplorerContext : DbContext
             entity.ToTable("locations");
 
             entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.Isdeleted).HasColumnName("isdeleted");
             entity.Property(e => e.Latitude).HasColumnName("latitude");
             entity.Property(e => e.Longitude).HasColumnName("longitude");
         });
@@ -77,6 +79,7 @@ public partial class DanicaExplorerContext : DbContext
 
             entity.Property(e => e.Id).HasColumnName("id");
             entity.Property(e => e.Date).HasColumnName("date");
+            entity.Property(e => e.Isdeleted).HasColumnName("isdeleted");
             entity.Property(e => e.TripId).HasColumnName("trip_id");
             entity.Property(e => e.UserId).HasColumnName("user_id");
 
@@ -100,6 +103,7 @@ public partial class DanicaExplorerContext : DbContext
                 .HasMaxLength(255)
                 .HasColumnName("description");
             entity.Property(e => e.Image).HasColumnName("image");
+            entity.Property(e => e.Isdeleted).HasColumnName("isdeleted");
             entity.Property(e => e.Ishotel).HasColumnName("ishotel");
             entity.Property(e => e.LocationId).HasColumnName("location_id");
             entity.Property(e => e.Title)
@@ -123,6 +127,7 @@ public partial class DanicaExplorerContext : DbContext
                 .HasColumnName("description");
             entity.Property(e => e.Durationindays).HasColumnName("durationindays");
             entity.Property(e => e.Image).HasColumnName("image");
+            entity.Property(e => e.Isdeleted).HasColumnName("isdeleted");
             entity.Property(e => e.Price).HasColumnName("price");
             entity.Property(e => e.Startdate).HasColumnName("startdate");
             entity.Property(e => e.Title)
@@ -138,6 +143,7 @@ public partial class DanicaExplorerContext : DbContext
 
             entity.Property(e => e.Id).HasColumnName("id");
             entity.Property(e => e.AttractionId).HasColumnName("attraction_id");
+            entity.Property(e => e.Isdeleted).HasColumnName("isdeleted");
             entity.Property(e => e.TripId).HasColumnName("trip_id");
 
             entity.HasOne(d => d.Attraction).WithMany(p => p.TripAttractions)
@@ -156,6 +162,7 @@ public partial class DanicaExplorerContext : DbContext
             entity.ToTable("trip_service");
 
             entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.Isdeleted).HasColumnName("isdeleted");
             entity.Property(e => e.ServiceId).HasColumnName("service_id");
             entity.Property(e => e.TripId).HasColumnName("trip_id");
 
@@ -174,11 +181,14 @@ public partial class DanicaExplorerContext : DbContext
 
             entity.ToTable("users");
 
+            entity.HasIndex(e => e.Email, "users_email_key").IsUnique();
+
             entity.Property(e => e.Id).HasColumnName("id");
             entity.Property(e => e.Email)
                 .HasMaxLength(255)
                 .HasColumnName("email");
             entity.Property(e => e.Isagent).HasColumnName("isagent");
+            entity.Property(e => e.Isdeleted).HasColumnName("isdeleted");
             entity.Property(e => e.Name)
                 .HasMaxLength(255)
                 .HasColumnName("name");
