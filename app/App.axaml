@@ -91,6 +91,6 @@
         <DataTemplate DataType="{x:Type vm:AllHotelsViewModel}">
             <views:AllHotelsWindow />
         </DataTemplate>
-	</Application.DataTemplates>
+    </Application.DataTemplates>
 
 </Application>

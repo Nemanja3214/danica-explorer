@@ -9,10 +9,10 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:global="clr-namespace:;assembly=app"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:trip="clr-namespace:app.Views.Trip;assembly=app"
     xmlns:views="clr-namespace:app.Views"
     xmlns:vm="using:app.ViewModels"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    <!-- <views:TripCreate /> -->
     <Grid>
         <Grid.DataTemplates>
             <DataTemplate DataType="{x:Type vm:LandingViewModel}">

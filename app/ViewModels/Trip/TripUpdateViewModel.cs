@@ -22,18 +22,17 @@ using Location = app.Model.Location;
 
 namespace app.ViewModels;
 
-public class TripCreateViewModel : BaseViewModel
+public class TripUpdateViewModel
 {
-    
-    private Trip _toUpdate;
+    private Trip _tripToUpdate;
 
-    public Trip ToUpdate
+    public Trip TripToUpdate
     {
-        get => _toUpdate;
-        set => _toUpdate = value ?? throw new ArgumentNullException(nameof(value));
+        get => _tripToUpdate;
+        set { _tripToUpdate = value ?? throw new ArgumentNullException(nameof(value)); }
     }
 
-    public TripCreateViewModel()
+    public TripUpdateViewModel()
     {
         HotelVm = new DragNDropViewModel("Hotels", GetHotelItems);
         HotelVm.IsHotel = true;
@@ -69,42 +68,20 @@ public class TripCreateViewModel : BaseViewModel
         
         _saveCommand = ReactiveCommand.Create<Unit>(e =>
         {
-            Trip t = FormTrip();
-         
-
-            if (_toUpdate == null)
-            {
-                t = Locator.Current.GetService<ITripService>().Create(t);
-                IEnumerable<Attraction> attractions = AttractionVm.AddedItems.Select(sightseeing => (Attraction) sightseeing);
-                t.TripAttractions = attractions.Select(attraction => new TripAttraction(attraction.Id, t.Id)).ToList();
-                t.TripAttractions.Select(ta => Locator.Current.GetService<ITripAttractionService>().Create(ta));
+            FormTrip();
+            _tripToUpdate = Locator.Current.GetService<ITripService>().Update(_tripToUpdate);
+            
+            IEnumerable<Attraction> attractions = AttractionVm.AddedItems.Select(sightseeing => (Attraction) sightseeing);
+            _tripToUpdate.TripAttractions = attractions.Select(attraction => new TripAttraction(attraction.Id, _tripToUpdate.Id)).ToList();
+            _tripToUpdate.TripAttractions.Select(ta => Locator.Current.GetService<ITripAttractionService>().Create(ta));
         
-                IEnumerable<Service> services = RestaurantVm.AddedItems.Concat(HotelVm.AddedItems)
-                    .Select(sightseeing => (Service) sightseeing);
-                t.TripServices = services.Select(service => new TripService(service.Id, t.Id)).ToList();
-                t.TripServices.Select(ts => Locator.Current.GetService<ITripServiceService>().Create(ts));
-            }
-            else
-            {
-                t = Locator.Current.GetService<ITripService>().Update(t);
-                IEnumerable<Attraction> attractions = AttractionVm.AddedItems
-                    .Where(a => !t.TripAttractions.Select(ta => ta.Attraction).Contains(a)) 
-                    .Select(sightseeing => (Attraction) sightseeing);
-
-                attractions = (AttractionVm.AddedItems.Except(t.TripAttractions.Select(ta => ta.Attraction))).Select(a => a as Attraction);
-                t.TripAttractions = attractions.Select(attraction => new TripAttraction(attraction.Id, t.Id)).ToList();
-                t.TripAttractions.Select(ta => Locator.Current.GetService<ITripAttractionService>().Create(ta));
-        
-                IEnumerable<Service> services = RestaurantVm.AddedItems.Concat(HotelVm.AddedItems)
-                    .Select(sightseeing => (Service) sightseeing);
-                services = (RestaurantVm.AddedItems.Concat(HotelVm.AddedItems).Except(t.TripServices.Select(ts => ts.Service))).Select(a => a as Service);
-                t.TripServices = services.Select(service => new TripService(service.Id, t.Id)).ToList();
-                t.TripServices.Select(ts => Locator.Current.GetService<ITripServiceService>().Create(ts));
-            }
-          
+            IEnumerable<Service> services = RestaurantVm.AddedItems.Concat(HotelVm.AddedItems)
+                .Select(sightseeing => (Service) sightseeing);
+            _tripToUpdate.TripServices = services.Select(service => new TripService(service.Id, _tripToUpdate.Id)).ToList();
+            _tripToUpdate.TripServices.Select(ts => Locator.Current.GetService<ITripServiceService>().Create(ts));
             
             PreviousTrip = CurrentTrip;
-            CurrentTrip = t;
+            CurrentTrip = _tripToUpdate;
         });
 
     }
@@ -113,16 +90,17 @@ public class TripCreateViewModel : BaseViewModel
 
     public TripCreateFormViewModel Tvm { get; set; }
 
-    private Trip FormTrip()
+    private async Task<Trip> FormTrip()
     {
-        Trip t = _toUpdate != null ? _toUpdate : new Trip();
-        t.Title = Tvm.Title;
-        t.Description = Tvm.Description;
-        t.Durationindays = Tvm.Lasting;
-        t.Price = Tvm.Price;
-        t.Image = UploadViewModel.ImageToByte(Uvm.ImageToView);
+        IEnumerable<Trip> trips = await Locator.Current.GetService<ITripService>().GetAll();
+        _tripToUpdate = trips.FirstOrDefault();
+        _tripToUpdate.Title = Tvm.Title;
+        _tripToUpdate.Description = Tvm.Description;
+        _tripToUpdate.Durationindays = Tvm.Lasting;
+        _tripToUpdate.Price = Tvm.Price;
+        _tripToUpdate.Image = UploadViewModel.ImageToByte(Uvm.ImageToView);
       
-        return t;
+        return _tripToUpdate;
     }
 
     public MapViewModel MapVm { get; set; }
