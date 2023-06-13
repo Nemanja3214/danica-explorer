@@ -60,6 +60,16 @@ public class TripCreateViewModel
         {
             Trip t = FormTrip();
             t = Locator.Current.GetService<ITripService>().Create(t);
+            
+            IEnumerable<Attraction> attractions = AttractionVm.AddedItems.Select(sightseeing => (Attraction) sightseeing);
+            t.TripAttractions = attractions.Select(attraction => new TripAttraction(attraction.Id, t.Id)).ToList();
+            attractions.Select(a => Locator.Current.GetService<IAttractionService>().Create(a));
+        
+            IEnumerable<Service> services = RestaurantVm.AddedItems.Concat(HotelVm.AddedItems)
+                .Select(sightseeing => (Service) sightseeing);
+            t.TripServices = services.Select(service => new TripService(service.Id, t.Id)).ToList();
+            services.Select(s => Locator.Current.GetService<IServiceService>().Create(s));
+            
             PreviousTrip = CurrentTrip;
             CurrentTrip = t;
         });
@@ -75,12 +85,10 @@ public class TripCreateViewModel
         Trip t = new Trip();
         t.Title = Tvm.Title;
         t.Description = Tvm.Description;
-        // t.Durationindays
-        // t.Price
+        t.Durationindays = Tvm.Lasting;
+        t.Price = Tvm.Price;
         t.Image = UploadViewModel.ImageToByte(Uvm.ImageToView);
-        // t.TripAttractions = AttractionVm.AddedItems;
-        // t.TripServices = RestaurantVm.AddedItems.Concat(HotelVm.AddedItems);
-
+      
         return t;
     }
 
@@ -97,15 +105,15 @@ public class TripCreateViewModel
         MapVm.Points.Clear();
         foreach (var item in AttractionVm.AddedItems)
         {
-            MapVm.Points.Add(SphericalMercator.FromLonLat(item.GetLocation().Longitude, item.GetLocation().Latitude).ToMPoint());
+            MapVm.Points.Add(SphericalMercator.FromLonLat(item.Location.Longitude, item.Location.Latitude).ToMPoint());
         }
         foreach (var item in RestaurantVm.AddedItems)
         {
-            MapVm.Points.Add(SphericalMercator.FromLonLat(item.GetLocation().Longitude, item.GetLocation().Latitude).ToMPoint());
+            MapVm.Points.Add(SphericalMercator.FromLonLat(item.Location.Longitude, item.Location.Latitude).ToMPoint());
         }
         foreach (var item in HotelVm.AddedItems)
         {
-            MapVm.Points.Add(SphericalMercator.FromLonLat(item.GetLocation().Longitude, item.GetLocation().Latitude).ToMPoint());
+            MapVm.Points.Add(SphericalMercator.FromLonLat(item.Location.Longitude, item.Location.Latitude).ToMPoint());
         }
     }
     
@@ -115,7 +123,7 @@ public class TripCreateViewModel
             return;
         ISigthSeeing item = (ISigthSeeing)sender;
         MapVm.SelectedSphericalMercatorCoordinate =
-            SphericalMercator.FromLonLat(item.GetLocation().Longitude, item.GetLocation().Latitude).ToMPoint();
+            SphericalMercator.FromLonLat(item.Location.Longitude, item.Location.Latitude).ToMPoint();
         MapVm.RefreshPins();
     }
     
@@ -160,11 +168,13 @@ public class TripCreateViewModel
             new Service()
             {
                 Title = "dqwd",
+                Id = 0,
                 Location = new Location(21.005859, 44.016521)
             },
             new Service()
             {
                 Title = "azxcaw",
+                Id = 1,
                 Location = new Location(22.005859, 44.016521)
             }
         };
@@ -179,11 +189,13 @@ public class TripCreateViewModel
             new Service()
             {
                 Title = "yutyu",
+                Id = 0,
                 Location = new Location(23.005859, 44.016521)
             },
             new Service()
             {
                 Title = "werw",
+                Id = 1,
                 Location = new Location(24.005859, 44.016521)
             }
         };
@@ -197,11 +209,13 @@ public class TripCreateViewModel
             new Attraction()
             {
                 Title = "yutyu",
+                Id = 0,
                 Location = new Location(25.005859, 44.016521)
             },
             new Attraction()
             {
                 Title = "werw",
+                Id = 1,
                 Location = new Location(26.005859, 44.016521)
             }
         };

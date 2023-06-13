@@ -1,7 +1,7 @@
 namespace app.Model;
 
-public abstract class ISigthSeeing
+public partial class ISigthSeeing
 {
-    public abstract string GetName();
-    public abstract Location GetLocation();
+    public virtual Location? Location { get; set; }
+    public string? Title { get; set; }
 }

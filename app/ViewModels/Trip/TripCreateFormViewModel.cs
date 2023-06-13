@@ -29,4 +29,5 @@ public class TripCreateFormViewModel : BaseViewModel
     
     public DateTime SelectedDate { get; set; }
     public Double Price { get; set; }
+    public int Lasting { get; set; }
 }

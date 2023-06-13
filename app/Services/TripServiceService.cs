@@ -3,7 +3,6 @@ using app.Repositories.Interfaces;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using app.Services.Interfaces;
-using app.Models;
 
 namespace app.Services;
 

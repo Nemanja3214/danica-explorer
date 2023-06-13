@@ -15,65 +15,67 @@
         <viewModels:TripCreateViewModel />
     </UserControl.DataContext>
 
-        <ScrollViewer Padding="20">
-            <StackPanel>
+    <ScrollViewer Padding="20">
+        <StackPanel>
 
-        <TextBlock TextAlignment="Center"
-                   VerticalAlignment="Center"
-                   FontWeight="Bold"
-                   FontSize="32"
-                   Text="Kreiranje putovanja"
-                   Margin="0 0 0 20"/>
-        <Grid ColumnDefinitions="*" RowDefinitions="*, *">
-            <Grid ColumnDefinitions="2*, 3*" Grid.Row="0">
-                <views:UploadPicture DataContext="{Binding Uvm}" Grid.Column="0" />
-                <trip:TripCreateForm Grid.Column="1" />
-            </Grid>
-                <Grid  Grid.Row="1"  ColumnDefinitions="2*, 3*"> 
-                    <views:MapComponent
-                        DataContext="{Binding MapVm}"
-                        Height="800" />
-                <StackPanel Grid.Column="1">
-                    <TextBlock TextAlignment="Center"
-                                       VerticalAlignment="Center"
-                                       FontSize="22"
-                                       Text="Dodajte atrakcije, hotele, restorane..."
-                                       Margin="0 20 0 0 "
-                                       TextWrapping="Wrap"/>
-                    <TextBlock TextAlignment="Center"
-                               VerticalAlignment="Center"
-                               FontSize="18"
-                               FontWeight="SemiLight"
-                               Text="Pretražite, a zatim izaberite i prevucite"
-                               Margin="0 0 0 20"
-                               TextWrapping="Wrap"/>
-                    <Grid  RowDefinitions="*, *, *, *">
-                        <views:DragNDrop DataContext="{Binding AttractionVm}" Grid.Row="0" />
-                        <views:DragNDrop DataContext="{Binding HotelVm}" Grid.Row="1" />
-                        <views:DragNDrop DataContext="{Binding RestaurantVm}" Grid.Row="2" />
+            <TextBlock
+                FontSize="32"
+                FontWeight="Bold"
+                Margin="0,0,0,20"
+                Text="Kreiranje putovanja"
+                TextAlignment="Center"
+                VerticalAlignment="Center" />
+            <Grid ColumnDefinitions="*" RowDefinitions="*, *">
+                <Grid ColumnDefinitions="2*, 3*" Grid.Row="0">
+                    <views:UploadPicture DataContext="{Binding Uvm}" Grid.Column="0" />
+                    <trip:TripCreateForm Grid.Column="1" />
+                </Grid>
+                <Grid ColumnDefinitions="2*, 3*" Grid.Row="1">
+                    <views:MapComponent DataContext="{Binding MapVm}" Height="800" />
+                    <StackPanel Grid.Column="1">
+                        <TextBlock
+                            FontSize="22"
+                            Margin="0,20,0,0"
+                            Text="Dodajte atrakcije, hotele, restorane..."
+                            TextAlignment="Center"
+                            TextWrapping="Wrap"
+                            VerticalAlignment="Center" />
+                        <TextBlock
+                            FontSize="18"
+                            FontWeight="SemiLight"
+                            Margin="0,0,0,20"
+                            Text="Pretražite, a zatim izaberite i prevucite"
+                            TextAlignment="Center"
+                            TextWrapping="Wrap"
+                            VerticalAlignment="Center" />
+                        <Grid RowDefinitions="*, *, *, *">
+                            <views:DragNDrop DataContext="{Binding AttractionVm}" Grid.Row="0" />
+                            <views:DragNDrop DataContext="{Binding HotelVm}" Grid.Row="1" />
+                            <views:DragNDrop DataContext="{Binding RestaurantVm}" Grid.Row="2" />
                             <Button
+                                Background="#15B7B9"
+                                Command="{Binding SaveCommand}"
+                                FontSize="16"
+                                FontWeight="SemiBold"
+                                Foreground="White"
                                 Grid.Row="3"
                                 HorizontalAlignment="Center"
-                                Width="200"
-                                Background="#15B7B9"
-                                Foreground="White"
-                                FontWeight="SemiBold"
-                                FontSize="16"
                                 HorizontalContentAlignment="Center"
-                                Margin="20">
+                                Margin="20"
+                                Width="200">
                                 <Border Padding="10">
                                     <TextBlock>
                                         SAČUVAJ IZMENE
                                     </TextBlock>
                                 </Border>
                             </Button>
-                    </Grid>
-                </StackPanel>
-                    </Grid>
-        </Grid>
-                </StackPanel>
+                        </Grid>
+                    </StackPanel>
+                </Grid>
+            </Grid>
+        </StackPanel>
     </ScrollViewer>
-        
+
     <UserControl.KeyBindings>
         <KeyBinding Command="{Binding SaveCommand}" Gesture="{Binding SaveGesture}" />
         <KeyBinding Command="{Binding UndoCommand}" Gesture="{Binding UndoGesture}" />

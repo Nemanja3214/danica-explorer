@@ -7,7 +7,7 @@ public partial class Attraction : ISigthSeeing
 {
     public int Id { get; set; }
 
-    public string? Title { get; set; }
+  
 
     public string? Description { get; set; }
 
@@ -17,17 +17,8 @@ public partial class Attraction : ISigthSeeing
 
     public bool? Isdeleted { get; set; }
 
-    public virtual Location? Location { get; set; }
+
 
     public virtual ICollection<TripAttraction> TripAttractions { get; set; } = new List<TripAttraction>();
-
-    public override string GetName()
-    {
-        return Title;
-    }
-
-    public override Location GetLocation()
-    {
-        return Location;
-    }
+    
 }

@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using app.DragNDrop;
 using app.Model;
-using app.Models;
 using app.Utils;
 using Avalonia.Controls;
 using Avalonia.Controls.Selection;
