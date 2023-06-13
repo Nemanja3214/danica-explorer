@@ -45,6 +45,7 @@
                 Grid.Column="1"
                 HorizontalAlignment="Center"
                 HorizontalContentAlignment="Center"
+                IsEnabled="{Binding Form.ButtonEnabled}"
                 Width="200">
                 <Border Padding="10">
                     <TextBlock>

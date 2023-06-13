@@ -18,6 +18,8 @@ using Avalonia.Metadata;
 using Avalonia.Threading;
 using ExCSS;
 using ReactiveUI;
+using ReactiveValidation;
+using ReactiveValidation.Extensions;
 
 namespace app.ViewModels;
 
@@ -90,12 +92,25 @@ public class AttractionCreateFormViewModel :BaseViewModel, INotifyPropertyChange
         set
         {
             _selectedLocation = value;
+            IsButtonEnabled();
             LocationChanged?.Invoke(this, EventArgs.Empty); 
         }
     }
 
     public string Description { get; set; }
-    public string AttractionName { get; set; }
+
+    private string _attractionName;
+    
+    public string AttractionName
+    {
+        get => _attractionName;
+        set
+        {
+            _attractionName = value;
+            IsButtonEnabled();
+            OnPropertyChanged(nameof(AttractionName));
+        }
+    }
 
 
     private async void UpdateSuggestions()
@@ -111,13 +126,42 @@ public class AttractionCreateFormViewModel :BaseViewModel, INotifyPropertyChange
             }
         });
     }
-    
-    
-
 
     public AttractionCreateFormViewModel()
     {
         GeneratedCompletes = new ObservableCollection<LocationDTO>();
+        Validator = GetValidator();
+    }
+    
+      
+    private IObjectValidator GetValidator()
+    {
+        var builder = new ValidationBuilder<AttractionCreateFormViewModel>();
+
+        builder.RuleFor(vm => vm.AttractionName)
+            .NotEmpty()
+            .WithMessage("Obavezno polje")
+            .AllWhen(vm => vm.AttractionName != null);
+
+        //builder.RuleFor(vm => vm.Query)
+        //    .Must(validLocation)
+        //    .WithMessage("Obavezno polje")
+        //    .AllWhen(vm => vm.SelectedLocation == null && vm.Query != null);
+
+        return builder.Build(this);
+    }
+
+    private bool validLocation(string? query)
+    {
+        return SelectedLocation != null;
+    }
+
+    public bool ButtonEnabled { get; set; }
+
+    public void IsButtonEnabled()
+    {
+        ButtonEnabled = AttractionName != null && AttractionName.Length > 0 && SelectedLocation != null;
+        OnPropertyChanged(nameof(ButtonEnabled));
     }
     
 }

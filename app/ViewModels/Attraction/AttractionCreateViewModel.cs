@@ -13,6 +13,8 @@ using Mapsui;
 using Mapsui.Extensions;
 using Mapsui.Projections;
 using ReactiveUI;
+using ReactiveValidation;
+using ReactiveValidation.Extensions;
 using Location = app.Model.Location;
 using Splat;
 
@@ -112,4 +114,5 @@ public class AttractionCreateViewModel : BaseViewModel
         
         return a;
     }
+  
 }
