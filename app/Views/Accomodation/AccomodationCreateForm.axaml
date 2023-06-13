@@ -15,6 +15,7 @@
         <TextBox
             KeyboardNavigation.TabNavigation="Contained"
             Margin="10"
+            Watermark="Naziv smestaja (obavezno)"
             Text="{Binding Title}" />
         <viewModels:RatingControl
             Focusable="True"
@@ -38,6 +39,7 @@
             <TextBox
                 Grid.Row="0"
                 Margin="10"
+                Watermark="Lokacija (Obavezno)"
                 Text="{Binding Query}"
                 x:Name="SearchBox" />
             <ListBox
@@ -59,6 +61,7 @@
             Height="100"
             Margin="10"
             Name="tbMultiLine"
+            Watermark="Opis smestaja"
             Text="{Binding Description}"
             TextWrapping="Wrap" />
     </StackPanel>

@@ -50,7 +50,7 @@ public class TripCardViewModel : BaseViewModel
         BookCommand = new BookCommand(this);
         LearnMoreCommand = new TripDetailsCommand(this);
         SelectedTrip = trip;
-        _imageSource = "../Assets/banner.png";
+        _imageSource = "../Assets/tripimage.jpeg";
         _tripName = trip.Title;
         if (_tripName.Length > 30)
         {

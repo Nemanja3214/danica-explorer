@@ -59,7 +59,7 @@ public class AccomodationCreateFormViewModel :BaseViewModel
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
 
-    private string _query = "Location";
+    private string _query = "";
 
     public string Query
     {
@@ -95,7 +95,8 @@ public class AccomodationCreateFormViewModel :BaseViewModel
         set
         {
             _selectedLocation = value;
-            LocationChanged?.Invoke(this, EventArgs.Empty); 
+            LocationChanged?.Invoke(this, EventArgs.Empty);
+            IsButtonEnabled();
         }
     }
 
@@ -133,7 +134,18 @@ public class AccomodationCreateFormViewModel :BaseViewModel
 
     public ReactiveCommand<EventArgs, Unit> LowerRating => _lowerRating;
     public string Description { get; set; }
-    public string Title { get; set; }
+
+    private string _title;
+    public string Title
+    {
+        get => _title;
+        set
+        {
+            _title = value;
+            OnPropertyChanged(nameof(Title));
+            IsButtonEnabled();
+        }
+    }
 
 
     private IObjectValidator GetValidator()
@@ -160,6 +172,14 @@ public class AccomodationCreateFormViewModel :BaseViewModel
             .AllWhen(vm => vm.RatingValue != null);
 
         return builder.Build(this);
+    }
+
+    public bool ButtonEnabled { get; set; }
+
+    public void IsButtonEnabled()
+    {
+        ButtonEnabled = Title != null && Title.Length > 0 && SelectedLocation != null;
+        OnPropertyChanged(nameof(ButtonEnabled));
     }
 
 }

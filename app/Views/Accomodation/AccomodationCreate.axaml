@@ -29,11 +29,12 @@
                 Command="{Binding SaveCommand}"
                 Grid.ColumnSpan="2"
                 Grid.Row="1"
+                IsEnabled="{Binding Form.ButtonEnabled}"
                 HorizontalAlignment="Right"
                 Margin="30">
                 <Border Padding="10">
                     <TextBlock>
-                        Save
+                        Sacuvaj
                     </TextBlock>
                 </Border>
             </Button>

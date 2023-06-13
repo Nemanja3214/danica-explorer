@@ -16,6 +16,6 @@ public class AllAccomodationsCommand: BaseCommand
     }
     public override void Execute(object parameter)
     {
-        _navigation.CurrentViewModel = Locator.Current.GetService<RestaurantCreateViewModel>();
+        _navigation.CurrentViewModel = Locator.Current.GetService<AllHotelsViewModel>();
     }
 }

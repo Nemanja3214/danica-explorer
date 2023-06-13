@@ -23,7 +23,7 @@ namespace app.ViewModels;
      
         public RatingControl() 
         { 
-            KeyboardNavigation.TabNavigationProperty.OverrideMetadata(typeof(RatingControl), new StyledPropertyMetadata<KeyboardNavigationMode>(KeyboardNavigationMode.Local));
+          //  KeyboardNavigation.TabNavigationProperty.OverrideMetadata(typeof(RatingControl), new StyledPropertyMetadata<KeyboardNavigationMode>(KeyboardNavigationMode.Local));
             // When a new instance of the control is created, we need to update the rating stars visible
             UpdateStars();
         }
