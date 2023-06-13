@@ -14,8 +14,18 @@ public class BaseViewModel : ValidatableObject, INotifyPropertyChanged
     public bool IsSessionActive => CurrentUser != null;
     public bool IsSessionNotActive => CurrentUser == null;
     public bool IsAgentSessionActive => CurrentUser != null && CurrentUser.Isagent;
-    public string WelcomeMessage => "Dobrodošli, " + CurrentUser.Name + " !";
-    
+    public string WelcomeMessage
+    {
+        get
+        {
+            if (CurrentUser == null)
+            {
+                return "";
+            }
+            return "Dobrodošli, " + CurrentUser.Name + " !";
+        }
+    }
+
     public BaseViewModel()
     {
         NavigationStore.Instance().CurrentUserChanged += OnCurrentUserChanged;

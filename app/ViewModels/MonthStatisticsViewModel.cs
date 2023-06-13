@@ -1,6 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using app.Model;
+using app.Services.Interfaces;
 using Splat;
+using TripService = app.Services.TripService;
 
 namespace app.ViewModels;
 
@@ -29,9 +33,18 @@ public class MonthStatisticsViewModel : BaseViewModel
     {
         _selectedDate = DateTime.Now;
         _trips = new ObservableCollection<MonthStatisticsItemViewModel>();
-        for (int i = 0; i < 20; i++)
+        GetTrips();
+
+    }
+
+    private async void GetTrips()
+    {
+        DateTime d = DateTime.Now.AddMonths(-1);
+        IEnumerable<Trip> trips = await Locator.Current.GetService<ITripService>().GetAllForMonth(d);
+
+        foreach (var trip in trips)
         {
-            _trips.Add(Locator.Current.GetService<MonthStatisticsItemViewModel>());
+            _trips.Add(new MonthStatisticsItemViewModel(trip));
         }
     }
 }

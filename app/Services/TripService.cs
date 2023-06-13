@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using app.Model;
 using app.Repositories.Interfaces;
@@ -18,6 +20,13 @@ public class TripService : ITripService
     public async Task<IEnumerable<Trip>> GetAll()
     {
         return await _tripRepository.GetAll();
+    }
+
+    public async Task<IEnumerable<Trip>> GetAllForMonth(DateTime dateTime)
+    {
+        IEnumerable<Trip> data = await _tripRepository.GetAll();
+
+        return data.Where(x => x.Startdate.Value.CompareTo(DateOnly.FromDateTime(dateTime)) > 0);
     }
 
     public async Task<Trip> GetById(int id)

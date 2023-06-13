@@ -1,4 +1,6 @@
-﻿namespace app.ViewModels;
+﻿using app.Model;
+
+namespace app.ViewModels;
 
 public class MonthStatisticsItemViewModel : BaseViewModel
 {
@@ -20,5 +22,13 @@ public class MonthStatisticsItemViewModel : BaseViewModel
         _date = "01.01.2020";
         _price = "4500";
         _noOfBookings = "45";
+    }
+
+    public MonthStatisticsItemViewModel(Trip t)
+    {
+        _title = t.Title;
+        _date = t.Startdate.Value.ToString("dd.MM.yyyy.");
+        _price = "" + t.Price;
+        _noOfBookings = "" + t.Reservations.Count;
     }
 }
