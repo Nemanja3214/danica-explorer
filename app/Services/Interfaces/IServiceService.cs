@@ -5,7 +5,7 @@ using app.Repositories.Interfaces;
 
 namespace app.Services.Interfaces;
 
-public interface IServiceService : ISearchRepository<Service>
+public interface IServiceService
 {
     //getByID, getAll, create, update, delete
 

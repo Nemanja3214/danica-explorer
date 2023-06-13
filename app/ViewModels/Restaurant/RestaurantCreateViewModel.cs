@@ -71,7 +71,7 @@ public class RestaurantCreateViewModel : BaseViewModel
     public Service PreviousService
     {
         get => _previousService;
-        set => _previousService = value ?? throw new ArgumentNullException(nameof(value));
+        set => _previousService = value ;
     }
 
     public Service CurrentService

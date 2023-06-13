@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using app.DragNDrop;
 using app.Model;
-using app.Models;
 using app.Utils;
 using Avalonia.Controls;
 using Avalonia.Controls.Selection;
@@ -26,7 +25,7 @@ public class DragNDropViewModel
 {
     public event EventHandler SelectionChanged;
     
-    private Func<string, Task<List<ISigthSeeing>>> _getSuggestionsFunc;
+    private Func<string, bool, Task<List<ISigthSeeing>>> _getSuggestionsFunc;
     private ISigthSeeing _selected;
 
     public ISigthSeeing Selected
@@ -41,7 +40,7 @@ public class DragNDropViewModel
         }
     }
 
-    public DragNDropViewModel(string title, Func<string, Task<List<ISigthSeeing>>> updateFunc)
+    public DragNDropViewModel(string title, Func<string, bool, Task<List<ISigthSeeing>>> updateFunc)
     {
         _getSuggestionsFunc = updateFunc;
         Title = title;
@@ -100,6 +99,7 @@ public class DragNDropViewModel
     private ISigthSeeing _draggedItem;
     private bool _isDragging;
     public string _query;
+    public bool IsHotel;
     private readonly ReactiveCommand<ListBox, Unit> _dragNdropCommand;
     private readonly ReactiveCommand<ListBox, Unit> _moveCommand;
 
@@ -116,7 +116,7 @@ public class DragNDropViewModel
 
     private async void UpdateSuggestions()
     {
-        List<ISigthSeeing> locations = await _getSuggestionsFunc(_query);
+        List<ISigthSeeing> locations = await _getSuggestionsFunc(_query, IsHotel);
         locations = locations.Except(AddedItems).ToList();
 
         await Dispatcher.UIThread.InvokeAsync(() =>

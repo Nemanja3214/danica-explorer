@@ -5,6 +5,12 @@ namespace app.Model;
 
 public partial class TripService
 {
+    public TripService(int? serviceId, int? tripId)
+    {
+        ServiceId = serviceId;
+        TripId = tripId;
+    }
+
     public int Id { get; set; }
 
     public int? ServiceId { get; set; }

@@ -5,6 +5,12 @@ namespace app.Model;
 
 public partial class TripAttraction
 {
+    public TripAttraction(int? attractionId, int? tripId)
+    {
+        AttractionId = attractionId;
+        TripId = tripId;
+    }
+
     public int Id { get; set; }
 
     public int? AttractionId { get; set; }

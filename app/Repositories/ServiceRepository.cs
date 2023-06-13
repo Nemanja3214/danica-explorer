@@ -63,6 +63,6 @@ public class ServiceRepository : IServiceRepository
     
     public async Task<IEnumerable<Service>> Search(string input, bool isHotel)
     {
-        return await _context.Services.Where(entity => entity.Title.Contains(input) && entity.Ishotel.Equals(isHotel)).ToListAsync();
+        return await _context.Services.Include(s => s.Location).Where(entity => entity.Title.Contains(input) && entity.Ishotel.Equals(isHotel)).ToListAsync();
     }
 }

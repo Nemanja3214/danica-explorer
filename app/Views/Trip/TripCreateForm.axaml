@@ -14,38 +14,60 @@
     </UserControl.DataContext>
     <Border Padding="10">
         <StackPanel>
-            <TextBox Watermark="Naziv putovanja" Margin="10" Text="{Binding Title}" />
+            <TextBox
+                Margin="10"
+                Text="{Binding Title}"
+                Watermark="Naziv putovanja" />
             <TextBox
                 AcceptsReturn="True"
                 Height="100"
                 Margin="10"
                 Name="tbMultiLine"
-                Watermark="Opis putovanja"
                 Text="{Binding Description}"
-                TextWrapping="Wrap" />
+                TextWrapping="Wrap"
+                Watermark="Opis putovanja" />
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
-                    <ColumnDefinition Width="2*"></ColumnDefinition>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="2*" />
                 </Grid.ColumnDefinitions>
-                <TextBlock VerticalAlignment="Center" Margin="10" Text="Datum polaska: " />
+                <TextBlock
+                    Margin="10"
+                    Text="Datum polaska: "
+                    VerticalAlignment="Center" />
                 <DatePicker Grid.Column="1" Margin="10" />
             </Grid>
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
-                    <ColumnDefinition Width="2*"></ColumnDefinition>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="2*" />
                 </Grid.ColumnDefinitions>
-                <TextBlock VerticalAlignment="Center" Margin="10" Text="Trajanje u danima: " />
-                <NumericUpDown Grid.Column="1" VerticalAlignment="Center" Margin="10" HorizontalAlignment="Left"/>
+                <TextBlock
+                    Margin="10"
+                    Text="Trajanje u danima: "
+                    VerticalAlignment="Center" />
+                <NumericUpDown
+                    Grid.Column="1"
+                    HorizontalAlignment="Left"
+                    Margin="10"
+                    Value="{Binding Lasting}"
+                    VerticalAlignment="Center" />
             </Grid>
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
-                    <ColumnDefinition Width="2*"></ColumnDefinition>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="2*" />
                 </Grid.ColumnDefinitions>
-                <TextBlock VerticalAlignment="Center" Margin="10" Text="Cena u dinarima: " />
-                <NumericUpDown Grid.Column="1" VerticalAlignment="Center" Margin="10" HorizontalAlignment="Left"/>
+                <TextBlock
+                    Margin="10"
+                    Text="Cena u dinarima: "
+                    VerticalAlignment="Center" />
+                <NumericUpDown
+                    Grid.Column="1"
+                    HorizontalAlignment="Left"
+                    Margin="10"
+                    Value="{Binding Price}"
+                    VerticalAlignment="Center" />
             </Grid>
         </StackPanel>
     </Border>
