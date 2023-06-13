@@ -18,6 +18,8 @@ using Avalonia.Metadata;
 using Avalonia.Threading;
 using ExCSS;
 using ReactiveUI;
+using ReactiveValidation;
+using ReactiveValidation.Extensions;
 
 namespace app.ViewModels;
 
@@ -56,7 +58,7 @@ public class RestaurantCreateFormViewModel :BaseViewModel, INotifyPropertyChange
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
 
-    private string _query = "Location";
+    private string _query = null;
 
     public string Query
     {
@@ -89,12 +91,28 @@ public class RestaurantCreateFormViewModel :BaseViewModel, INotifyPropertyChange
         get => _selectedLocation;
         set
         {
-            _selectedLocation = value;
-            LocationChanged?.Invoke(this, EventArgs.Empty); 
+            if (value != null)
+            {
+                _selectedLocation = value;
+                Query = _query;
+                LocationChanged?.Invoke(this, EventArgs.Empty);
+                IsButtonEnabled();
+            }
         }
     }
 
-    public string RestaurantName { get; set; }
+    private string _restaurantName;
+    public string RestaurantName
+    {
+        get => _restaurantName;
+        set
+        {
+            _restaurantName = value;
+            IsButtonEnabled();
+            OnPropertyChanged(nameof(RestaurantName));
+        }
+    }
+
     public string Description { get; set; }
 
 
@@ -118,6 +136,36 @@ public class RestaurantCreateFormViewModel :BaseViewModel, INotifyPropertyChange
     public RestaurantCreateFormViewModel()
     {
         GeneratedCompletes = new ObservableCollection<LocationDTO>();
+        Validator = GetValidator();
     }
-    
+
+    private IObjectValidator GetValidator()
+    {
+        var builder = new ValidationBuilder<RestaurantCreateFormViewModel>();
+
+        builder.RuleFor(vm => vm.RestaurantName)
+            .NotEmpty()
+            .WithMessage("Obavezno polje")
+            .AllWhen(vm => vm.RestaurantName != null);
+
+        //builder.RuleFor(vm => vm.Query)
+        //    .Must(validLocation)
+        //    .WithMessage("Obavezno polje")
+        //    .AllWhen(vm => vm.SelectedLocation == null && vm.Query != null);
+
+        return builder.Build(this);
+    }
+
+    private bool validLocation(string? query)
+    {
+        return SelectedLocation != null;
+    }
+
+    public bool ButtonEnabled { get; set; }
+
+    public void IsButtonEnabled()
+    {
+        ButtonEnabled = RestaurantName != null && RestaurantName.Length > 0 && SelectedLocation != null;
+        OnPropertyChanged(nameof(ButtonEnabled));
+    }
 }

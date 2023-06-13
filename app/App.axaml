@@ -79,6 +79,12 @@
         <DataTemplate DataType="{x:Type vm:MyReservationsViewModel}">
             <views:MyReservations />
         </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:AllRestaurantsViewModel}">
+            <views:AllRestaurantsWindow />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:AllHotelsViewModel}">
+            <views:AllHotelsWindow />
+        </DataTemplate>
 	</Application.DataTemplates>
 
 </Application>

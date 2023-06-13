@@ -31,7 +31,7 @@ public partial class App : Application
             desktop.MainWindow = new MainWindow();
             MainWindowViewModel mwvm = new MainWindowViewModel(desktop.MainWindow);
             desktop.MainWindow.DataContext = mwvm;
-            _navigation.CurrentViewModel = Locator.Current.GetService<LandingViewModel>();
+            _navigation.CurrentViewModel = Locator.Current.GetService<AllHotelsViewModel>();
         }
 
     
