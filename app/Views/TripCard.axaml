@@ -1,0 +1,68 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:converter="clr-namespace:app.Converters"
+             xmlns:vm="using:app.ViewModels"
+             x:DataType="vm:TripCardViewModel"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="app.Views.TripCard">
+
+    <UserControl.Resources>
+        <converter:BitmapValueConverter x:Key="imageConverter"/>
+    </UserControl.Resources>
+
+    <Border Background="#EEF0F4"
+            CornerRadius="10"
+            Padding="0 0 10 0"
+            Margin="12"
+            BoxShadow="0 4 10 0 Gray">
+
+	<Grid MaxHeight="500">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="4*"></RowDefinition>
+            <RowDefinition Height="5*"></RowDefinition>
+		</Grid.RowDefinitions>
+
+        <Image Opacity="0.9" MaxWidth="250" Source="{Binding ImageSource, Converter={StaticResource imageConverter}}" />
+        <Grid Grid.Row="1" MaxWidth="250" HorizontalAlignment="Left"
+              Margin="10 20 0 20">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="2*"></RowDefinition>
+                    <RowDefinition Height="0.8*"></RowDefinition>
+                    <RowDefinition Height="0.8*"></RowDefinition>
+                    <RowDefinition Height="2*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Viewbox Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Center">
+                    <StackPanel Orientation="Vertical" HorizontalAlignment="Left" MaxWidth="250">
+                        <TextBlock  TextAlignment="Left"
+                                    Text="{Binding TripName}"
+                                    FontWeight="SemiBold"
+                                    TextWrapping="Wrap"/>
+                    </StackPanel>
+                </Viewbox>
+                <Viewbox HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Center">
+                    <TextBlock Margin="5 5 0 0" Text="{Binding TripDate}"/>
+                </Viewbox>
+                <Viewbox HorizontalAlignment="Left" Grid.Row="2" VerticalAlignment="Center">
+                    <TextBlock Margin="5 0 10 5" Text="{Binding TripPrice}"/>
+                </Viewbox>
+                <Grid Grid.Row="3">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                        <ColumnDefinition Width="0.8*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    
+                    <Viewbox Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center">
+                        <Button Background="#15B7B9" Foreground="White"
+                                IsVisible="{Binding IsSessionActive}"
+                                FontWeight="SemiBold" Command="{Binding BookCommand}" Margin="0 0 20 0">Rezervacija</Button>
+                    </Viewbox>
+                    <Viewbox Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center">
+                        <Button Background="Transparent" Foreground="Black" FontWeight="SemiBold" Command="{Binding LearnMoreCommand}" Margin="0 0 10 0">Saznaj više</Button>
+                    </Viewbox>
+                </Grid>
+            </Grid>
+        </Grid>
+    </Border>
+</UserControl>

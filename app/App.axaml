@@ -1,8 +1,99 @@
-<Application xmlns="https://github.com/avaloniaui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             x:Class="app.App">
+
+<Application
+    x:Class="app.App"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:trip="clr-namespace:app.Views.Trip;assembly=app"
+    xmlns:views="clr-namespace:app.Views"
+    xmlns:vm="using:app.ViewModels"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <Application.Styles>
-        <FluentTheme Mode="Light"/>
+        <StyleInclude Source="avares://app/Styles/RatingStyles.axaml" />
+        <FluentTheme Mode="Light" />
+        <Style Selector="TextBlock">
+            <Setter Property="FontFamily" Value="avares://app/Assets/Fonts/Poppins/#Poppins" />
+        </Style>
+        <Style Selector="Button">
+            <Setter Property="FontFamily" Value="avares://app/Assets/Fonts/Poppins/#Poppins" />
+        </Style>
+        <Style Selector="MenuItem">
+            <Setter Property="FontFamily" Value="avares://app/Assets/Fonts/Poppins/#Poppins" />
+        </Style>
     </Application.Styles>
+
+    <Application.DataTemplates>
+        <DataTemplate DataType="{x:Type vm:HelpViewModel}">
+            <views:Help />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:LandingViewModel}">
+            <views:LandingPage />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:AuthViewModel}">
+            <views:AuthPage />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:AllTripsViewModel}">
+            <views:AllTripsWindow />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:TripDetailsViewModel}">
+            <views:TripDetails />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:AllAttractionsViewModel}">
+            <views:AllAttractionsWindow />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:AttractionDetailsViewModel}">
+            <views:AttractionDetails />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:TripCreateViewModel}">
+            <views:TripCreate />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:TripCreateFormViewModel}">
+            <trip:TripCreateForm />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:UploadViewModel}">
+            <views:UploadPicture />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:AccomodationCreateViewModel}">
+            <views:AccomodationCreate />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:AccomodationCreateFormViewModel}">
+            <views:AccomodationCreateForm />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:RestaurantCreateViewModel}">
+            <views:RestaurantCreate />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:RestaurantCreateFormViewModel}">
+            <views:RestaurantCreateForm />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:AttractionCardViewModel}">
+            <views:AttractionCreate />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:AttractionCreateViewModel}">
+            <views:AttractionCreate />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:AttractionCreateFormViewModel}">
+            <views:AttractionCreateForm />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:MapViewModel}">
+            <views:MapComponent />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:DragNDropViewModel}">
+            <views:DragNDrop />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:TripStatisticsViewModel}">
+            <views:TripStatisticsWindow />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:MonthStatisticsViewModel}">
+            <views:MonthStatisticsWindow />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:MyReservationsViewModel}">
+            <views:MyReservations />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:AllRestaurantsViewModel}">
+            <views:AllRestaurantsWindow />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:AllHotelsViewModel}">
+            <views:AllHotelsWindow />
+        </DataTemplate>
+    </Application.DataTemplates>
+
 </Application>

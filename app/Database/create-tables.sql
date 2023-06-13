@@ -1,0 +1,85 @@
+DROP TABLE IF EXISTS RESERVATIONS;
+DROP TABLE IF EXISTS TRIP_SERVICE;
+DROP TABLE IF EXISTS TRIP_ATTRACTION;
+DROP TABLE IF EXISTS SERVICES;
+DROP TABLE IF EXISTS ATTRACTIONS;
+DROP TABLE IF EXISTS TRIPS;
+DROP TABLE IF EXISTS USERS;
+DROP TABLE IF EXISTS LOCATIONS;
+
+CREATE TABLE LOCATIONS (
+    id SERIAL PRIMARY KEY,
+    latitude DOUBLE PRECISION,
+    longitude DOUBLE PRECISION,
+    isDeleted BOOLEAN
+);
+
+CREATE TABLE USERS (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(255),
+    phone VARCHAR(255),
+    email VARCHAR(255) UNIQUE,
+    password VARCHAR(255),
+    isAgent BOOLEAN,
+    isDeleted BOOLEAN
+);
+
+CREATE TABLE TRIPS (
+    id SERIAL PRIMARY KEY,
+    title VARCHAR(255),
+    description VARCHAR(255),
+    startDate DATE,
+    durationInDays INT,
+    price DOUBLE PRECISION,
+    image BYTEA,
+    isDeleted BOOLEAN
+);
+
+CREATE TABLE ATTRACTIONS (
+    id SERIAL PRIMARY KEY,
+    title VARCHAR(255),
+    description VARCHAR(255),
+    image BYTEA,
+    location_id INT,
+    FOREIGN KEY (location_id) REFERENCES LOCATIONS(id),
+    isDeleted BOOLEAN
+);
+
+CREATE TABLE SERVICES (
+    id SERIAL PRIMARY KEY,
+    title VARCHAR(255),
+    description VARCHAR(255),
+    image BYTEA,
+    location_id INT,
+    isHotel BOOLEAN,
+    FOREIGN KEY (location_id) REFERENCES LOCATIONS(id),
+    isDeleted BOOLEAN
+);
+
+CREATE TABLE TRIP_ATTRACTION (
+    id SERIAL PRIMARY KEY,
+    attraction_id INT,
+    trip_id INT,
+    FOREIGN KEY (attraction_id) REFERENCES ATTRACTIONS(id),
+    FOREIGN KEY (trip_id) REFERENCES TRIPS(id),
+    isDeleted BOOLEAN
+);
+
+CREATE TABLE TRIP_SERVICE (
+    id SERIAL PRIMARY KEY,
+    service_id INT,
+    trip_id INT,
+    FOREIGN KEY (service_id) REFERENCES SERVICES(id),
+    FOREIGN KEY (trip_id) REFERENCES TRIPS(id),
+    isDeleted BOOLEAN
+);
+
+CREATE TABLE RESERVATIONS (
+    id SERIAL PRIMARY KEY,
+    date DATE,
+    user_id INT,
+    trip_id INT,
+    FOREIGN KEY (user_id) REFERENCES USERS(id),
+    FOREIGN KEY (trip_id) REFERENCES TRIPS(id),
+    isDeleted BOOLEAN
+);

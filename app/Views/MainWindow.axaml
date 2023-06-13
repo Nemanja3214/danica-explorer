@@ -1,20 +1,45 @@
-<Window xmlns="https://github.com/avaloniaui"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:vm="using:app.ViewModels"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-        x:Class="app.Views.MainWindow"
-        x:DataType="vm:MainWindowViewModel"
-        Icon="/Assets/avalonia-logo.ico"
-        Title="app">
+<Window
+    Icon="/Assets/logo.png"
+    Title="danica-explorer"
+    mc:Ignorable="d"
+    x:Class="app.Views.MainWindow"
+    x:DataType="global:MainWindowViewModel"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:components="clr-namespace:app.Views.Components"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:global="clr-namespace:;assembly=app"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:trip="clr-namespace:app.Views.Trip;assembly=app"
+    xmlns:views="clr-namespace:app.Views"
+    xmlns:vm="using:app.ViewModels"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Grid>
+        <Grid.DataTemplates>
+            <DataTemplate DataType="{x:Type vm:LandingViewModel}">
+                <views:LandingPage />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vm:AuthViewModel}">
+                <views:AuthPage />
+            </DataTemplate>
+        </Grid.DataTemplates>
 
-    <Design.DataContext>
-        <!-- This only sets the DataContext for the previewer in an IDE,
-             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
-        <vm:MainWindowViewModel/>
-    </Design.DataContext>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
 
-    <TextBlock Text="{Binding Greeting}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <Border
+            Background="#E1E4EA"
+            BoxShadow="0 4 10 0 LightGray"
+            Grid.Row="0">
+            <components:Menu />
+        </Border>
 
+        <ContentControl Content="{Binding CurrentViewModel}" Grid.Row="1" />
+    </Grid>
+    <Window.KeyBindings>
+        <KeyBinding Command="{Binding LogoutCommand}" Gesture="{Binding LogoutGesture}" />
+        <KeyBinding Command="{Binding HelpCommand}" Gesture="{Binding HelpGesture}" />
+        <KeyBinding Command="{Binding LandingCommand}" Gesture="{Binding LandingGesture}" />
+    </Window.KeyBindings>
 </Window>

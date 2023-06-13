@@ -1,0 +1,59 @@
+<UserControl
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d"
+    x:Class="app.Views.AttractionCreateForm"
+    x:DataType="viewModels:AttractionCreateFormViewModel"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:controls="https://github.com/AvaloniaUI/Avalonia.Samples/tree/main/src/Avalonia.Samples/CustomControls/RatingControlSample/RatingControlSample.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:models="clr-namespace:app.Utils"
+    xmlns:viewModels="clr-namespace:app.ViewModels"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Control.DataContext>
+        <viewModels:AttractionCreateFormViewModel />
+    </Control.DataContext>
+    <StackPanel Margin="10">
+        <TextBox
+            Margin="10"
+            Text="{Binding AttractionName}"
+            Watermark="Naziv atrakcije (Obavezno)" />
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+
+            <TextBox
+                Grid.Row="0"
+                Margin="10"
+                Text="{Binding Query}"
+                Watermark="Lokacija (Obavezno)"
+                x:Name="SearchBox" />
+            <ListBox
+                Grid.Row="1"
+                Items="{Binding GeneratedCompletes}"
+                Margin="10"
+                SelectedItem="{Binding SelectedLocation, Mode=OneWayToSource}"
+                SelectionMode="Single"
+                x:Name="SuggestionsList">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding display_name}" />
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </Grid>
+        <TextBox
+            AcceptsReturn="True"
+            Height="100"
+            Margin="10"
+            Name="tbMultiLine"
+            Text="{Binding Description}"
+            TextWrapping="Wrap"
+            Watermark="Opis atrakcije" />
+    </StackPanel>
+</UserControl>

@@ -1,0 +1,144 @@
+<UserControl
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d"
+    x:Class="app.Views.AuthPage"
+    x:DataType="viewModels:AuthViewModel"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewModels="clr-namespace:app.ViewModels;assembly=app"
+    xmlns:vm="using:app.ViewModels"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <UserControl.DataContext>
+        <vm:AuthViewModel />
+    </UserControl.DataContext>
+
+    <Grid>
+        <Image
+            Opacity="0.5"
+            Source="../../Assets/banner.png"
+            Stretch="UniformToFill" />
+        <Border
+            Background="#E0E4EB"
+            BoxShadow="0 4 10 0 Gray"
+            CornerRadius="10"
+            Height="550"
+            HorizontalAlignment="Center"
+            Padding="40,10,40,50"
+            VerticalAlignment="Center">
+            <TabControl>
+                <TabItem Header="PRIJAVA" Margin="40,30,0,30">
+                    <StackPanel VerticalAlignment="Center">
+                        <TextBlock
+                            FontSize="20"
+                            FontWeight="SemiLight"
+                            HorizontalAlignment="Center"
+                            Text="Već imaš nalog ?" />
+                        <TextBlock
+                            FontSize="20"
+                            FontWeight="Bold"
+                            HorizontalAlignment="Center"
+                            Text="Prijavi se !" />
+
+                        <TextBox
+                            FontSize="18"
+                            Margin="0,40,0,10"
+                            Text="{Binding Email, Mode=TwoWay}"
+                            Watermark="Email"
+                            Width="400"
+                            x:Name="EmailTextBox" />
+                        <TextBox
+                            FontSize="18"
+                            Margin="0,0,0,40"
+                            PasswordChar="●"
+                            Text="{Binding Password, Mode=TwoWay}"
+                            Watermark="Šifra"
+                            Width="400"
+                            x:Name="PasswordBox" />
+
+
+                        <Button
+                            Background="#15B7B9"
+                            Command="{Binding LoginCommand}"
+                            Content="PRIJAVA"
+                            FontSize="18"
+                            Foreground="White"
+                            HorizontalAlignment="Center"
+                            HorizontalContentAlignment="Center"
+                            IsEnabled="{Binding IsLoginButtonEnabled}"
+                            Width="170" />
+                        <StackPanel.KeyBindings>
+
+                            <KeyBinding Command="{Binding LoginCommand}" Gesture="{Binding EnterGesture}" />
+                        </StackPanel.KeyBindings>
+
+                    </StackPanel>
+
+                </TabItem>
+
+                <TabItem Header="REGISTRACIJA" Margin="40,30,0,30">
+                    <StackPanel VerticalAlignment="Center">
+                        <StackPanel.KeyBindings>
+
+                            <KeyBinding Command="{Binding RegisterCommand}" Gesture="{Binding EnterGesture}" />
+                        </StackPanel.KeyBindings>
+                        <TextBlock
+                            FontSize="20"
+                            FontWeight="SemiLight"
+                            HorizontalAlignment="Center"
+                            Text="Nemaš nalog ?" />
+                        <TextBlock
+                            FontSize="20"
+                            FontWeight="Bold"
+                            HorizontalAlignment="Center"
+                            Text="Registruj se !" />
+
+                        <TextBox
+                            FontSize="18"
+                            Margin="0,40,0,10"
+                            Text="{Binding Name, Mode=TwoWay}"
+                            Watermark="Ime i prezime"
+                            Width="400"
+                            x:Name="NameTextBox" />
+                        <TextBox
+                            FontSize="18"
+                            Margin="0,0,0,10"
+                            Text="{Binding Phone, Mode=TwoWay}"
+                            Watermark="Broj telefona"
+                            Width="400"
+                            x:Name="PhoneTextBox" />
+                        <TextBox
+                            FontSize="18"
+                            Margin="0,0,0,10"
+                            Text="{Binding RegEmail, Mode=TwoWay}"
+                            Watermark="Email"
+                            Width="400"
+                            x:Name="RegEmailTextBox" />
+                        <TextBox
+                            FontSize="18"
+                            Margin="0,0,0,40"
+                            PasswordChar="●"
+                            Text="{Binding RegPassword, Mode=TwoWay}"
+                            Watermark="Šifra"
+                            Width="400"
+                            x:Name="RegPasswordBox" />
+
+                        <Button
+                            Background="#15B7B9"
+                            Command="{Binding RegisterCommand}"
+                            Content="REGISTRACIJA"
+                            FontSize="18"
+                            Foreground="White"
+                            HorizontalAlignment="Center"
+                            HorizontalContentAlignment="Center"
+                            IsEnabled="{Binding IsRegisterButtonEnabled}"
+                            Width="170" />
+                    </StackPanel>
+                </TabItem>
+            </TabControl>
+        </Border>
+    </Grid>
+
+</UserControl>

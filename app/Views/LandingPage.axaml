@@ -1,0 +1,61 @@
+<UserControl
+    mc:Ignorable="d"
+    x:Class="app.Views.LandingPage"
+    x:DataType="vm:LandingViewModel"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:views="clr-namespace:app.Views"
+    xmlns:vm="using:app.ViewModels"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <UserControl.DataContext>
+        <vm:LandingViewModel />
+    </UserControl.DataContext>
+
+    <Grid>
+        <Image
+            Opacity="0.5"
+            Source="../../Assets/banner.png"
+            Stretch="UniformToFill" />
+
+        <Grid HorizontalAlignment="Right" VerticalAlignment="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <TextBlock
+                FontSize="32"
+                Grid.Column="1"
+                Grid.Row="0"
+                IsVisible="{Binding IsSessionActive}"
+                Margin="0,0,0,10"
+                Padding="40,0"
+                Text="Welcome"
+                TextWrapping="Wrap" />
+            <TextBlock
+                FontSize="32"
+                FontWeight="Bold"
+                Grid.Column="1"
+                Grid.Row="1"
+                Padding="40,0"
+                Text="Da li ste spremni da zakoračite u novu avanturu ?"
+                TextWrapping="Wrap" />
+
+            <TextBlock
+                FontSize="24"
+                Grid.Column="1"
+                Grid.Row="2"
+                Padding="40,5"
+                Text="Istražite najbolja putovanja uz danica-explorer !"
+                TextWrapping="Wrap" />
+
+        </Grid>
+    </Grid>
+
+</UserControl>

@@ -1,0 +1,52 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:converters="clr-namespace:app.Converters"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             xmlns:vm="using:app.ViewModels"
+			 x:DataType="vm:AttractionCardViewModel"
+             x:Class="app.Views.AttractionCard">
+
+	<UserControl.Resources>
+		<converters:BitmapValueConverter x:Key="imageConverter"/>
+	</UserControl.Resources>
+
+    <Border Background="#EEF0F4"
+            CornerRadius="10"
+            Padding="0 0 10 0"
+            Margin="12"
+            BoxShadow="0 4 10 0 Gray">
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="4*"></RowDefinition>
+			<RowDefinition Height="5*"></RowDefinition>
+		</Grid.RowDefinitions>
+			
+        <Image Opacity="0.9" MaxWidth="250" Source="{Binding ImageSource, Converter={StaticResource imageConverter}}" />
+		
+			    <Grid Grid.Row="1" MaxWidth="250"
+			          Margin="10 20 0 20">
+				    <Grid.RowDefinitions>
+					    <RowDefinition Height="1*"></RowDefinition>
+					    <RowDefinition Height="1*"></RowDefinition>
+                    </Grid.RowDefinitions>
+				    <Viewbox Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Center">
+					    <StackPanel Orientation="Vertical" MaxWidth="250">
+						    <TextBlock TextAlignment="Left" FontSize="10" Margin="2 0 0 0"  Text="{Binding AttractionName}" FontWeight="SemiBold" TextWrapping="Wrap"/>
+					    </StackPanel>
+				    </Viewbox>
+                    <Grid Grid.Row="1">
+					    <Grid.ColumnDefinitions>
+						    <ColumnDefinition Width="1*"></ColumnDefinition>
+						    <ColumnDefinition Width="1*"></ColumnDefinition>
+					    </Grid.ColumnDefinitions>
+
+                        <Viewbox Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center">
+						    <Button Background="Transparent" Foreground="Black" Margin="0 5 0 0"  FontWeight="SemiBold" Command="{Binding LearnMoreCommand}" >Saznaj više</Button>
+					    </Viewbox>
+				    </Grid>
+                </Grid>
+        </Grid>
+	</Border>
+</UserControl>

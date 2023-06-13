@@ -1,0 +1,97 @@
+<UserControl
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    d:Title="Trip details"
+    mc:Ignorable="d"
+    x:Class="app.Views.TripDetails"
+    x:DataType="viewModels:TripDetailsViewModel"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewModels="clr-namespace:app.ViewModels"
+    xmlns:views="clr-namespace:app.Views"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <ScrollViewer IsEnabled="{Binding MapNotHovered, Mode=OneWay}">
+        <Grid
+            ColumnDefinitions="*"
+            Margin="30"
+            RowDefinitions="10, *, *, *, *, *, *, *, *, *">
+            <TextBlock
+                Margin="10"
+                Grid.Row="1"
+                FontSize="30"
+                FontWeight="Bold"
+                Text="{Binding SelectedTrip.Title}"
+                TextAlignment="Center" />
+            <views:MapComponent
+                Grid.Row="2"
+                Height="400"
+                IsPointerOver="{Binding MapHovered, Mode=OneWayToSource}" />
+			<StackPanel Grid.Row="3" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+				<TextBlock
+                    Margin="10"
+                    FontSize="20"
+                    Text="{Binding Price}"
+                    TextAlignment="Center" />
+                <TextBlock
+                    Margin="10"
+                    FontSize="20"
+                    Text="{Binding Date}"
+                    TextAlignment="Center" />
+                <TextBlock
+                    Margin="10"
+                    FontSize="20"
+                    Text="{Binding Duration}"
+                    TextAlignment="Center" />
+            </StackPanel>
+            
+            <TextBlock
+                Margin="10"
+                Grid.Row="4"
+                Text="Atrakcije"
+                TextAlignment="Center" />
+            <ListBox Grid.Row="5" IsHitTestVisible="False" Items="{Binding Attractions}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock
+                            HorizontalAlignment="Center"
+                            Text="{Binding Title}" />
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            <TextBlock
+                Margin="10"
+                Grid.Row="6"
+                Text="Smestaj"
+                TextAlignment="Center" />
+            <ListBox Grid.Row="7" IsHitTestVisible="False" Items="{Binding Hotels}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock
+                            HorizontalAlignment="Center"
+                            Text="{Binding Title}" />
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            <TextBlock
+                Margin="10"
+                Grid.Row="8"
+                Text="Restorani"
+                TextAlignment="Center" />
+            <ListBox Grid.Row="9" IsHitTestVisible="False" Items="{Binding Restaurants}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+						<TextBlock
+                            HorizontalAlignment="Center"
+                            Text="{Binding Title}" />
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+
+        </Grid>
+    </ScrollViewer>
+
+
+
+
+</UserControl>
