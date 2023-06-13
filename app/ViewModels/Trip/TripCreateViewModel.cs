@@ -21,7 +21,7 @@ using Location = app.Model.Location;
 
 namespace app.ViewModels;
 
-public class TripCreateViewModel
+public class TripCreateViewModel : BaseViewModel
 {
 
     public TripCreateViewModel()

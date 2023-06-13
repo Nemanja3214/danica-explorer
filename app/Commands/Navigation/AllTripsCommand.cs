@@ -4,18 +4,18 @@ using Splat;
 
 namespace app.Commands.Navigation;
 
-public class AttractionsCommand : BaseCommand
+public class AllTripsCommand : BaseCommand
 {
     private readonly AppCore _core;
     private readonly NavigationStore _navigation;
 
-    public AttractionsCommand()
+    public AllTripsCommand()
     {
         _core = AppCore.Instance();
         _navigation = NavigationStore.Instance();
     }
     public override void Execute(object parameter)
     {
-        _navigation.CurrentViewModel = Locator.Current.GetService<AllAttractionsViewModel>();
+        _navigation.CurrentViewModel = Locator.Current.GetService<AllTripsViewModel>();
     }
 }

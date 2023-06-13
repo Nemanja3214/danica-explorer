@@ -15,7 +15,7 @@ public partial class User
 
     public string? Password { get; set; }
 
-    public bool? Isagent { get; set; }
+    public bool Isagent { get; set; }
 
     public bool? Isdeleted { get; set; }
 

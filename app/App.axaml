@@ -64,6 +64,9 @@
         <DataTemplate DataType="{x:Type vm:AttractionCardViewModel}">
             <views:AttractionCreate />
         </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:AttractionCreateViewModel}">
+            <views:AttractionCreate />
+        </DataTemplate>
         <DataTemplate DataType="{x:Type vm:AttractionCreateFormViewModel}">
             <views:AttractionCreateForm />
         </DataTemplate>
@@ -75,6 +78,9 @@
         </DataTemplate>
         <DataTemplate DataType="{x:Type vm:TripStatisticsViewModel}">
             <views:TripStatisticsWindow />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:MonthStatisticsViewModel}">
+            <views:MonthStatisticsWindow />
         </DataTemplate>
         <DataTemplate DataType="{x:Type vm:MyReservationsViewModel}">
             <views:MyReservations />

@@ -35,6 +35,8 @@ public class AllAttractionsViewModel : BaseViewModel
 
     private async void GetAttractions()
     {
+        AllAttractions = new();
+        OnPropertyChanged(nameof(AllAttractions));
         IEnumerable<Attraction> attractions = await _service.GetAll();
         foreach (var attraction in attractions)
         {
