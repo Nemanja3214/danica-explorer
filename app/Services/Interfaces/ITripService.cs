@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using app.Model;
+using Microsoft.EntityFrameworkCore;
 
 namespace app.Services.Interfaces;
 
@@ -9,7 +10,7 @@ public interface ITripService
 {
     public Task<IEnumerable<Trip>> GetAll();
 
-    public Task<IEnumerable<Trip>> GetAllForMonth(DateTime dateTime);
+    public Task<List<Trip>> GetAllForMonth(DateTime dateTime, DanicaExplorerContext dbContext);
 
     public Task<Trip> GetById(int id);
     

@@ -11,7 +11,7 @@ public partial class Trip
 
     public string? Description { get; set; }
 
-    public DateOnly? Startdate { get; set; }
+    public DateOnly Startdate { get; set; }
 
     public int? Durationindays { get; set; }
 

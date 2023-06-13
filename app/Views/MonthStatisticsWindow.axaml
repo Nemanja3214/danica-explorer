@@ -31,19 +31,19 @@
                 <TextBlock TextAlignment="Center"
                            Text="Naziv"
                            Margin="20 0"
-                           MinWidth="100" />
+                           MinWidth="250" />
                 <TextBlock TextAlignment="Center"
                            Text="Datum"
                            Margin="20 0"
-                           MinWidth="100" />
+                           MinWidth="250" />
                 <TextBlock TextAlignment="Center"
                            Text="Cena"
                            Margin="20 0"
-                           MinWidth="100" />
-                <TextBlock TextAlignment="Right"
+                           MinWidth="250" />
+                <TextBlock TextAlignment="Center"
                            Margin="20 0"
                            Text="Broj rezervacija"
-                           MinWidth="100" />
+                           MinWidth="250" />
 
             </StackPanel>
             <ListBox Grid.Row="2" Items="{Binding Trips}"
@@ -60,19 +60,19 @@
                                 <TextBlock TextAlignment="Center"
                                            Text="{Binding Title}"
                                            Margin="20 0"
-                                           MinWidth="100" />
+                                           MinWidth="250" />
 						        <TextBlock TextAlignment="Center"
 								           Text="{Binding Date}"
                                            Margin="20 0"
-								           MinWidth="100" />
+								           MinWidth="250" />
                                 <TextBlock TextAlignment="Center"
                                            Text="{Binding Price}"
                                            Margin="20 0"
-                                           MinWidth="100" />
+                                           MinWidth="250" />
                                 <TextBlock TextAlignment="Center"
                                            Text="{Binding NoOfBookings}"
                                            Margin="20 0"
-                                           MinWidth="100" />
+                                           MinWidth="250" />
 					        </StackPanel>
 				        </DataTemplate>
 			        </ListBox.ItemTemplate>

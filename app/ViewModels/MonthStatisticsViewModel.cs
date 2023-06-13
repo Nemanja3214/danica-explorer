@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 using app.Model;
 using app.Services.Interfaces;
 using Splat;
@@ -33,18 +34,28 @@ public class MonthStatisticsViewModel : BaseViewModel
     {
         _selectedDate = DateTime.Now;
         _trips = new ObservableCollection<MonthStatisticsItemViewModel>();
-        GetTrips();
-
+    
+        Initialize();
     }
 
-    private async void GetTrips()
+    private async void Initialize()
     {
-        DateTime d = DateTime.Now.AddMonths(-1);
-        IEnumerable<Trip> trips = await Locator.Current.GetService<ITripService>().GetAllForMonth(d);
+        await GetTripsAsync();
+    }
 
-        foreach (var trip in trips)
+    private async Task GetTripsAsync()
+    {
+        DateTime d = DateTime.Now;
+        using (var dbContext = new DanicaExplorerContext()) // Replace YourDbContext with your actual DbContext class
         {
-            _trips.Add(new MonthStatisticsItemViewModel(trip));
+            List<Trip> trips = await Locator.Current.GetService<ITripService>().GetAllForMonth(d, dbContext);
+
+            foreach (var trip in trips)
+            {
+                _trips.Add(new MonthStatisticsItemViewModel(trip));
+            }
         }
     }
+
+
 }

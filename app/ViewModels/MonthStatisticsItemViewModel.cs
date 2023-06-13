@@ -27,7 +27,7 @@ public class MonthStatisticsItemViewModel : BaseViewModel
     public MonthStatisticsItemViewModel(Trip t)
     {
         _title = t.Title;
-        _date = t.Startdate.Value.ToString("dd.MM.yyyy.");
+        _date = t.Startdate.ToString("dd.MM.yyyy.");
         _price = "" + t.Price;
         _noOfBookings = "" + t.Reservations.Count;
     }
