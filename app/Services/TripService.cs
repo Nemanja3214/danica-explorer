@@ -24,7 +24,7 @@ public class TripService : ITripService
 
     public async Task<IEnumerable<Trip>> GetAllForMonth(DateTime dateTime)
     {
-        IEnumerable<Trip> data = await _tripRepository.GetAll();
+        IEnumerable<Trip> data = await _tripRepository.GetAllForMonth(dateTime);
 
         return data.Where(x => x.Startdate.Value.CompareTo(DateOnly.FromDateTime(dateTime)) > 0);
     }
