@@ -13,7 +13,7 @@
     xmlns:views="clr-namespace:app.Views"
     xmlns:vm="using:app.ViewModels"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    <views:AttractionCreate />
+    <views:RestaurantCreate />
     <!-- <Grid> -->
     <!--     <Grid.DataTemplates> -->
     <!--         <DataTemplate DataType="{x:Type vm:LandingViewModel}"> -->

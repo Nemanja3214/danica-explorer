@@ -44,18 +44,24 @@ public class RestaurantCreateViewModel : BaseViewModel
             Locator.Current.GetService<IServiceService>().Delete(CurrentService);
             CurrentService = PreviousService;
             PreviousService = null;
+            Locator.Current.GetService<IServiceService>().Update(CurrentService);
         });
         
         _saveCommand = ReactiveCommand.Create<Unit>(e =>
         {
-            Service a = FormRestaurant();
-            a = Locator.Current.GetService<IServiceService>().Create(a);
-            if (CurrentService != null)
+            Service s = FormRestaurant();
+
+            if (_toUpdate == null)
             {
-                PreviousService = CurrentService;
+                s = Locator.Current.GetService<IServiceService>().Create(s);
+            }
+            else
+            {
+                s = Locator.Current.GetService<IServiceService>().Update(s);
             }
 
-            CurrentService = a;
+            PreviousService = CurrentService;
+            CurrentService = s;
         });
     }
     
@@ -77,15 +83,16 @@ public class RestaurantCreateViewModel : BaseViewModel
     public Service CurrentService
     {
         get => _currentService;
-        set => _currentService = value ?? throw new ArgumentNullException(nameof(value));
+        set => _currentService = value;
     }
 
     private Service _currentService;
-    
+    private Service _toUpdate;
+
     public ReactiveCommand<Unit, Unit> UndoCommand
     {
         get => _undoCommand;
-        set => _undoCommand = value ?? throw new ArgumentNullException(nameof(value));
+        set => _undoCommand = value;
     }
 
     public ReactiveCommand<Unit, Unit> SaveCommand
@@ -105,7 +112,7 @@ public class RestaurantCreateViewModel : BaseViewModel
     
     private Service FormRestaurant()
     {
-        Service s = new Service();
+        Service s = _toUpdate != null ? _toUpdate : new Service();
         s.Ishotel = true;
         s.Description = Form.Description;
         
