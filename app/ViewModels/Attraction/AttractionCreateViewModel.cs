@@ -17,6 +17,7 @@ using Mapsui.Projections;
 using ReactiveUI;
 using Location = app.Model.Location;
 using Splat;
+using app.Stores;
 
 namespace app.ViewModels;
 
@@ -55,6 +56,7 @@ public class AttractionCreateViewModel : BaseViewModel
                 a = Locator.Current.GetService<IAttractionService>().Update(a);
             PreviousAttraction = CurrentAttraction;
             CurrentAttraction = a;
+            NavigationStore.Instance().CurrentViewModel = Locator.Current.GetService<LandingViewModel>();
         });
     }
     

@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using app.Model;
 using app.Services.Interfaces;
+using app.Stores;
 using Avalonia.Input;
 using ExCSS;
 using Mapsui;
@@ -105,6 +106,7 @@ public class TripCreateViewModel : BaseViewModel
             
             PreviousTrip = CurrentTrip;
             CurrentTrip = t;
+            NavigationStore.Instance().CurrentViewModel = Locator.Current.GetService<LandingViewModel>();
         });
 
     }

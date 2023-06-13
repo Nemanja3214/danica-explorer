@@ -132,8 +132,23 @@ public class AccomodationCreateFormViewModel :BaseViewModel
     public ReactiveCommand<EventArgs, Unit> RaiseRating => _raiseRating;
 
     public ReactiveCommand<EventArgs, Unit> LowerRating => _lowerRating;
-    public string Description { get; set; }
-    public string Title { get; set; }
+
+    private string _description;
+
+    public string Description
+    {
+        get => _description;
+        set
+        {
+            _description = value;
+            OnPropertyChanged(Description);
+        }
+    }
+
+    private string _title;
+    public string Title { get => _title;
+        set { _title = value; OnPropertyChanged(Title); }
+    }
 
 
     private IObjectValidator GetValidator()

@@ -4,6 +4,7 @@ using System.Reactive;
 using app.Model;
 using app.Services;
 using app.Services.Interfaces;
+using app.Stores;
 using app.Utils;
 using app.Views;
 using Avalonia.Controls;
@@ -49,7 +50,7 @@ public class AccomodationCreateViewModel : BaseViewModel
             
            Service s = FormAccomodation();
 
-           if (_toUpdate == null)
+           if (ToUpdate == null)
            {
                s = Locator.Current.GetService<IServiceService>().Create(s);
            }
@@ -60,12 +61,57 @@ public class AccomodationCreateViewModel : BaseViewModel
 
            PreviousAccomodation = CurrentAccomodation;
            CurrentAccomodation = s;
+           NavigationStore.Instance().CurrentViewModel = Locator.Current.GetService<LandingViewModel>();
+        });
+    }
+
+    public AccomodationCreateViewModel(Service s)
+    {
+        _parent = MainWindowViewModel.GetMainWindow();
+        Form = Locator.Current.GetService<AccomodationCreateFormViewModel>();
+        MapVM = Locator.Current.GetService<MapViewModel>();
+        Uvm = new UploadViewModel();
+        Form.LocationChanged += LocationChanged;
+
+        ToUpdate = s;
+        _undoCommand = ReactiveCommand.Create<Unit>(e =>
+        {
+            if (PreviousAccomodation == null)
+            {
+                var messageBoxStandardWindow = MessageBox.Avalonia.MessageBoxManager
+                    .GetMessageBoxStandardWindow("Povratak prethodne verzije", "Niste sačuvali servis kako biste mogli da ga vratite");
+                messageBoxStandardWindow.Show();
+                return;
+            }
+            Locator.Current.GetService<IServiceService>().Delete(CurrentAccomodation);
+            CurrentAccomodation = PreviousAccomodation;
+            PreviousAccomodation = null;
+            Locator.Current.GetService<IServiceService>().Update(CurrentAccomodation);
+        });
+
+        _saveCommand = ReactiveCommand.Create<Unit>(e =>
+        {
+
+            Service s = FormAccomodation();
+
+            if (ToUpdate == null)
+            {
+                s = Locator.Current.GetService<IServiceService>().Create(s);
+            }
+            else
+            {
+                s = Locator.Current.GetService<IServiceService>().Update(s);
+            }
+
+            PreviousAccomodation = CurrentAccomodation;
+            CurrentAccomodation = s;
+            NavigationStore.Instance().CurrentViewModel = Locator.Current.GetService<LandingViewModel>();
         });
     }
 
     private Service FormAccomodation()
     {
-        Service s = _toUpdate != null ? _toUpdate: new Service();
+        Service s = ToUpdate != null ? ToUpdate: new Service();
         s.Ishotel = true;
         s.Description = Form.Description;
         
@@ -105,7 +151,12 @@ public class AccomodationCreateViewModel : BaseViewModel
     public Service ToUpdate
     {
         get => _toUpdate;
-        set => _toUpdate = value ?? throw new ArgumentNullException(nameof(value));
+        set
+        {
+            _toUpdate = value ?? throw new ArgumentNullException(nameof(value));
+            Form.Title = value.Title;
+            Form.Description = value.Description;
+        }
     }
 
     public KeyGesture SaveGesture { get; } = new KeyGesture(Key.S, KeyModifiers.Control);

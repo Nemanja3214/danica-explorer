@@ -26,14 +26,14 @@ public class ServiceCardViewModel : BaseViewModel
 
     public ServiceCardViewModel()
     {
-        //LearnMoreCommand = new AttractionDetailsCommand(this);
+        LearnMoreCommand = new ServiceEditCommand(this);
         _imageSource = "../Assets/tripimage.jpeg";
         _serviceName = "Sagrada familija";
     }
 
     public ServiceCardViewModel(Service service)
     {
-        //LearnMoreCommand = new AttractionDetailsCommand(this);
+        LearnMoreCommand = new ServiceEditCommand(this);
         Service = service;
         _imageSource = "../Assets/tripimage.jpeg";
         _serviceName = service.Title;

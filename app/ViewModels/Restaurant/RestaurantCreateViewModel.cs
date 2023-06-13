@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Reactive;
 using app.Model;
 using app.Services.Interfaces;
+using app.Stores;
 using app.Utils;
 using app.Views;
 using Avalonia.Controls;
@@ -62,6 +63,7 @@ public class RestaurantCreateViewModel : BaseViewModel
 
             PreviousService = CurrentService;
             CurrentService = s;
+            NavigationStore.Instance().CurrentViewModel = Locator.Current.GetService<LandingViewModel>();
         });
     }
     
@@ -88,6 +90,55 @@ public class RestaurantCreateViewModel : BaseViewModel
 
     private Service _currentService;
     private Service _toUpdate;
+
+    public RestaurantCreateViewModel(Service viewModelService)
+    {
+        _parent = MainWindowViewModel.GetMainWindow();
+        Form = Locator.Current.GetService<RestaurantCreateFormViewModel>();
+        MapVM = Locator.Current.GetService<MapViewModel>();
+        Form.LocationChanged += LocationChanged;
+        Uvm = new UploadViewModel();
+
+        ToUpdate = viewModelService;
+        _undoCommand = ReactiveCommand.Create<Unit>(e =>
+        {
+            if (PreviousService == null)
+            {
+                var messageBoxStandardWindow = MessageBox.Avalonia.MessageBoxManager
+                    .GetMessageBoxStandardWindow("Povratak prethodne verzije", "Niste sačuvali restoran kako biste mogli da je vratite");
+                messageBoxStandardWindow.Show();
+                return;
+            }
+            Locator.Current.GetService<IServiceService>().Delete(CurrentService);
+            CurrentService = PreviousService;
+            PreviousService = null;
+            Locator.Current.GetService<IServiceService>().Update(CurrentService);
+        });
+
+        _saveCommand = ReactiveCommand.Create<Unit>(e =>
+        {
+            Service s = FormRestaurant();
+
+            if (_toUpdate == null)
+            {
+                s = Locator.Current.GetService<IServiceService>().Create(s);
+            }
+            else
+            {
+                s = Locator.Current.GetService<IServiceService>().Update(s);
+            }
+
+            PreviousService = CurrentService;
+            CurrentService = s;
+            NavigationStore.Instance().CurrentViewModel = Locator.Current.GetService<LandingViewModel>();
+        });
+
+    }
+
+    public Service ToUpdate
+    {
+        get => _toUpdate; set => _toUpdate = value;
+    }
 
     public ReactiveCommand<Unit, Unit> UndoCommand
     {
