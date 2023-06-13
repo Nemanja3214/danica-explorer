@@ -63,12 +63,12 @@ public class TripCreateViewModel
             
             IEnumerable<Attraction> attractions = AttractionVm.AddedItems.Select(sightseeing => (Attraction) sightseeing);
             t.TripAttractions = attractions.Select(attraction => new TripAttraction(attraction.Id, t.Id)).ToList();
-            attractions.Select(a => Locator.Current.GetService<IAttractionService>().Create(a));
+            t.TripAttractions.Select(ta => Locator.Current.GetService<ITripAttractionService>().Create(ta));
         
             IEnumerable<Service> services = RestaurantVm.AddedItems.Concat(HotelVm.AddedItems)
                 .Select(sightseeing => (Service) sightseeing);
             t.TripServices = services.Select(service => new TripService(service.Id, t.Id)).ToList();
-            services.Select(s => Locator.Current.GetService<IServiceService>().Create(s));
+            t.TripServices.Select(ts => Locator.Current.GetService<ITripServiceService>().Create(ts));
             
             PreviousTrip = CurrentTrip;
             CurrentTrip = t;
