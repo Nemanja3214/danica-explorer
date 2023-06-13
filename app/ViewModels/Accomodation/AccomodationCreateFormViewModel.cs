@@ -37,6 +37,7 @@ public class AccomodationCreateFormViewModel :BaseViewModel
         set
         {
             _ratingValue = value;
+            IsButtonEnabled();
             OnPropertyChanged(nameof(RatingValue)); }
     }
 
@@ -133,7 +134,18 @@ public class AccomodationCreateFormViewModel :BaseViewModel
 
     public ReactiveCommand<EventArgs, Unit> LowerRating => _lowerRating;
     public string Description { get; set; }
-    public string Title { get; set; }
+
+    private string _title;
+    public string Title
+        {
+            get => _title;
+            set
+            {
+                _title = value;
+                IsButtonEnabled();
+                OnPropertyChanged(nameof(Title));
+            }
+        }
 
 
     private IObjectValidator GetValidator()
@@ -160,6 +172,15 @@ public class AccomodationCreateFormViewModel :BaseViewModel
             .AllWhen(vm => vm.RatingValue != null);
 
         return builder.Build(this);
+    }
+    
+    
+    public bool ButtonEnabled { get; set; }
+
+    public void IsButtonEnabled()
+    {
+        ButtonEnabled = Title != null && Title.Length > 0 && SelectedLocation != null;
+        OnPropertyChanged(nameof(ButtonEnabled));
     }
 
 }

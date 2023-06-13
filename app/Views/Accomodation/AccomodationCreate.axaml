@@ -44,6 +44,7 @@
                 Foreground="White"
                 Grid.Row="1"
                 Grid.Column="1"
+                IsEnabled="{Binding Form.ButtonEnabled}"
                 HorizontalAlignment="Center"
                 HorizontalContentAlignment="Center"
                 Width="200">
