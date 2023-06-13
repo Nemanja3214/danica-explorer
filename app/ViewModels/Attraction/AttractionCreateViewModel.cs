@@ -113,8 +113,6 @@ public class AttractionCreateViewModel : BaseViewModel
 
     public Attraction FormAttraction()
     {
-        IEnumerable<Attraction> attractions =  Locator.Current.GetService<IAttractionService>().GetAll().Result;
-        _toUpdate = attractions.First();
         Attraction a = _toUpdate != null ? _toUpdate : new Attraction();
         a.Image = UploadViewModel.ImageToByte(Uvm.ImageToView);
         a.Description = Form.Description;
