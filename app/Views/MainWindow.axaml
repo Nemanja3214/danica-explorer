@@ -39,5 +39,7 @@
     </Grid>
     <Window.KeyBindings>
         <KeyBinding Command="{Binding LogoutCommand}" Gesture="{Binding LogoutGesture}" />
+        <KeyBinding Command="{Binding HelpCommand}" Gesture="{Binding HelpGesture}" />
+        <KeyBinding Command="{Binding LandingCommand}" Gesture="{Binding LandingGesture}" />
     </Window.KeyBindings>
 </Window>

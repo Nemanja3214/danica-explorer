@@ -1,0 +1,31 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:app.ViewModels"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="app.Views.Help">
+    
+    <UserControl.DataContext>
+        <vm:HelpViewModel/>
+    </UserControl.DataContext>
+    <StackPanel Margin="20">
+        <TextBlock Text="Dobrodošli u prozor pomoći za Danica Explorer!" FontSize="16" FontWeight="Bold" Margin="0 0 0 20"/>
+        
+        <TextBlock Text="Ovde su detaljni opisi prečica koje možete koristiti u aplikaciji:" FontWeight="Bold" Margin="0 0 0 10"/>
+        
+        <TextBlock Text="Escape: Ova prečica se koristi za povratak na naslovnu stranicu." Margin="0 0 0 10"/>
+        
+        <TextBlock Text="Enter: Ova prečica se koristi za prijavljivanje i registraciju." Margin="0 0 0 10"/>
+
+        <TextBlock Text="Ctrl + Z: Ova prečica se koristi za poništavanje poslednje akcije. Možete je koristiti prilikom kreiranja i ažuriranja putovanja, atrakcija, restorana i smeštaja." Margin="0 0 0 10"/>
+
+        <TextBlock Text="Ctrl + S: Ova prečica se koristi za čuvanje (snimanje) trenutnih promena. Možete je koristiti prilikom kreiranja i ažuriranja putovanja, atrakcija, restorana i smeštaja." Margin="0 0 0 10"/>
+        
+        <TextBlock Text="Strelica nadole: Koristite ovu prečicu za navigaciju kroz opcije koje se pojavljuju prilikom automatskog završavanja teksta. Kada pronađete željenu opciju, pritisnite Enter da je izaberete." Margin="0 0 0 10"/>
+        
+        <TextBlock Text="Desna i leva strelica: Ove prečice se koriste za promenu ocene. Koristite desnu strelicu da biste povećali ocenu i levu strelicu da biste smanjili ocenu." Margin="0 0 0 10"/>
+        
+        <TextBlock Text="Hvala što koristite Danica Explorer!" Margin="0 20 0 0"/>
+    </StackPanel>
+</UserControl>

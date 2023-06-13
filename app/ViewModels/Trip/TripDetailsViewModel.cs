@@ -72,7 +72,7 @@ public class TripDetailsViewModel : BaseViewModel
         _attractions = new ObservableCollection<TripDetailsItemViewModel>();
         SelectedTrip = t;
         Price = "Cena: " + t.Price + " din";
-        Date = "Datum: " + t.Startdate.Value.ToString("dd.MM.yyyy.");
+        Date = "Datum: " + t.Startdate.ToString("dd.MM.yyyy.");
         Duration = "Trajanje: " + t.Durationindays + " dana";
         FillData();
     }

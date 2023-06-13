@@ -2,6 +2,7 @@
 using System.Reactive;
 using app.Commands;
 using app.Commands.Auth;
+using app.Commands.Navigation;
 using app.Model;
 using app.Stores;
 using app.ViewModels;
@@ -27,6 +28,8 @@ public class MainWindowViewModel : BaseViewModel
         _navigationStore = NavigationStore.Instance();
         _navigationStore.CurrentViewModelChanged += OnCurrentViewModelChanged;
         LogoutCommand = new LogoutCommand();
+        HelpCommand = new HelpCommand();
+        LandingCommand = new HomeCommand();
 
     }
 
@@ -40,6 +43,9 @@ public class MainWindowViewModel : BaseViewModel
         OnPropertyChanged(nameof(CurrentViewModel));
     }
     
-    
+    public BaseCommand HelpCommand { get;  }
+    public BaseCommand LandingCommand { get;  }
+    public KeyGesture HelpGesture { get; } = new KeyGesture(Key.F1);
+    public KeyGesture LandingGesture { get; } = new KeyGesture(Key.Escape);
     
 }

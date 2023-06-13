@@ -22,6 +22,9 @@
     </Application.Styles>
 
     <Application.DataTemplates>
+        <DataTemplate DataType="{x:Type vm:HelpViewModel}">
+            <views:Help />
+        </DataTemplate>
         <DataTemplate DataType="{x:Type vm:LandingViewModel}">
             <views:LandingPage />
         </DataTemplate>

@@ -19,7 +19,7 @@ public class MyReservationItemViewModel : BaseViewModel
     public MyReservationItemViewModel(Reservation reservation)
     {
         _name = reservation.Trip.Title;
-        _date = reservation.Trip.Startdate.Value.ToString("dd.MM.yyyy.");
+        _date = reservation.Trip.Startdate.ToString("dd.MM.yyyy.");
         _price = reservation.Trip.Price.ToString();
         _dateOfBooking = reservation.Date.Value.ToString("dd.MM.yyyy.");
     }

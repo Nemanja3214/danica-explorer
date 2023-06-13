@@ -34,7 +34,7 @@ public static class ViewModelRegister
         services.Register(() => new LandingViewModel());
         services.Register(() => new MapViewModel());
         services.Register(() => new MenuViewModel());
-        services.Register(() => new MonthStatisticsItemViewModel());
+        //services.Register(() => new MonthStatisticsItemViewModel());
         services.Register(() => new MonthStatisticsViewModel());
         services.Register(() => new TripCardViewModel());
         services.Register(() => new TripStatisticsItemViewModel());

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
@@ -18,6 +19,14 @@ public class TripRepository : ITripRepository
     public async Task<IEnumerable<Trip>> GetAll()
     {
         return await _context.Trips.ToListAsync();
+    }
+
+    public async Task<IEnumerable<Trip>> GetAllForMonth(DateTime dateTime)
+    {
+        DateOnly date = DateOnly.FromDateTime(dateTime);
+        return await _context.Trips
+            .Include(x => x.Reservations)
+            .ToListAsync();
     }
 
     public async Task<Trip> GetById(int id)
