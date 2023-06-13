@@ -23,10 +23,12 @@
 			    <ColumnDefinition Width="6*"></ColumnDefinition>
 			    <ColumnDefinition Width="1*"></ColumnDefinition>
 		    </Grid.ColumnDefinitions>
-            <!--<StackPanel Grid.Column="0" Grid.Row="0">
-                <CalendarDatePicker SelectedDate="{Binding SelectedDate, Mode=TwoWay}" />
-                <TextBox Text="{Binding SelectedDate}"></TextBox>
-            </StackPanel>-->
+	        <TextBlock Grid.Column="1" TextAlignment="Center"
+	                   VerticalAlignment="Center"
+	                   FontWeight="Bold"
+	                   FontSize="32"
+	                   Text="Pregled prodatih aranžmana u tekućem mesecu"
+	                   Margin="20 0"/>
             <StackPanel ScrollViewer.HorizontalScrollBarVisibility="Auto" Margin="0 10" Grid.Column="1" Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
                 <TextBlock TextAlignment="Center"
                            Text="Naziv"
