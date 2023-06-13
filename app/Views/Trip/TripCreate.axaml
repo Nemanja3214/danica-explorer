@@ -60,6 +60,7 @@
                                 Foreground="White"
                                 Grid.Row="3"
                                 HorizontalAlignment="Center"
+                                IsEnabled="{Binding Tvm.ButtonEnabled}"
                                 HorizontalContentAlignment="Center"
                                 Margin="20"
                                 Width="200">

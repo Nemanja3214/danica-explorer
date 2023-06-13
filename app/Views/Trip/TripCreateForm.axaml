@@ -35,7 +35,7 @@
                     Margin="10"
                     Text="Datum polaska: "
                     VerticalAlignment="Center" />
-                <DatePicker Grid.Column="1" Margin="10" />
+                <CalendarDatePicker Grid.Column="1" Margin="10" SelectedDate="{Binding SelectedDate, Mode=TwoWay}"/>
             </Grid>
             <Grid>
                 <Grid.ColumnDefinitions>
