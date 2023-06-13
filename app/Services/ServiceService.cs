@@ -6,7 +6,7 @@ using app.Services.Interfaces;
 
 namespace app.Services;
 
-public class ServiceService : IServiceService
+public class ServiceService : IServiceService, ISearchService<Service>
 {
     private readonly IServiceRepository _repository;
 

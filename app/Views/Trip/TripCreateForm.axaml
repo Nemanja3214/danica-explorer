@@ -66,6 +66,7 @@
                     Grid.Column="1"
                     HorizontalAlignment="Left"
                     Margin="10"
+                    Value="{Binding Price}"
                     VerticalAlignment="Center" />
             </Grid>
         </StackPanel>

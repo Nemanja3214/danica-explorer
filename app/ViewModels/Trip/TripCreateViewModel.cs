@@ -27,6 +27,7 @@ public class TripCreateViewModel
     public TripCreateViewModel()
     {
         HotelVm = new DragNDropViewModel("Hotels", GetHotelItems);
+        HotelVm.IsHotel = true;
         RestaurantVm = new DragNDropViewModel("Restaurants", GetRestaurantItems);
         AttractionVm = new DragNDropViewModel("Attractions", GetAttractionItems);
         Tvm = new TripCreateFormViewModel();
@@ -139,7 +140,7 @@ public class TripCreateViewModel
     public Trip PreviousTrip
     {
         get => _previousTrip;
-        set => _previousTrip = value ?? throw new ArgumentNullException(nameof(value));
+        set => _previousTrip = value;
     }
 
     public Trip CurrentTrip
@@ -160,65 +161,23 @@ public class TripCreateViewModel
         set => _saveCommand = value ?? throw new ArgumentNullException(nameof(value));
     }
 
-    // TODO simulation function delete
-    public async static Task<List<ISigthSeeing>> GetHotelItems(string query)
+    public async static Task<List<ISigthSeeing>> GetHotelItems(string query, bool dummy)
     {
-        return new List<ISigthSeeing>()
-        {
-            new Service()
-            {
-                Title = "dqwd",
-                Id = 0,
-                Location = new Location(21.005859, 44.016521)
-            },
-            new Service()
-            {
-                Title = "azxcaw",
-                Id = 1,
-                Location = new Location(22.005859, 44.016521)
-            }
-        };
+        IEnumerable<Service> list = await Locator.Current.GetService<ISearchService<Service>>().Search(query, true);
+        return new List<ISigthSeeing>(list);
     }
     
        
-    // TODO simulation function delete
-    public async static Task<List<ISigthSeeing>> GetRestaurantItems(string query)
+    public async static Task<List<ISigthSeeing>> GetRestaurantItems(string query, bool dummy)
     {
-        return new List<ISigthSeeing>()
-        {
-            new Service()
-            {
-                Title = "yutyu",
-                Id = 0,
-                Location = new Location(23.005859, 44.016521)
-            },
-            new Service()
-            {
-                Title = "werw",
-                Id = 1,
-                Location = new Location(24.005859, 44.016521)
-            }
-        };
+        IEnumerable<Service> list = await Locator.Current.GetService<ISearchService<Service>>().Search(query, false);
+        return new List<ISigthSeeing>(list);
     }
     
-    // TODO simulation function delete
-    public async static Task<List<ISigthSeeing>> GetAttractionItems(string query)
+    public async static Task<List<ISigthSeeing>> GetAttractionItems(string query, bool dummy)
     {
-        return new List<ISigthSeeing>()
-        {
-            new Attraction()
-            {
-                Title = "yutyu",
-                Id = 0,
-                Location = new Location(25.005859, 44.016521)
-            },
-            new Attraction()
-            {
-                Title = "werw",
-                Id = 1,
-                Location = new Location(26.005859, 44.016521)
-            }
-        };
+        IEnumerable<Attraction> list = await Locator.Current.GetService<ISearchService<Attraction>>().Search(query, false);
+        return new List<ISigthSeeing>(list);
     }
 
 

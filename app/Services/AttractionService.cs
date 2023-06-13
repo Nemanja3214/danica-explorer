@@ -6,7 +6,7 @@ using app.Services.Interfaces;
 
 namespace app.Services;
 
-public class AttractionService : IAttractionService
+public class AttractionService : IAttractionService, ISearchService<Attraction>
 {
     private readonly IAttractionRepository _attractionRepository;
 

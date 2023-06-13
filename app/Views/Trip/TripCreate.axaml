@@ -28,7 +28,7 @@
             <Grid ColumnDefinitions="*" RowDefinitions="*, *">
                 <Grid ColumnDefinitions="2*, 3*" Grid.Row="0">
                     <views:UploadPicture DataContext="{Binding Uvm}" Grid.Column="0" />
-                    <trip:TripCreateForm Grid.Column="1" />
+                    <trip:TripCreateForm DataContext="{Binding Tvm}" Grid.Column="1" />
                 </Grid>
                 <Grid ColumnDefinitions="2*, 3*" Grid.Row="1">
                     <views:MapComponent DataContext="{Binding MapVm}" Height="800" />
