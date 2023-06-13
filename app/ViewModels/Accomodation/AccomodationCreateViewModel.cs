@@ -97,13 +97,13 @@ public class AccomodationCreateViewModel : BaseViewModel
     public Service PreviousAccomodation
     {
         get => _previousAccomodation;
-        set => _previousAccomodation = value ?? throw new ArgumentNullException(nameof(value));
+        set => _previousAccomodation = value;
     }
 
     public Service CurrentAccomodation
     {
         get => _currentAccomodation;
-        set => _currentAccomodation = value ?? throw new ArgumentNullException(nameof(value));
+        set => _currentAccomodation = value;
     }
 
     public ReactiveCommand<Unit, Unit> UndoCommand
