@@ -41,12 +41,23 @@ public class AccomodationCreateViewModel : BaseViewModel
             Locator.Current.GetService<IServiceService>().Delete(CurrentAccomodation);
             CurrentAccomodation = PreviousAccomodation;
             PreviousAccomodation = null;
+            Locator.Current.GetService<IServiceService>().Update(CurrentAccomodation);
         });
         
         _saveCommand = ReactiveCommand.Create<Unit>(e =>
         {
+            
            Service s = FormAccomodation();
-           s = Locator.Current.GetService<IServiceService>().Create(s);
+
+           if (_toUpdate == null)
+           {
+               s = Locator.Current.GetService<IServiceService>().Create(s);
+           }
+           else
+           {
+               s = Locator.Current.GetService<IServiceService>().Update(s);
+           }
+
            PreviousAccomodation = CurrentAccomodation;
            CurrentAccomodation = s;
         });
@@ -54,7 +65,7 @@ public class AccomodationCreateViewModel : BaseViewModel
 
     private Service FormAccomodation()
     {
-        Service s = new Service();
+        Service s = _toUpdate != null ? _toUpdate: new Service();
         s.Ishotel = true;
         s.Description = Form.Description;
         
@@ -89,7 +100,14 @@ public class AccomodationCreateViewModel : BaseViewModel
 
     private ReactiveCommand<Unit, Unit> _undoCommand;
     private ReactiveCommand<Unit, Unit> _saveCommand;
-    
+    private Service _toUpdate;
+
+    public Service ToUpdate
+    {
+        get => _toUpdate;
+        set => _toUpdate = value ?? throw new ArgumentNullException(nameof(value));
+    }
+
     public KeyGesture SaveGesture { get; } = new KeyGesture(Key.S, KeyModifiers.Control);
     public KeyGesture UndoGesture { get; } = new KeyGesture(Key.Z, KeyModifiers.Control);
 
