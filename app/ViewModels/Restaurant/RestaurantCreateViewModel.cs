@@ -28,6 +28,7 @@ public class RestaurantCreateViewModel
         Form = Locator.Current.GetService<RestaurantCreateFormViewModel>();
         MapVM = Locator.Current.GetService<MapViewModel>();
         Form.LocationChanged += LocationChanged;
+        Uvm = new UploadViewModel();
         
         _undoCommand = ReactiveCommand.Create<Unit>(e =>
         {
@@ -107,7 +108,10 @@ public class RestaurantCreateViewModel
         Location location = new Location(Double.Parse(Form.SelectedLocation.lat), Double.Parse(Form.SelectedLocation.lon));
         s.Location = location;
 
+        if (Uvm.ImageToView != null)
+        {
         s.Image = UploadViewModel.ImageToByte(Uvm.ImageToView);
+        }
         s.Title = Form.RestaurantName;
         s.Ishotel = false;
         
