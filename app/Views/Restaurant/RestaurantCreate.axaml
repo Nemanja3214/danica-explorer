@@ -30,7 +30,7 @@
                 Grid.Row="1"
                 HorizontalAlignment="Right"
                 Margin="30"
-                Command="{Binding SaveCommand}">
+                Command="{Binding SaveCommandQuery}">
                 <Border Padding="10">
                     <TextBlock>
                         Save

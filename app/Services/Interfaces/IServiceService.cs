@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using app.Model;
+using app.Repositories.Interfaces;
 
 namespace app.Services.Interfaces;
 
-public interface IServiceService
+public interface IServiceService : ISearchRepository<Service>
 {
     //getByID, getAll, create, update, delete
 

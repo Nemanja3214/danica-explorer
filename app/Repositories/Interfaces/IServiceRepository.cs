@@ -4,7 +4,7 @@ using app.Model;
 
 namespace app.Repositories.Interfaces;
 
-public interface IServiceRepository
+public interface IServiceRepository : ISearchRepository<Service>
 {
     public Task<Service?> GetById(int id);
     public Task<IEnumerable<Service>> GetAll();

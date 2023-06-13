@@ -5,7 +5,7 @@ using app.Repositories.Interfaces;
 
 namespace app.Services.Interfaces;
 
-public interface IAttractionService
+public interface IAttractionService : ISearchRepository<Attraction>
 {
     public Task<IEnumerable<Attraction>> GetAll();
 

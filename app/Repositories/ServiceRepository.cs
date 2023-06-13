@@ -46,4 +46,9 @@ public class ServiceRepository : IServiceRepository
         service.Isdeleted = true;
         return Update(service);
     }
+    
+    public async Task<IEnumerable<Service>> Search(string input, bool isHotel)
+    {
+        return await _context.Services.Where(entity => entity.Title.Contains(input) && entity.Ishotel.Equals(isHotel)).ToListAsync();
+    }
 }

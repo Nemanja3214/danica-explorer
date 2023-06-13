@@ -39,4 +39,9 @@ public class AttractionService : IAttractionService
     {
         return _attractionRepository.Delete(attraction);
     }
+
+    public async Task<IEnumerable<Attraction>> Search(string input, bool isHotel = false)
+    {
+        return await _attractionRepository.Search(input);
+    }
 }

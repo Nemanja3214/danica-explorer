@@ -4,7 +4,7 @@ using app.Model;
 
 namespace app.Repositories.Interfaces;
 
-public interface IAttractionRepository
+public interface IAttractionRepository : ISearchRepository<Attraction>
 {
     public Task<IEnumerable<Attraction>> GetAll();
 

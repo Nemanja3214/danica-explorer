@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
@@ -48,5 +49,10 @@ public class AttractionRepository : IAttractionRepository
     {
         attraction.Isdeleted = true;
         return Update(attraction);
+    }
+
+    public async Task<IEnumerable<Attraction>> Search(string input, bool isHotel = false)
+    {
+        return await _context.Attractions.Where(entity => entity.Title.Contains(input)).ToListAsync();
     }
 }

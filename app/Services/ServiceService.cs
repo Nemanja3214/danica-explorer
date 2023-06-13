@@ -40,4 +40,9 @@ public class ServiceService : IServiceService
     {
         return _repository.Delete(service);
     }
+
+    public async Task<IEnumerable<Service>> Search(string input, bool isHotel = true)
+    {
+        return await _repository.Search(input, isHotel);
+    }
 }
