@@ -37,6 +37,8 @@ public class AllTripsViewModel : BaseViewModel
 
     private async void GetTrips()
     {
+        AllTrips = new();
+        OnPropertyChanged(nameof(AllTrips));
         IEnumerable<Trip> trips = await _service.GetAll();
         foreach (var trip in trips)
         {

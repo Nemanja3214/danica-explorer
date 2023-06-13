@@ -21,6 +21,7 @@ namespace app.Views
         private void showData(object? sender, PropertyChangedEventArgs propertyChangedEventArgs)
         {
             UniformGrid grid = this.FindControl<UniformGrid>("Grid");
+            grid.Children.Clear();
             AllAttractionsViewModel context = (AllAttractionsViewModel)DataContext;
             if (context != null && propertyChangedEventArgs.PropertyName.Equals(nameof(context.AllAttractions)))
             {

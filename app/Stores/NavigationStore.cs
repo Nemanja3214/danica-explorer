@@ -1,3 +1,4 @@
+using app.Model;
 using app.ViewModels;
 
 namespace app.Stores;
@@ -20,7 +21,19 @@ public class NavigationStore
         }
     }
 
+    public User _currentUser;
+    public User CurrentUser
+    {
+        get => _currentUser;
+        set
+        {
+            _currentUser = value;
+            OnCurrentUserChanged();
+        }
+    }
+
     public event Action CurrentViewModelChanged;
+    public event Action CurrentUserChanged;
 
     protected NavigationStore()
     {
@@ -39,6 +52,12 @@ public class NavigationStore
     private void OnCurrentViewModelChanged()
     {
         CurrentViewModelChanged?.Invoke();
+    }
+    
+    
+    private void OnCurrentUserChanged()
+    {
+        CurrentUserChanged?.Invoke();
     }
 
 }

@@ -28,23 +28,65 @@
             </MenuItem.Header>
         </MenuItem>
         <MenuItem
-            Command="{Binding TripsCommand}"
             FontSize="18"
             FontWeight="DemiBold"
             Header="PUTOVANJA"
-            Margin="0,0,20,0" />
+            Margin="0,0,20,0">
+            <MenuItem
+                Command="{Binding TripsCommand}"
+                FontSize="18"
+                FontWeight="DemiBold"
+                Header="Sva putovanja">
+            </MenuItem>
+            <MenuItem
+                Command="{Binding TripsCommand}"
+                FontSize="18"
+                FontWeight="DemiBold"
+                Header="Moja putovanja"
+                IsVisible="{Binding  IsSessionActive}">
+            </MenuItem>
+            <MenuItem
+                Command="{Binding TripsCommand}"
+                FontSize="18"
+                FontWeight="DemiBold"
+                Header="Kreiraj putovanje"
+                IsVisible="{Binding  IsAgentSessionActive}">
+            </MenuItem>
+        </MenuItem>
         <MenuItem
             Command="{Binding AttractionsCommand}"
             FontSize="18"
             FontWeight="DemiBold"
             Header="ATRAKCIJE"
-            Margin="0,0,20,0" />
+            Margin="0,0,20,0">
+            <MenuItem
+                Command="{Binding TripsCommand}"
+                FontSize="18"
+                FontWeight="DemiBold"
+                Header="Sve atrakcije">
+            </MenuItem>
+            <MenuItem
+                Command="{Binding TripsCommand}"
+                FontSize="18"
+                FontWeight="DemiBold"
+                Header="Kreiraj atrakciju"
+                IsVisible="{Binding  IsAgentSessionActive}">
+            </MenuItem>
+        </MenuItem>
         <MenuItem
             Command="{Binding AuthCommand}"
             FontSize="18"
             FontWeight="DemiBold"
             Header="PRIJAVI SE"
-            HorizontalAlignment="Right" />
+            HorizontalAlignment="Right"
+            IsVisible="{Binding IsSessionNotActive}"/>
+        <MenuItem
+            Command="{Binding AuthCommand}"
+            FontSize="18"
+            FontWeight="DemiBold"
+            Header="ODJAVI SE"
+            HorizontalAlignment="Right"
+            IsVisible="{Binding IsSessionActive}"/>
     </Menu>
 
 
