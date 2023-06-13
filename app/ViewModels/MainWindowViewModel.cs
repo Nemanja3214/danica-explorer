@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Reactive;
+using app.Commands;
+using app.Commands.Auth;
 using app.Model;
 using app.Stores;
 using app.ViewModels;
 using app.Views;
 using Avalonia.Controls;
+using Avalonia.Input;
 using Avalonia.Markup.Parsers.Nodes;
 using ReactiveUI;
 
@@ -15,12 +18,15 @@ public class MainWindowViewModel : BaseViewModel
 
     private readonly NavigationStore _navigationStore;
     public BaseViewModel CurrentViewModel => _navigationStore.CurrentViewModel ;
+    public BaseCommand LogoutCommand { get; }
+    public KeyGesture LogoutGesture { get; } = new KeyGesture(Key.Escape, KeyModifiers.Control);
 
     public MainWindowViewModel(Window parent)
     {
          _parent = parent;
         _navigationStore = NavigationStore.Instance();
         _navigationStore.CurrentViewModelChanged += OnCurrentViewModelChanged;
+        LogoutCommand = new LogoutCommand();
 
     }
 

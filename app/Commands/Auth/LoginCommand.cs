@@ -27,15 +27,18 @@ public class LoginCommand : BaseCommand
     }
     public async override void Execute(object parameter)
     {
-        try
+        if (_authViewModel.IsLoginButtonEnabled)
         {
-            User res = await _userService.Login(this._authViewModel.Email, this._authViewModel.Password);
-            _navigation.CurrentViewModel = new LandingViewModel();
-            _navigation.CurrentUser = res;
-        }
-        catch (InvalidOperationException)
-        {
-            // ...
+            try
+            {
+                User res = await _userService.Login(this._authViewModel.Email, this._authViewModel.Password);
+                _navigation.CurrentViewModel = new LandingViewModel();
+                _navigation.CurrentUser = res;
+            }
+            catch (InvalidOperationException)
+            {
+                // ...
+            }
         }
     }
 }
