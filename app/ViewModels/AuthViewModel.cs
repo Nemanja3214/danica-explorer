@@ -3,6 +3,7 @@ using System.Windows.Input;
 using app.Commands;
 using app.Commands.Auth;
 using app.Stores;
+using Avalonia.Input;
 using ReactiveValidation;
 using ReactiveValidation.Extensions;
 
@@ -101,6 +102,7 @@ public class AuthViewModel : BaseViewModel
 
     public BaseCommand LoginCommand { get; }
     public BaseCommand RegisterCommand { get; }
+    public KeyGesture EnterGesture { get; } = new KeyGesture(Key.Enter);
 
     public AuthViewModel()
     {

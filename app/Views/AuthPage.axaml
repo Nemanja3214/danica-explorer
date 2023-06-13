@@ -59,20 +59,31 @@
                             x:Name="PasswordBox" />
 
 
-                        <Button Content="PRIJAVA" 
-                                FontSize="18" 
-                                Width="170"
-                                IsEnabled="{Binding IsLoginButtonEnabled}"
-                                Background="#15B7B9"
-                                Foreground="White"
-                                HorizontalAlignment="Center" 
-                                HorizontalContentAlignment="Center"
-                                Command="{Binding LoginCommand}"/>
+                        <Button
+                            Background="#15B7B9"
+                            Command="{Binding LoginCommand}"
+                            Content="PRIJAVA"
+                            FontSize="18"
+                            Foreground="White"
+                            HorizontalAlignment="Center"
+                            HorizontalContentAlignment="Center"
+                            IsEnabled="{Binding IsLoginButtonEnabled}"
+                            Width="170" />
+                        <StackPanel.KeyBindings>
+
+                            <KeyBinding Command="{Binding LoginCommand}" Gesture="{Binding EnterGesture}" />
+                        </StackPanel.KeyBindings>
+
                     </StackPanel>
+
                 </TabItem>
 
                 <TabItem Header="REGISTRACIJA" Margin="40,30,0,30">
                     <StackPanel VerticalAlignment="Center">
+                        <StackPanel.KeyBindings>
+
+                            <KeyBinding Command="{Binding RegisterCommand}" Gesture="{Binding EnterGesture}" />
+                        </StackPanel.KeyBindings>
                         <TextBlock
                             FontSize="20"
                             FontWeight="SemiLight"
@@ -114,18 +125,20 @@
                             Width="400"
                             x:Name="RegPasswordBox" />
 
-                        <Button Content="REGISTRACIJA" 
-                                FontSize="18" 
-                                Width="170" 
-                                Background="#15B7B9"
-                                Foreground="White"
-                                IsEnabled="{Binding IsRegisterButtonEnabled}"
-                                HorizontalAlignment="Center" 
-                                HorizontalContentAlignment="Center"
-                                Command="{Binding RegisterCommand}"/>
+                        <Button
+                            Background="#15B7B9"
+                            Command="{Binding RegisterCommand}"
+                            Content="REGISTRACIJA"
+                            FontSize="18"
+                            Foreground="White"
+                            HorizontalAlignment="Center"
+                            HorizontalContentAlignment="Center"
+                            IsEnabled="{Binding IsRegisterButtonEnabled}"
+                            Width="170" />
                     </StackPanel>
                 </TabItem>
             </TabControl>
         </Border>
     </Grid>
+
 </UserControl>

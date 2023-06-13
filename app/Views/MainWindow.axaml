@@ -37,4 +37,7 @@
 
         <ContentControl Content="{Binding CurrentViewModel}" Grid.Row="1" />
     </Grid>
+    <Window.KeyBindings>
+        <KeyBinding Command="{Binding LogoutCommand}" Gesture="{Binding LogoutGesture}" />
+    </Window.KeyBindings>
 </Window>

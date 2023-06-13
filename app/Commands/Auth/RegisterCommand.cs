@@ -23,21 +23,24 @@ public class RegisterCommand : BaseCommand
     }
     public async override void Execute(object parameter)
     {
-        User user = new User
+        if (_authViewModel.IsRegisterButtonEnabled)
         {
-            Name = this._authViewModel.Name,
-            Phone = this._authViewModel.Phone,
-            Email = this._authViewModel.Email,
-            Password = this._authViewModel.Password,
-        };
-        try
-        {
-            User res = await _userService.Register(user);
-            _navigation.CurrentViewModel = new LandingViewModel();
-        }
-        catch (InvalidOperationException)
-        {
-            // ...
+            User user = new User
+            {
+                Name = this._authViewModel.Name,
+                Phone = this._authViewModel.Phone,
+                Email = this._authViewModel.Email,
+                Password = this._authViewModel.Password,
+            };
+            try
+            {
+                User res = await _userService.Register(user);
+                _navigation.CurrentViewModel = new LandingViewModel();
+            }
+            catch (InvalidOperationException)
+            {
+                // ...
+            }
         }
     }
 }
