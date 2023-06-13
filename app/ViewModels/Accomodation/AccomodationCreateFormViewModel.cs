@@ -144,11 +144,11 @@ public class AccomodationCreateFormViewModel :BaseViewModel
             .NotEmpty()
             .WithMessage("Obavezno polje")
             .AllWhen(vm => vm.Title != null);
-
-        builder.RuleFor(vm => vm.SelectedLocation.display_name)
-            .NotEmpty()
-            .WithMessage("Obavezno polje")
-            .AllWhen(vm => vm.SelectedLocation != null);
+        //
+        // builder.RuleFor(vm => vm.SelectedLocation.display_name)
+        //     .NotEmpty()
+        //     .WithMessage("Obavezno polje")
+        //     .AllWhen(vm => vm.SelectedLocation != null);
 
         builder.RuleFor(vm => vm.RatingValue)
             .NotNull()

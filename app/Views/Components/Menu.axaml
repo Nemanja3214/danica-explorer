@@ -22,7 +22,7 @@
                 <DockPanel HorizontalAlignment="Stretch" />
             </ItemsPanelTemplate>
         </Menu.ItemsPanel>
-        <MenuItem Command="{Binding HomeCommand}" Margin="0,0,50,0">
+        <MenuItem Command="{Binding HomeCommand}" Margin="0,0,70,0">
             <MenuItem.Header>
                 <Image Source="../../Assets/logo.png" />
             </MenuItem.Header>
@@ -33,62 +33,119 @@
             Header="PUTOVANJA"
             Margin="0,0,20,0">
             <MenuItem
-                Command="{Binding TripsCommand}"
+                Command="{Binding AllTripsCommand}"
                 FontSize="18"
                 FontWeight="DemiBold"
                 Header="Sva putovanja">
             </MenuItem>
             <MenuItem
-                Command="{Binding TripsCommand}"
+                Command="{Binding CreateTripCommand}"
                 FontSize="18"
                 FontWeight="DemiBold"
-                Header="Moja putovanja"
-                IsVisible="{Binding  IsSessionActive}">
+                Header="Kreirajte putovanje"
+                IsVisible="{Binding  IsAgentSessionActive}">
             </MenuItem>
             <MenuItem
-                Command="{Binding TripsCommand}"
+                Command="{Binding MyReservationsCommand}"
                 FontSize="18"
                 FontWeight="DemiBold"
-                Header="Kreiraj putovanje"
-                IsVisible="{Binding  IsAgentSessionActive}">
+                Header="Moje rezervacije"
+                IsVisible="{Binding  IsSessionActive}">
             </MenuItem>
         </MenuItem>
         <MenuItem
-            Command="{Binding AttractionsCommand}"
             FontSize="18"
             FontWeight="DemiBold"
             Header="ATRAKCIJE"
             Margin="0,0,20,0">
             <MenuItem
-                Command="{Binding TripsCommand}"
+                Command="{Binding AllAttractionsCommand}"
                 FontSize="18"
                 FontWeight="DemiBold"
                 Header="Sve atrakcije">
             </MenuItem>
             <MenuItem
-                Command="{Binding TripsCommand}"
+                Command="{Binding CreateAttractionCommand}"
                 FontSize="18"
                 FontWeight="DemiBold"
-                Header="Kreiraj atrakciju"
+                Header="Kreirajte atrakciju"
                 IsVisible="{Binding  IsAgentSessionActive}">
+            </MenuItem>
+        </MenuItem>
+        <MenuItem
+            FontSize="18"
+            FontWeight="DemiBold"
+            Header="SMEŠTAJI"
+            IsVisible="{Binding  IsAgentSessionActive}"
+            Margin="0,0,20,0">
+            <MenuItem
+                Command="{Binding AllAcommodationsCommand}"
+                FontSize="18"
+                FontWeight="DemiBold"
+                Header="Svi smeštaji">
+            </MenuItem>
+            <MenuItem
+                Command="{Binding CreateAcommodationCommand}"
+                FontSize="18"
+                FontWeight="DemiBold"
+                Header="Kreirajte smeštaj">
+            </MenuItem>
+        </MenuItem>
+        <MenuItem
+            FontSize="18"
+            FontWeight="DemiBold"
+            Header="RESTORANI"
+            IsVisible="{Binding  IsAgentSessionActive}"
+            Margin="0,0,20,0">
+            <MenuItem
+                Command="{Binding AllRestaurantsCommand}"
+                FontSize="18"
+                FontWeight="DemiBold"
+                Header="Svi restorani">
+            </MenuItem>
+            <MenuItem
+                Command="{Binding CreateRestaurantCommand}"
+                FontSize="18"
+                FontWeight="DemiBold"
+                Header="Kreirajte restoran">
+            </MenuItem>
+        </MenuItem>
+        <MenuItem
+            FontSize="18"
+            FontWeight="DemiBold"
+            Header="STATISTIKA"
+            IsVisible="{Binding  IsAgentSessionActive}"
+            Margin="0,0,20,0">
+            <MenuItem
+                Command="{Binding StatisticMonthCommand}"
+                FontSize="18"
+                FontWeight="DemiBold"
+                Header="Mesečna statistika">
+            </MenuItem>
+            <MenuItem
+                Command="{Binding StatisticsTripCommand}"
+                FontSize="18"
+                FontWeight="DemiBold"
+                Header="Statistika putovanja">
             </MenuItem>
         </MenuItem>
         <MenuItem
             Command="{Binding AuthCommand}"
             FontSize="18"
             FontWeight="DemiBold"
-            Header="PRIJAVI SE"
-            HorizontalAlignment="Right"
+            Header="PRIJAVA"
+            Width="130"
+            Foreground="#15B7B9"
+            HorizontalAlignment="Left"
             IsVisible="{Binding IsSessionNotActive}"/>
         <MenuItem
-            Command="{Binding AuthCommand}"
+            Command="{Binding LogoutCommand}"
             FontSize="18"
             FontWeight="DemiBold"
-            Header="ODJAVI SE"
-            HorizontalAlignment="Right"
+            Foreground="#15B7B9"
+            Header="ODJAVA"
+            Width="130"
+            HorizontalAlignment="Left"
             IsVisible="{Binding IsSessionActive}"/>
     </Menu>
-
-
-
 </UserControl>

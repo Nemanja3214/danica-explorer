@@ -24,23 +24,32 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="3*" />
+                <RowDefinition Height="2*" />
+                <RowDefinition Height="*" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-            
+            <TextBlock Text="{Binding WelcomeMessage}" 
+                       FontSize="32" 
+                       TextWrapping="Wrap"
+                       Margin="0 0 0 10"
+                       Padding="40 0"
+                       IsVisible="{Binding IsSessionActive}"
+                       Grid.Column="1"
+                       Grid.Row="0"/>
             <TextBlock Text="Da li ste spremni da zakoračite u novu avanturu ?" 
                        FontSize="32" 
                        FontWeight="Bold"
                        TextWrapping="Wrap"
                        Padding="40 0"
-                       Grid.Column="1"/>
+                       Grid.Column="1"
+                       Grid.Row="1"/>
             
             <TextBlock Text="Istražite najbolja putovanja uz danica-explorer !" 
                        FontSize="24"
                        TextWrapping="Wrap"
                        Padding=" 40 5"
                        Grid.Column="1"
-                       Grid.Row="1"/>
+                       Grid.Row="2"/>
             
         </Grid>
     </Grid>

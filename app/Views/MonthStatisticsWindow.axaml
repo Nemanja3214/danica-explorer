@@ -6,9 +6,12 @@
              xmlns:vm="using:app.ViewModels"
              x:DataType="vm:MonthStatisticsViewModel"
              x:Class="app.Views.MonthStatisticsWindow">
+	
+	<UserControl.DataContext>
+		<vm:MonthStatisticsViewModel/>
+	</UserControl.DataContext>
+	
 	<ScrollViewer MaxWidth="1500" HorizontalScrollBarVisibility="Auto">
-
-
         <Grid Margin="10 20">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" ></RowDefinition>

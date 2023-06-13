@@ -1,6 +1,7 @@
 using System;
 using System.ComponentModel;
 using System.Reactive;
+using app.Commands;
 using app.Model;
 using app.Services.Interfaces;
 using app.Utils;
@@ -17,7 +18,7 @@ using Splat;
 
 namespace app.ViewModels;
 
-public class AttractionCreateViewModel
+public class AttractionCreateViewModel : BaseViewModel
 {
     private readonly Window _parent;
 

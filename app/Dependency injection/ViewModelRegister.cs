@@ -9,16 +9,16 @@ public static class ViewModelRegister
         IReadonlyDependencyResolver resolver)
     {
         services.Register(() => new AccomodationCreateFormViewModel());
-        //services.Register(() => new AccomodationCreateViewModel());
-        //services.Register(() => new UploadViewModel());
+        services.Register(() => new AccomodationCreateViewModel());
+        services.Register(() => new UploadViewModel());
 
         services.Register(() => new AttractionCreateFormViewModel());
-        //services.Register(() => new AttractionCreateViewModel());
+        services.Register(() => new AttractionCreateViewModel());
         
         services.Register(() => new RestaurantCreateFormViewModel());
-        //services.Register(() => new RestaurantCreateViewModel());
+        services.Register(() => new RestaurantCreateViewModel());
 
-        //services.Register(() => new DragNDropViewModel());
+        // services.Register(() => new DragNDropViewModel());
         services.Register(() => new TripCreateViewModel());
         services.Register(() => new TripDetailsViewModel());
         

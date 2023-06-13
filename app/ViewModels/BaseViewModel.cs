@@ -14,6 +14,7 @@ public class BaseViewModel : ValidatableObject, INotifyPropertyChanged
     public bool IsSessionActive => CurrentUser != null;
     public bool IsSessionNotActive => CurrentUser == null;
     public bool IsAgentSessionActive => CurrentUser != null && CurrentUser.Isagent;
+    public string WelcomeMessage => "Dobrodošli, " + CurrentUser.Name + " !";
     
     public BaseViewModel()
     {
@@ -31,5 +32,6 @@ public class BaseViewModel : ValidatableObject, INotifyPropertyChanged
         OnPropertyChanged(nameof(IsSessionActive));
         OnPropertyChanged(nameof(IsSessionNotActive));
         OnPropertyChanged(nameof(IsAgentSessionActive));
+        OnPropertyChanged(nameof(WelcomeMessage));
     }
 }

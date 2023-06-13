@@ -17,7 +17,7 @@ using Splat;
 
 namespace app.ViewModels;
 
-public class AccomodationCreateViewModel
+public class AccomodationCreateViewModel : BaseViewModel
 {
     private readonly Window _parent;
 

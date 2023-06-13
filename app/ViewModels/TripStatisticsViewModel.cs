@@ -37,6 +37,10 @@ public class TripStatisticsViewModel : BaseViewModel
 
     private async void GetAllReservations()
     {
+        if (_reservations == null)
+        {
+            _reservations = new();
+        }
         _reservations.Clear();
         IEnumerable<Reservation> reservations = await Locator.Current.GetService<IReservationService>().GetAllForTrip(_selectedOption);
         foreach (Reservation reservation in reservations)
