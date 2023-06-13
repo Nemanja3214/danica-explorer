@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Reactive;
+using app.Model;
 using app.Stores;
 using app.ViewModels;
 using app.Views;
@@ -32,4 +33,7 @@ public class MainWindowViewModel : BaseViewModel
     {
         OnPropertyChanged(nameof(CurrentViewModel));
     }
+    
+    
+    
 }

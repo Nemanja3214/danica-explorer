@@ -34,6 +34,26 @@ public class TripServiceRepository : ITripServiceRepository
             .ToListAsync();
     }
 
+    public async Task<IEnumerable<TripService>> GetHotelsForTrip(Trip trip)
+    {
+        return await _context.TripServices
+            .Include(x => x.Trip)
+            .Include(x => x.Service)
+            .Where(x => x.TripId == trip.Id)
+            .Where(x => x.Service.Ishotel == true)
+            .ToListAsync();
+    }
+
+    public async Task<IEnumerable<TripService>> GetRestaurantsForTrip(Trip trip)
+    {
+        return await _context.TripServices
+            .Include(x => x.Trip)
+            .Include(x => x.Service)
+            .Where(x => x.TripId == trip.Id)
+            .Where(x => x.Service.Ishotel == false)
+            .ToListAsync();
+    }
+
     public async Task<IEnumerable<TripService>> GetAllForService(Service service)
     {
         return await _context.TripServices

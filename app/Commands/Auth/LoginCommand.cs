@@ -31,6 +31,7 @@ public class LoginCommand : BaseCommand
         {
             User res = await _userService.Login(this._authViewModel.Email, this._authViewModel.Password);
             _navigation.CurrentViewModel = new LandingViewModel();
+            _navigation.CurrentUser = res;
         }
         catch (InvalidOperationException)
         {

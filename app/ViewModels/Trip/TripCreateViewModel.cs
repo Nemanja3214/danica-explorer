@@ -22,7 +22,7 @@ using Location = app.Model.Location;
 
 namespace app.ViewModels;
 
-public class TripCreateViewModel
+public class TripCreateViewModel : BaseViewModel
 {
     
     private Trip _toUpdate;

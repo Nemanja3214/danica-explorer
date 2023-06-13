@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Windows.Input;
 using app.Commands;
 using app.Model;
@@ -37,7 +38,7 @@ public class TripCardViewModel : BaseViewModel
     public TripCardViewModel()
     {
         BookCommand = new BookCommand();
-        LearnMoreCommand = new TripDetailsCommand();
+        LearnMoreCommand = new TripDetailsCommand(this);
         _imageSource = "Assets/banner.png";
         _tripName = "Beogradska magija";
         _tripDate = "Datum: " + "01.01.2020.";
@@ -47,10 +48,21 @@ public class TripCardViewModel : BaseViewModel
     public TripCardViewModel(Trip trip)
     {
         BookCommand = new BookCommand();
-        LearnMoreCommand = new TripDetailsCommand();
+        LearnMoreCommand = new TripDetailsCommand(this);
+        SelectedTrip = trip;
         _imageSource = "../Assets/banner.png";
         _tripName = trip.Title;
+        if (_tripName.Length > 30)
+        {
+            _tripName = _tripName.Substring(0, 27) + "...";
+        }
+        if (_tripName.Length <= 30)
+        {
+            _tripName += String.Concat(Enumerable.Repeat(" ", 30 - _tripName.Length));
+        }
         _tripDate = "Datum: " + trip.Startdate.Value.ToString("dd.MM.yyyy.");
         _tripPrice = "Cena: " + trip.Price + " din";
     }
+
+    public Trip SelectedTrip { get; set; }
 }

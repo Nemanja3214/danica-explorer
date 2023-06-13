@@ -9,14 +9,16 @@ public class TripDetailsCommand : BaseCommand
 {
     private readonly AppCore _core;
     private readonly NavigationStore _navigation;
+    private readonly TripCardViewModel _viewModel;
 
-    public TripDetailsCommand()
+    public TripDetailsCommand(TripCardViewModel tripCardViewModel)
     {
         _core = AppCore.Instance();
+        _viewModel = tripCardViewModel;
         _navigation = NavigationStore.Instance();
     }
     public override void Execute(object parameter)
     {
-        _navigation.CurrentViewModel = Locator.Current.GetService<TripDetailsViewModel>();
+        _navigation.CurrentViewModel = new TripDetailsViewModel(_viewModel.SelectedTrip);
     }
 }
