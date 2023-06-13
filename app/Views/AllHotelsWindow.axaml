@@ -1,0 +1,21 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             xmlns:vm="using:app.ViewModels"
+             x:DataType="vm:AllHotelsViewModel"
+             x:Class="app.Views.AllHotelsWindow">
+	<StackPanel>
+        <TextBlock TextAlignment="Center"
+                   VerticalAlignment="Center"
+                   FontWeight="Bold"
+                   FontSize="32"
+                   Text="Pregled svih hotela"
+                   Margin="0 30 10 0"/>
+        <ScrollViewer Margin="20" VerticalScrollBarVisibility="Auto" MaxHeight="600">
+            <UniformGrid Columns="4" HorizontalAlignment="Stretch" Name="Grid" ScrollViewer.VerticalScrollBarVisibility="Visible">
+            </UniformGrid>
+        </ScrollViewer>
+    </StackPanel>
+</UserControl>

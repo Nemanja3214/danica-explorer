@@ -53,6 +53,6 @@ public class AttractionRepository : IAttractionRepository
 
     public async Task<IEnumerable<Attraction>> Search(string input, bool isHotel = false)
     {
-        return await _context.Attractions.Where(entity => entity.Title.Contains(input)).ToListAsync();
+        return await _context.Attractions.Include(a => a.Location).Where(entity => entity.Title.Contains(input)).ToListAsync();
     }
 }

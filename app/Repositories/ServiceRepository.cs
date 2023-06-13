@@ -27,6 +27,20 @@ public class ServiceRepository : IServiceRepository
         return await _context.Services.ToListAsync();
     }
 
+    public async Task<IEnumerable<Service>> GetAllHotels()
+    {
+        return await _context.Services
+            .Where(x => x.Ishotel == true)
+            .ToListAsync();
+    }
+
+    public async Task<IEnumerable<Service>> GetAllRestaurants()
+    {
+        return await _context.Services
+            .Where(x => x.Ishotel == false)
+            .ToListAsync();
+    }
+
     public Service Create(Service service)
     {
         EntityEntry<Service> res = _context.Services.Add(service);
@@ -49,6 +63,6 @@ public class ServiceRepository : IServiceRepository
     
     public async Task<IEnumerable<Service>> Search(string input, bool isHotel)
     {
-        return await _context.Services.Where(entity => entity.Title.Contains(input) && entity.Ishotel.Equals(isHotel)).ToListAsync();
+        return await _context.Services.Include(s => s.Location).Where(entity => entity.Title.Contains(input) && entity.Ishotel.Equals(isHotel)).ToListAsync();
     }
 }

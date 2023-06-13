@@ -1,4 +1,5 @@
 ﻿using app.Model;
+using app.Repositories;
 using app.Repositories.Interfaces;
 using app.Services;
 using app.Services.Interfaces;
@@ -30,5 +31,13 @@ public static class ServiceRegister
             new TripServiceService(resolver.GetService<ITripServiceRepository>()));
         services.RegisterLazySingleton<IUserService>(() =>
             new UserService(resolver.GetService<IUserRepository>()));
+        services.RegisterLazySingleton<ISearchService<Attraction>>(() =>
+            new AttractionService(resolver.GetService<IAttractionRepository>()));
+        services.RegisterLazySingleton<ISearchService<Service>>(() =>
+            new ServiceService(resolver.GetService<IServiceRepository>()));
+        services.RegisterLazySingleton<ISearchRepository<Attraction>>(() =>
+            new AttractionRepository(resolver.GetService<DanicaExplorerContext>()));
+        services.RegisterLazySingleton<ISearchRepository<Service>>(() =>
+            new ServiceRepository(resolver.GetService<DanicaExplorerContext>()));
     }
 }

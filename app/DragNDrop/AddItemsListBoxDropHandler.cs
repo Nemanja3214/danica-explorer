@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using app.DragNDrop;
 using app.Model;
-using app.Models;
 using app.ViewModels;
 
 namespace app.DragNDrop;

@@ -6,7 +6,7 @@ using app.Services.Interfaces;
 
 namespace app.Services;
 
-public class ServiceService : IServiceService
+public class ServiceService : IServiceService, ISearchService<Service>
 {
     private readonly IServiceRepository _repository;
 
@@ -24,6 +24,16 @@ public class ServiceService : IServiceService
     public async Task<IEnumerable<Service>> GetAll()
     {
         return await _repository.GetAll();
+    }
+
+    public async Task<IEnumerable<Service>> GetAllHotels()
+    {
+        return await _repository.GetAllHotels();
+    }
+
+    public async Task<IEnumerable<Service>> GetAllRestaurants()
+    {
+        return await _repository.GetAllRestaurants();
     }
 
     public Service Create(Service service)

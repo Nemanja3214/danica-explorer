@@ -1,7 +1,5 @@
-using Avalonia;
-using Avalonia.Controls;
-using Avalonia.Markup.Xaml;
 
+using Avalonia.Controls;
 namespace app.Views;
 
 public partial class MyReservations : UserControl
