@@ -22,19 +22,19 @@
                 <views:AuthPage />
             </DataTemplate>
         </Grid.DataTemplates>
-    
+
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-    
-     <Border
-     Background="#E1E4EA"
-     BoxShadow="0 4 10 0 LightGray"
-     Grid.Row="0">
+
+        <Border
+            Background="#E1E4EA"
+            BoxShadow="0 4 10 0 LightGray"
+            Grid.Row="0">
             <components:Menu />
         </Border>
-    
+
         <ContentControl Content="{Binding CurrentViewModel}" Grid.Row="1" />
     </Grid>
 </Window>
