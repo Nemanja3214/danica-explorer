@@ -28,6 +28,7 @@ public class AttractionCreateViewModel : BaseViewModel
         Form = Locator.Current.GetService<AttractionCreateFormViewModel>();
         MapVM = Locator.Current.GetService<MapViewModel>();
         Form.LocationChanged += LocationChanged;
+        Uvm = new UploadViewModel();
         _undoCommand = ReactiveCommand.Create<Unit>(e =>
         {
             if (PreviousAttraction == null)

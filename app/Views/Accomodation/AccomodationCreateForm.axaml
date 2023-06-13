@@ -13,11 +13,22 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <StackPanel Margin="10">
         <TextBox
+            Watermark="Naziv smeštaja" 
             KeyboardNavigation.TabNavigation="Contained"
             Margin="10"
             Text="{Binding Title}" />
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="2*" />
+            </Grid.ColumnDefinitions>
+            <TextBlock
+                Margin="10"
+                Text="Broj zvezdica: "
+                VerticalAlignment="Center" />
         <viewModels:RatingControl
             Focusable="True"
+            Grid.Column="1"
             IsTabStop="True"
             KeyboardNavigation.TabNavigation="Contained"
             NumberOfStars="5"
@@ -27,17 +38,17 @@
                 <KeyBinding Command="{Binding RaiseRating}" Gesture="Right" />
             </viewModels:RatingControl.KeyBindings>
         </viewModels:RatingControl>
-
+        </Grid>
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-
-
+           
             <TextBox
                 Grid.Row="0"
                 Margin="10"
+                Watermark="Pretražite lokaciju ..."
                 Text="{Binding Query}"
                 x:Name="SearchBox" />
             <ListBox
@@ -58,6 +69,7 @@
             AcceptsReturn="True"
             Height="100"
             Margin="10"
+            Watermark="Opis smeštaja"
             Name="tbMultiLine"
             Text="{Binding Description}"
             TextWrapping="Wrap" />

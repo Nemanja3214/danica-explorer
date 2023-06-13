@@ -11,8 +11,11 @@
     xmlns:models="clr-namespace:app.Utils"
     xmlns:viewModels="clr-namespace:app.ViewModels"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Control.DataContext>
+        <viewModels:AttractionCreateFormViewModel />
+    </Control.DataContext>
     <StackPanel Margin="10">
-        <TextBox Margin="10" Text="{Binding AttractionName}" />
+        <TextBox Margin="10" Watermark="Naziv atrakcije" Text="{Binding AttractionName}" />
 
         <Grid>
             <Grid.RowDefinitions>
@@ -25,7 +28,8 @@
                 Grid.Row="0"
                 Margin="10"
                 Text="{Binding Query}"
-                x:Name="SearchBox" />
+                x:Name="SearchBox"
+                Watermark="Pretražite lokaciju ..."/>
             <ListBox
                 Grid.Row="1"
                 Items="{Binding GeneratedCompletes}"
@@ -41,6 +45,7 @@
             </ListBox>
         </Grid>
         <TextBox
+            Watermark="Opis atrakcije"
             AcceptsReturn="True"
             Height="100"
             Margin="10"

@@ -59,7 +59,7 @@ public class AccomodationCreateFormViewModel :BaseViewModel
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
 
-    private string _query = "Location";
+    private string _query;
 
     public string Query
     {
