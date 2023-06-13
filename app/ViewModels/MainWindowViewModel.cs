@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Reactive;
+using app.Commands;
+using app.Commands.Navigation;
 using app.Model;
 using app.Stores;
 using app.ViewModels;
 using app.Views;
 using Avalonia.Controls;
+using Avalonia.Input;
 using Avalonia.Markup.Parsers.Nodes;
 using ReactiveUI;
 
@@ -21,6 +24,8 @@ public class MainWindowViewModel : BaseViewModel
          _parent = parent;
         _navigationStore = NavigationStore.Instance();
         _navigationStore.CurrentViewModelChanged += OnCurrentViewModelChanged;
+        HelpCommand = new HelpCommand();
+        LandingCommand = new HomeCommand();
 
     }
 
@@ -34,6 +39,9 @@ public class MainWindowViewModel : BaseViewModel
         OnPropertyChanged(nameof(CurrentViewModel));
     }
     
-    
+    public BaseCommand HelpCommand { get;  }
+    public BaseCommand LandingCommand { get;  }
+    public KeyGesture HelpGesture { get; } = new KeyGesture(Key.F1);
+    public KeyGesture LandingGesture { get; } = new KeyGesture(Key.Escape);
     
 }

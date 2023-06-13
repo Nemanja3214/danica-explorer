@@ -37,7 +37,7 @@ public class TripCardViewModel : BaseViewModel
 
     public TripCardViewModel()
     {
-        BookCommand = new BookCommand();
+        BookCommand = new BookCommand(this);
         LearnMoreCommand = new TripDetailsCommand(this);
         _imageSource = "Assets/banner.png";
         _tripName = "Beogradska magija";
@@ -47,7 +47,7 @@ public class TripCardViewModel : BaseViewModel
 
     public TripCardViewModel(Trip trip)
     {
-        BookCommand = new BookCommand();
+        BookCommand = new BookCommand(this);
         LearnMoreCommand = new TripDetailsCommand(this);
         SelectedTrip = trip;
         _imageSource = "../Assets/banner.png";
