@@ -11,6 +11,9 @@
     xmlns:models="clr-namespace:app.Utils"
     xmlns:viewModels="clr-namespace:app.ViewModels"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Control.DataContext>
+        <viewModels:AttractionCreateFormViewModel />
+    </Control.DataContext>
     <StackPanel Margin="10">
         <TextBox Margin="10" Text="{Binding AttractionName}" />
 

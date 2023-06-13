@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using System.Reactive;
 using app.Commands;
 using app.Model;
@@ -24,6 +26,7 @@ public class AttractionCreateViewModel : BaseViewModel
 
     public AttractionCreateViewModel()
     {
+        Uvm = new UploadViewModel();
         _parent = MainWindowViewModel.GetMainWindow();
         Form = Locator.Current.GetService<AttractionCreateFormViewModel>();
         MapVM = Locator.Current.GetService<MapViewModel>();
@@ -40,12 +43,16 @@ public class AttractionCreateViewModel : BaseViewModel
             Locator.Current.GetService<IAttractionService>().Delete(CurrentAttraction);
             CurrentAttraction = PreviousAttraction;
             PreviousAttraction = null;
+            Locator.Current.GetService<IAttractionService>().Update(CurrentAttraction);
         });
         
         _saveCommand = ReactiveCommand.Create<Unit>(e =>
         {
             Attraction a = FormAttraction();
-            a = Locator.Current.GetService<IAttractionService>().Create(a);
+            if(_toUpdate == null)
+                a = Locator.Current.GetService<IAttractionService>().Create(a);
+            else
+                a = Locator.Current.GetService<IAttractionService>().Update(a);
             PreviousAttraction = CurrentAttraction;
             CurrentAttraction = a;
         });
@@ -68,18 +75,25 @@ public class AttractionCreateViewModel : BaseViewModel
 
     private ReactiveCommand<Unit, Unit> _undoCommand;
     private ReactiveCommand<Unit, Unit> _saveCommand;
+    private Attraction _toUpdate;
+
+    public Attraction ToUpdate
+    {
+        get => _toUpdate;
+        set => _toUpdate = value ?? throw new ArgumentNullException(nameof(value));
+    }
 
 
     public Attraction PreviousAttraction
     {
         get => _previousAttraction;
-        set => _previousAttraction = value ?? throw new ArgumentNullException(nameof(value));
+        set => _previousAttraction = value;
     }
 
     public Attraction CurrentAttraction
     {
         get => _currentAttraction;
-        set => _currentAttraction = value ?? throw new ArgumentNullException(nameof(value));
+        set => _currentAttraction = value;
     }
 
     public ReactiveCommand<Unit, Unit> UndoCommand
@@ -99,7 +113,9 @@ public class AttractionCreateViewModel : BaseViewModel
 
     public Attraction FormAttraction()
     {
-        Attraction a = new Attraction();
+        IEnumerable<Attraction> attractions =  Locator.Current.GetService<IAttractionService>().GetAll().Result;
+        _toUpdate = attractions.First();
+        Attraction a = _toUpdate != null ? _toUpdate : new Attraction();
         a.Image = UploadViewModel.ImageToByte(Uvm.ImageToView);
         a.Description = Form.Description;
         a.Title = Form.AttractionName;
